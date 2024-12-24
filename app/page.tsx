@@ -34,7 +34,7 @@ export default async function Home() {
             {data.map((post, idx) => (
               <Card
                 key={idx}
-                className="flex justify-center items-center mx-auto" // Ensures the card is centered
+                className="flex justify-center items-center mx-auto border border-gray-300 rounded-md shadow-sm" // Border and shadow added
               >
                 <CardContent className="mt-5 text-center w-full">
                   <h3 className="text-lg font-bold">{post.title}</h3>

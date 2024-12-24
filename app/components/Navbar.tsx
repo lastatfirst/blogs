@@ -3,11 +3,11 @@ import { ModeToggle } from "./ModeToggle";
 
 export default function Navbar() {
   return (
-    <nav className="w-full relative flex items-center justify-between max-w-2xl mx-auto px-4 py-5">
+    <nav className="w-full relative flex items-center justify-between max-w-2xl mx-auto px-4 py-5 border-b border-gray-300">
       <Link href="/" className="font-bold text-4xl">
         <span className="text-primary">Blog</span>
       </Link>
-      <ModeToggle/>
+      <ModeToggle />
     </nav>
   );
-}   
+}

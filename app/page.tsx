@@ -27,7 +27,6 @@ export default async function Home() {
   return (
     <>
       <Navbar /> {/* Ensure Navbar is rendered */}
-      <div className="border-b border-gray-300"></div> {/* Optional border */}
       <div className="mt-5 flex justify-center w-full"> {/* Center the content */}
         <div className="w-full max-w-7xl px-4"> {/* Limit max width on larger screens */}
           <div className="grid grid-cols-1 gap-5"> {/* Always 1 column */}

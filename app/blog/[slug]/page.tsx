@@ -1,3 +1,5 @@
+// app/blog/[slug]/page.tsx
+
 import { PortableText } from "@portabletext/react"; // For rendering Sanity content
 import { fullBlog } from "@/app/lib/interface"; // Importing the type for blog data
 import { client } from "@/app/lib/sanity"; // Sanity client for fetching data

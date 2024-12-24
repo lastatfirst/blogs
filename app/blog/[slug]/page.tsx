@@ -24,7 +24,7 @@ export default async function BlogArticle({ params }: PageProps) {
 
   if (!data) {
     return (
-      <div className="mt-8 text-center">
+      <div className="mt-8 text-center prose prose-blue dark:prose-invert">
         <h1 className="text-2xl font-semibold">Blog Not Found</h1>
       </div>
     );
@@ -33,9 +33,10 @@ export default async function BlogArticle({ params }: PageProps) {
   return (
     <>
       <Navbar />
-      <div className="mt-8 max-w-4xl mx-auto px-4">
-        <h1 className="text-3xl font-bold text-center sm:text-4xl">{data.title}</h1>
-        <div className="mt-6 prose prose-lg dark:prose-dark">
+      <div className="mt-8 max-w-4xl mx-auto px-4 ">
+      <h1 className="text-4xl font-bold text-center !text-5xl">{data.title}</h1>
+
+        <div className="mt-6 prose prose-blue dark:prose-invert">
           <PortableText value={data.content} />
         </div>
       </div>

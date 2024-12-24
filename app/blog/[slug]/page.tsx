@@ -1,11 +1,9 @@
-// app/blog/[slug]/page.tsx
-
-import { PortableText } from "@portabletext/react"; // For rendering Sanity content
-import { fullBlog } from "@/app/lib/interface"; // Importing the type for blog data
-import { client } from "@/app/lib/sanity"; // Sanity client for fetching data
+import { PortableText } from "@portabletext/react";
+import { fullBlog } from "@/app/lib/interface"; // Correct import path for the interface
+import { client } from "@/app/lib/sanity"; // Ensure sanity client is set up
 import Navbar from "@/app/components/Navbar"; // Ensure the Navbar path is correct
+import { PageProps } from "@/app/lib/interface"; // Correct import for PageProps
 
-// Function to fetch data for the given slug
 async function getData(slug: string) {
   const query = `
     *[_type == "blog" && slug.current == $slug] {
@@ -17,9 +15,8 @@ async function getData(slug: string) {
   return data;
 }
 
-// BlogArticle component
-export default async function BlogArticle({ params }: { params: { slug: string } }) {
-  const { slug } = params; // Destructure the slug parameter
+export default async function BlogArticle({ params }: PageProps) {
+  const { slug } = await params; // Await the params before accessing slug
   const data: fullBlog = await getData(slug); // Fetch blog data based on the slug
 
   if (!data) {
@@ -32,7 +29,7 @@ export default async function BlogArticle({ params }: { params: { slug: string }
 
   return (
     <>
-      <Navbar /> {/* Include the Navbar */}
+      <Navbar />
       <div className="mt-8 max-w-4xl mx-auto px-4">
         <h1 className="text-3xl font-bold text-center sm:text-4xl">{data.title}</h1>
         <div className="mt-6 prose prose-lg dark:prose-dark">

@@ -14,7 +14,7 @@ export interface simpleBlogCard {
     _key: string;
     _type: string;
     children: PortableTextChild[];
-    markDefs: MarkDef[];  // More specific type
+    markDefs: MarkDef[];
     style: string;
   };
   
@@ -27,6 +27,12 @@ export interface simpleBlogCard {
   export type MarkDef = {
     _key: string;
     _type: string;
-    href?: string;  // Optional property for links
+    href?: string;
   };
+  
+  export interface PageProps {
+    params: {
+      slug: string;
+    };
+  }
   

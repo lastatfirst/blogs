@@ -1,5 +1,5 @@
 export interface simpleBlogCard{
-    title:string;
+    title:string
     smallDescription:string;
     currentSlug:string;
 }

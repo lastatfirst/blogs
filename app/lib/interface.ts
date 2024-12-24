@@ -7,7 +7,7 @@ export interface simpleBlogCard {
   export interface fullBlog {
     currentSlug: string;
     title: string;
-    content: PortableTextBlock[]; // Replaced `any` with `PortableTextBlock[]`
+    content: PortableTextBlock[];
   }
   
   // Define the type for PortableText content structure
@@ -15,7 +15,15 @@ export interface simpleBlogCard {
     _key: string;
     _type: string;
     children: { _key: string; _type: string; text: string }[];
-    markDefs: any[];  // You can keep this as `any[]` for now, or replace with a specific type if needed
+    markDefs: MarkDef[];  // Replaced `any[]` with a specific type `MarkDef[]`
     style: string;
+  };
+  
+  // Define the type for marks applied to text
+  export type MarkDef = {
+    _key: string;
+    _type: string;
+    href?: string;  // Optional property for links
+    [key: string]: any;  // Allow additional properties
   };
   

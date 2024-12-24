@@ -30,9 +30,8 @@ export interface simpleBlogCard {
     href?: string;
   };
   
-  export interface PageProps {
-    params: {
-      slug: string;
-    };
+// interface.ts
+export interface PageProps {
+    params: Promise<{ slug: string }>;
   }
   

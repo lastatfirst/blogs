@@ -1,9 +1,10 @@
 import { PortableText } from "@portabletext/react";
-import { fullBlog } from "@/app/lib/interface"; // Correct import path for the interface
-import { client } from "@/app/lib/sanity"; // Ensure sanity client is set up
-import Navbar from "@/app/components/Navbar"; // Ensure the Navbar path is correct
-import { PageProps } from "@/app/lib/interface"; // Correct import for PageProps
+import { fullBlog } from "@/app/lib/interface";
+import { client } from "@/app/lib/sanity";
+import Navbar from "@/app/components/Navbar";
+import { PageProps } from "@/app/lib/interface";
 
+// Function to fetch data for the given slug
 async function getData(slug: string) {
   const query = `
     *[_type == "blog" && slug.current == $slug] {
@@ -15,8 +16,10 @@ async function getData(slug: string) {
   return data;
 }
 
+// BlogArticle component
 export default async function BlogArticle({ params }: PageProps) {
-  const { slug } = await params; // Await the params before accessing slug
+  const { slug } = await params; // Await the params object to get the slug
+
   const data: fullBlog = await getData(slug); // Fetch blog data based on the slug
 
   if (!data) {

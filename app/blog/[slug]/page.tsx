@@ -46,9 +46,8 @@ export default async function BlogArticle({ params }: PageProps) {
           </Button>
         </Link>
 
-        {/* Attention-grabbing Title */}
         <h1
-          className="text-5xl sm:text-6xl md:text-7xl text-center text-white font-extrabold shadow-lg animate-pulse"
+          className="text-5xl sm:text-6xl md:text-7xl text-center text-white font-extrabold shadow-lg"
         >
           {data.title}
         </h1>

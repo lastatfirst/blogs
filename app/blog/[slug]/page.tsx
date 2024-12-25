@@ -46,7 +46,12 @@ export default async function BlogArticle({ params }: PageProps) {
           </Button>
         </Link>
 
-        <h1 className="text-4xl sm:text-5xl md:text-5xl font-bold text-center">{data.title}</h1>
+        {/* Attention-grabbing Title */}
+        <h1
+          className="text-5xl sm:text-6xl md:text-7xl text-center text-white font-extrabold shadow-lg animate-pulse"
+        >
+          {data.title}
+        </h1>
 
         <div className="mt-10"></div> {/* Spacer for additional separation */}
 

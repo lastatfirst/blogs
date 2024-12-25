@@ -2,6 +2,8 @@ import { PortableText } from "@portabletext/react";
 import { fullBlog } from "@/app/lib/interface";
 import { client } from "@/app/lib/sanity";
 import Navbar from "@/app/components/Navbar";
+import Link from "next/link";
+import { Button } from "@/components/ui/button"; // Import ShadCN Button
 import { PageProps } from "@/app/lib/interface";
 
 // Function to fetch data for the given slug
@@ -33,10 +35,15 @@ export default async function BlogArticle({ params }: PageProps) {
   return (
     <>
       <Navbar />
-      <div className="mt-8 max-w-4xl mx-auto px-4">
+      <div className="mt-8 max-w-4xl mx-auto px-4 pb-20"> {/* Added padding-bottom */}
+        {/* Back Button using ShadCN Button Component */}
+        <Link href="/">
+          <Button variant="outline" className="mb-4">← Back</Button>
+        </Link>
+        
         <h1 className="text-4xl sm:text-5xl md:text-5xl font-bold text-center">{data.title}</h1>
 
-        <div className="mt-10"></div> {/* Spacer added here */}
+        <div className="mt-10"></div> {/* Spacer for additional separation */}
 
         <div className="mt-6 prose prose-blue dark:prose-invert">
           <PortableText value={data.content} />

@@ -16,14 +16,14 @@ export default function Navbar() {
       {/* Bottom Navbar */}
       <footer className="fixed bottom-0 w-full bg-gray-100 py-3">
         <div className="flex justify-center space-x-6">
-          <Link href="https://twitter.com" target="_blank" className="text-black hover:text-black">
-            <FaTwitter size={24} />
+          <Link href="https://twitter.com" target="_blank" className="hover:text-black">
+            <FaTwitter size={24} style={{ color: "black" }} />
           </Link>
-          <Link href="https://linkedin.com" target="_blank" className="text-black hover:text-black">
-            <FaLinkedin size={24} />
+          <Link href="https://linkedin.com" target="_blank" className="hover:text-black">
+            <FaLinkedin size={24} style={{ color: "black" }} />
           </Link>
-          <Link href="https://github.com" target="_blank" className="text-black hover:text-black">
-            <FaGithub size={24} />
+          <Link href="https://github.com" target="_blank" className="hover:text-black">
+            <FaGithub size={24} style={{ color: "black" }} />
           </Link>
         </div>
       </footer>

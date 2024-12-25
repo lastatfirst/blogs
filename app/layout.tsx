@@ -1,5 +1,4 @@
-// app/layout.tsx
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/react"; // Import the Analytics component
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "./components/theme-provider";
 import "./globals.css";
@@ -30,6 +29,9 @@ export default function RootLayout({
         >
           {children}
         </ThemeProvider>
+        
+        {/* Add the Analytics component just before closing body tag */}
+        <Analytics />
       </body>
     </html>
   );

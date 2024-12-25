@@ -35,15 +35,19 @@ export default async function BlogArticle({ params }: PageProps) {
   return (
     <>
       <Navbar />
-      <div className="mt-8 max-w-4xl mx-auto px-4 pb-20"> {/* Added padding-bottom */}
-        {/* Back Button using ShadCN Button Component */}
+      <div className="mt-8 max-w-4xl mx-auto px-4 pb-20">
         <Link href="/">
-          <Button variant="outline" className="mb-4">← Back</Button>
+          <Button
+            variant="outline"
+            className="mb-4 border-2 border-white text-white hover:bg-white hover:text-black px-6 py-2 rounded-md"
+          >
+            ← Back
+          </Button>
         </Link>
-        
+
         <h1 className="text-4xl sm:text-5xl md:text-5xl font-bold text-center">{data.title}</h1>
 
-        <div className="mt-10"></div> {/* Spacer for additional separation */}
+        <div className="mt-10"></div>
 
         <div className="mt-6 prose prose-blue dark:prose-invert">
           <PortableText value={data.content} />

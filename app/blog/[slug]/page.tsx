@@ -52,7 +52,7 @@ export default async function BlogArticle({ params }: PageProps) {
           {data.title}
         </h1>
 
-        <div className="mt-10"></div> {/* Spacer for additional separation */}
+        <div className="mt-10"></div>
 
         <div className="mt-6 prose prose-blue dark:prose-invert">
           <PortableText value={data.content} />

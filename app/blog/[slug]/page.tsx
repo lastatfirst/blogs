@@ -5,11 +5,20 @@ import Navbar from "@/app/components/Navbar";
 import Link from "next/link";
 import { Button } from "@/components/ui/button"; // Import ShadCN Button
 import { PageProps } from "@/app/lib/interface";
+import Image from "next/image"; // Import Next.js Image component
+
+// Type for the image value
+interface ImageValue {
+  asset: {
+    url: string;
+  };
+  alt?: string;
+}
 
 // Custom PortableText components for handling image rendering
 const myPortableTextComponents = {
   types: {
-    image: ({ value }: any) => {
+    image: ({ value }: { value: ImageValue }) => {
       const imageUrl = value?.asset?.url; // Access the image URL from Sanity
 
       if (!imageUrl) {
@@ -18,7 +27,14 @@ const myPortableTextComponents = {
 
       return (
         <div className="my-4">
-          <img src={imageUrl} alt={value?.alt || "Image"} className="w-full h-auto" />
+          <Image
+            src={imageUrl}
+            alt={value?.alt || "Image"}
+            width={800} // Set width for optimization
+            height={600} // Set height for optimization
+            className="w-full h-auto"
+            layout="intrinsic" // Automatic scaling
+          />
         </div>
       );
     },

@@ -50,7 +50,7 @@ export default function RootLayout({
           <div
             style={{
               position: "fixed",
-              top: 0,
+              top: "-50px",  // Moved the card 50px up
               left: 0,
               width: "100%",
               height: "100%",
@@ -66,11 +66,11 @@ export default function RootLayout({
               width: "600px",
               backgroundColor: "black",
               color: "white",
-              border: "3px solid white",  // Added white border around the card
+              border: "3px solid white",  // White border around the card
               borderRadius: "8px",  // Rounded corners for the border
             }}>
               <CardHeader>
-                <CardTitle style={{ fontSize: "30px", fontWeight: "bold" }}>Warning</CardTitle>
+                <CardTitle style={{ fontSize: "30px", fontWeight: "bold" }}>--  Warning!!</CardTitle>
               </CardHeader>
               <div style={{ padding: "10px 20px 15px 20px", fontSize: "16px" }}>
                 <p>The developer is allergic to designing, continue only if you are fine with it.</p>

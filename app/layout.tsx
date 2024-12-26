@@ -65,9 +65,7 @@ export default function RootLayout({
             <Card style={{
               width: "600px",
               backgroundColor: "black",
-              color: "white",
-              border: "3px solid white",  // White border around the card
-              borderRadius: "8px",  // Rounded corners for the border
+              color: "white",  // Rounded corners for the border
             }}>
               <CardHeader>
                 <CardTitle style={{ fontSize: "30px", fontWeight: "bold" }}>--  Warning!!</CardTitle>

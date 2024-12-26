@@ -48,7 +48,7 @@ export default async function Home() {
                     <p className="text-sm mt-2 text-gray-600 dark:text-gray-300">
                       {post.smallDescription}
                     </p>
-                    {/* Display the formatted creation date with a smaller font size */}
+
                     <p className="mt-2 text-sm text-gray-500">
                       -- {formattedDate}
                     </p>

@@ -3,50 +3,16 @@ import { fullBlog } from "@/app/lib/interface";
 import { client } from "@/app/lib/sanity";
 import Navbar from "@/app/components/Navbar";
 import Link from "next/link";
-import { Button } from "@/components/ui/button"; // Import ShadCN Button
+import { Button } from "@/components/ui/button";
 import { PageProps } from "@/app/lib/interface";
-import Image from "next/image"; // Import Next.js Image component
-
-// Type for the image value
-interface ImageValue {
-  asset: {
-    url: string;
-  };
-  alt?: string;
-}
-
-// Custom PortableText components for handling image rendering
-const myPortableTextComponents = {
-  types: {
-    image: ({ value }: { value: ImageValue }) => {
-      const imageUrl = value?.asset?.url; // Access the image URL from Sanity
-
-      if (!imageUrl) {
-        return <p>No image available</p>; // Fallback message if no image URL is found
-      }
-
-      return (
-        <div className="my-4">
-          <Image
-            src={imageUrl}
-            alt={value?.alt || "Image"}
-            width={800} // Set width for optimization
-            height={600} // Set height for optimization
-            className="w-full h-auto"
-            layout="intrinsic" // Automatic scaling
-          />
-        </div>
-      );
-    },
-  },
-};
+import Image from "next/image";
 
 // Fetch blog data based on the slug
 async function getData(slug: string) {
   const query = `
     *[_type == "blog" && slug.current == $slug] {
       title,
-      content[]{
+      content[] {
         ...,
         asset->{
           url
@@ -71,11 +37,37 @@ export default async function BlogArticle({ params }: PageProps) {
     );
   }
 
+  // Custom PortableText components for rendering images
+  const myPortableTextComponents = {
+    types: {
+      image: ({ value }: { value: { asset: { url: string }; alt?: string } }) => {
+        const imageUrl = value?.asset?.url;
+
+        if (!imageUrl) {
+          return <p>No image available</p>; // Fallback if image URL is missing
+        }
+
+        return (
+          <div className="my-4">
+            <Image
+              src={imageUrl} // Use the raw image URL from Sanity
+              alt={value?.alt || "Image"} // Default alt text
+              width={800} // Set width
+              height={600} // Set height
+              className="w-full h-auto" // Make image responsive
+              priority // Optional: prioritize loading
+            />
+          </div>
+        );
+      },
+    },
+  };
+
   return (
     <>
       <Navbar />
       <div className="mt-8 max-w-4xl mx-auto px-4 pb-20">
-        {/* Back Button with White Border */}
+        {/* Back Button */}
         <Link href="/">
           <Button
             variant="outline"
@@ -89,12 +81,10 @@ export default async function BlogArticle({ params }: PageProps) {
           {data.title}
         </h1>
 
-        <div className="mt-10"></div>
-
         <div className="mt-6 prose prose-blue dark:prose-invert">
           <PortableText
             value={data.content}
-            components={myPortableTextComponents} // Use custom components to handle image rendering
+            components={myPortableTextComponents} // Custom components for PortableText
           />
         </div>
       </div>

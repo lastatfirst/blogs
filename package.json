@@ -13,6 +13,7 @@
     "@radix-ui/react-dropdown-menu": "^2.1.4",
     "@radix-ui/react-slot": "^1.1.1",
     "@sanity/cli": "^3.68.3",
+    "@sanity/image-url": "^1.1.0",
     "@sanity/vision": "^3.68.3",
     "@vercel/analytics": "^1.4.1",
     "class-variance-authority": "^0.7.1",

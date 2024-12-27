@@ -1,10 +1,11 @@
-"use client";  // This tells Next.js that this component is a client component
+"use client"; 
 
 import { useState, useEffect } from "react";
-import { Analytics } from "@vercel/analytics/react"; // Import the Analytics component
+import Head from "next/head";
+import { Analytics } from "@vercel/analytics/react";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "./components/theme-provider";
-import { Card, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";  // ShadCN Card components
+import { Card, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -25,7 +26,6 @@ export default function RootLayout({
   const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
-    // Trigger the popup on page load
     setShowPopup(true);
   }, []);
 
@@ -35,6 +35,11 @@ export default function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
+      <Head>
+        <title>Vihan's Blog</title> {/* Set your desired tab title */}
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        {/* Replace /favicon.ico with your actual favicon path */}
+      </Head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ThemeProvider 
           attribute="class" 
@@ -45,31 +50,33 @@ export default function RootLayout({
           {children}
         </ThemeProvider>
 
-        {/* Popup Warning */}
         {showPopup && (
           <div
             style={{
               position: "fixed",
-              top: "-50px",  // Moved the card 50px up
+              top: "-50px",
               left: 0,
               width: "100%",
               height: "100%",
-              backgroundColor: "rgba(0, 0, 0, 0.7)",  // Darker background
+              backgroundColor: "rgba(0, 0, 0, 0.7)",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
               zIndex: 1000,
             }}
           >
-            {/* ShadCN Card as Warning with Border */}
-            <Card style={{
-              width: "600px",
-              backgroundColor: "black",
-              color: "white",
-              border: "2px solid white" // Rounded corners for the border
-            }}>
+            <Card
+              style={{
+                width: "600px",
+                backgroundColor: "black",
+                color: "white",
+                border: "2px solid white",
+              }}
+            >
               <CardHeader>
-                <CardTitle style={{ fontSize: "30px", fontWeight: "bold" }}>--  Warning!!</CardTitle>
+                <CardTitle style={{ fontSize: "30px", fontWeight: "bold" }}>
+                  -- Warning!!
+                </CardTitle>
               </CardHeader>
               <div style={{ padding: "10px 20px 15px 20px", fontSize: "16px" }}>
                 <p>The developer is allergic to graphic designing, continue only if you are fine with this. Anything nearly visually appealing is purely coincidental.</p>
@@ -79,13 +86,13 @@ export default function RootLayout({
                   onClick={handleClose}
                   style={{
                     width: "100%",
-                    padding: "8px 15px",  // Decreased button padding
-                    backgroundColor: "white",  // White button background
-                    color: "black",  // Black text for contrast
-                    border: "2px solid white",  // White border for button
+                    padding: "8px 15px",
+                    backgroundColor: "white",
+                    color: "black",
+                    border: "2px solid white",
                     borderRadius: "4px",
                     cursor: "pointer",
-                    fontSize: "14px",  // Decreased font size for button text
+                    fontSize: "14px",
                     transition: "background-color 0.3s ease, border 0.3s ease",
                   }}
                   onMouseEnter={(e) => e.currentTarget.style.backgroundColor = "#f1f1f1"}
@@ -98,7 +105,6 @@ export default function RootLayout({
           </div>
         )}
 
-        {/* Add the Analytics component just before closing body tag */}
         <Analytics />
       </body>
     </html>

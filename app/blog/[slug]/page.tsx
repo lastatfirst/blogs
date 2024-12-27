@@ -37,6 +37,16 @@ export default async function BlogArticle({ params }: PageProps) {
     );
   }
 
+  // Calculate estimated read time
+  const wordsPerMinute = 200;
+  const wordCount = data.content.reduce((count, block) => {
+    if (block._type === "block" && block.children) {
+      return count + block.children.reduce((childCount, child) => child.text?.split(/\s+/).length + childCount, 0);
+    }
+    return count;
+  }, 0);
+  const estimatedReadTime = `${Math.ceil(wordCount / wordsPerMinute)} min read`;
+
   // Custom PortableText components for rendering images
   const myPortableTextComponents = {
     types: {
@@ -80,6 +90,9 @@ export default async function BlogArticle({ params }: PageProps) {
         <h1 className="text-5xl sm:text-6xl md:text-7xl text-center text-white font-extrabold shadow-lg">
           {data.title}
         </h1>
+
+        {/* Estimated Read Time */}
+        <p className="mt-2 text-center text-gray-400 text-lg">{estimatedReadTime}</p>
 
         <div className="mt-6 prose prose-blue dark:prose-invert">
           <PortableText

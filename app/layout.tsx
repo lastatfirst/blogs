@@ -72,7 +72,7 @@ export default function RootLayout({
                 <CardTitle style={{ fontSize: "30px", fontWeight: "bold" }}>--  Warning!!</CardTitle>
               </CardHeader>
               <div style={{ padding: "10px 20px 15px 20px", fontSize: "16px" }}>
-                <p>The developer is allergic to graphic designing, continue only if you are fine with this. Anything nearly visually appealing is coincidental.</p>
+                <p>The developer is allergic to graphic designing, continue only if you are fine with this. Anything nearly visually appealing is purely coincidental.</p>
               </div>
               <CardFooter>
                 <button

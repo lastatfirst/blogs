@@ -36,9 +36,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <Head>
-        <title>Vihan's Blog</title> {/* Set your desired tab title */}
+        <title>Vihan&apos;s Blog</title> {/* Set your desired tab title */}
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-        {/* Replace /favicon.ico with your actual favicon path */}
       </Head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ThemeProvider 

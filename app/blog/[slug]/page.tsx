@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { PageProps } from "@/app/lib/interface";
 import Image from "next/image";
+import LikeButton from "@/app/components/LikeButton"; // Import LikeButton component
 
 // Fetch blog data based on the slug
 async function getData(slug: string) {
@@ -93,6 +94,11 @@ export default async function BlogArticle({ params }: PageProps) {
 
         {/* Estimated Read Time */}
         <p className="mt-2 text-center text-gray-400 text-lg">{estimatedReadTime}</p>
+
+        {/* Like Button */}
+        <div className="mt-4 flex justify-center">
+          <LikeButton postId={slug} /> {/* Pass slug as postId */}
+        </div>
 
         <div className="mt-6 prose prose-blue dark:prose-invert">
           <PortableText

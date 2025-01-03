@@ -1,4 +1,5 @@
 import { PortableText } from "@portabletext/react";
+import { fullBlog } from "@/app/lib/interface";
 import { client } from "@/app/lib/sanity";
 import Navbar from "@/app/components/Navbar";
 import Link from "next/link";
@@ -24,23 +25,17 @@ type PortableImageProps = {
   };
 };
 
-// Define the type for the blog data (useful for type safety)
-type ContentBlock = {
-  _type: string;
-  children?: { text?: string }[];
-};
-
 // Fetch blog data based on the slug
-async function getData(slug: string) {
+async function getData(slug: string): Promise<fullBlog> {
   const query = `*[_type == "blog" && slug.current == $slug] {
-      title,
-      content[] {
-        ...,
-        asset->{
-          url
-        }
+    title,
+    content[] {
+      ...,
+      asset->{
+        url
       }
-    }[0]`;
+    }
+  }[0]`;
 
   const data = await client.fetch(query, { slug });
 
@@ -54,18 +49,13 @@ async function getData(slug: string) {
 // BlogArticle component
 export default async function BlogArticle({ params }: Props) {
   const { slug } = params;
-  let data;
 
-  try {
-    data = await getData(slug);
-  } catch {
-    return <div>Blog post not found</div>;
-  }
+  const data = await getData(slug);
 
   const wordsPerMinute = 200;
-  const wordCount = data.content.reduce((count: number, block: ContentBlock) => {
+  const wordCount = data.content.reduce((count, block) => {
     if (block._type === "block" && block.children) {
-      return count + block.children.reduce((childCount: number, child: { text?: string }) =>
+      return count + block.children.reduce((childCount, child) =>
         (child.text ? child.text.split(/\s+/).length : 0) + childCount, 0);
     }
     return count;

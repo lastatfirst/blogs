@@ -1,19 +1,22 @@
-"use client"
+"use client";
 import { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import { Button } from '@/components/ui/button';
 import { Heart } from 'lucide-react';
 
-// Initialize Supabase client
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-  {
-    auth: {
-      persistSession: false // Since we're not using authentication
-    }
+// Ensure the Supabase URL and Anon Key are available
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+if (!supabaseUrl || !supabaseAnonKey) {
+  console.error('Supabase URL or Anon Key is missing.');
+}
+
+const supabase = createClient(supabaseUrl!, supabaseAnonKey!, {
+  auth: {
+    persistSession: false // Since we're not using authentication
   }
-);
+});
 
 interface LikeButtonProps {
   postId: string;
@@ -104,9 +107,7 @@ export default function LikeButton({ postId }: LikeButtonProps) {
       className="flex items-center gap-2 transition-all duration-300"
     >
       <Heart
-        className={`w-5 h-5 transition-all duration-300 ${
-          isLiked ? 'fill-white' : 'fill-none'
-        }`}
+        className={`w-5 h-5 transition-all duration-300 ${isLiked ? 'fill-white' : 'fill-none'}`}
       />
       <span>{likes}</span>
     </Button>

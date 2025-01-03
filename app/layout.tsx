@@ -37,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <Head>
-        <title>Vihan&apos;s Blog</title>
+        <title>Vihan&apos;s vt.</title>
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       </Head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>

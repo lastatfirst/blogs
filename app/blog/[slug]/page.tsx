@@ -58,7 +58,7 @@ export default async function BlogArticle({ params }: Props) {
 
   try {
     data = await getData(slug);
-  } catch (error) {
+  } catch {
     return <div>Blog post not found</div>;
   }
 

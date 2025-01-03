@@ -10,7 +10,7 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
   {
     auth: {
-      persistSession: false // Since we're not using authentication
+      persistSession: false
     }
   }
 );
@@ -55,12 +55,11 @@ export default function LikeButton({ postId }: LikeButtonProps) {
   const handleLike = async () => {
     try {
       if (isLiked) {
-        return; // Don't allow unliking if already liked
+        return;
       }
 
       setIsLoading(true);
 
-      // Add like only if not already liked
       const { error } = await supabase
         .from('likes')
         .insert([{ 
@@ -88,7 +87,7 @@ export default function LikeButton({ postId }: LikeButtonProps) {
   return (
     <Button
       onClick={handleLike}
-      disabled={isLoading || isLiked} // Disable if already liked
+      disabled={isLoading || isLiked} 
       variant={isLiked ? 'default' : 'outline'}
       className="flex items-center gap-2 transition-all duration-300"
     >

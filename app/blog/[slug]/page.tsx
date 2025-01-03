@@ -1,9 +1,11 @@
+
 import { PortableText } from "@portabletext/react";
 import { fullBlog } from "@/app/lib/interface";
 import { client } from "@/app/lib/sanity";
 import Navbar from "@/app/components/Navbar";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { PageProps } from "@/app/lib/interface";
 import Image from "next/image";
 
 // Fetch blog data based on the slug
@@ -23,26 +25,20 @@ async function getData(slug: string) {
   return data;
 }
 
-// Server-side function to fetch the necessary blog data
-export async function getServerSideProps({ params }: { params: { slug: string } }) {
-  const data = await getData(params.slug); // Fetch blog data based on the slug
+// BlogArticle component
+export default async function BlogArticle({ params }: PageProps) {
+  const { slug } = await params; // Await the params object to get the slug
+  const data: fullBlog = await getData(slug); // Fetch blog data based on the slug
 
-  // If the data doesn't exist, return a 404 page
   if (!data) {
-    return {
-      notFound: true,
-    };
+    return (
+      <div className="mt-8 text-center prose prose-blue dark:prose-invert">
+        <h1 className="text-2xl font-semibold">Blog Not Found</h1>
+      </div>
+    );
   }
 
-  return {
-    props: {
-      data,
-    },
-  };
-}
-
-// BlogArticle component
-export default function BlogArticle({ data }: { data: fullBlog }) {
+  // Calculate estimated read time
   const wordsPerMinute = 200;
   const wordCount = data.content.reduce((count, block) => {
     if (block._type === "block" && block.children) {
@@ -52,24 +48,25 @@ export default function BlogArticle({ data }: { data: fullBlog }) {
   }, 0);
   const estimatedReadTime = `${Math.ceil(wordCount / wordsPerMinute)} min read`;
 
+  // Custom PortableText components for rendering images
   const myPortableTextComponents = {
     types: {
       image: ({ value }: { value: { asset: { url: string }; alt?: string } }) => {
         const imageUrl = value?.asset?.url;
 
         if (!imageUrl) {
-          return <p>No image available</p>;
+          return <p>No image available</p>; // Fallback if image URL is missing
         }
 
         return (
           <div className="my-4">
             <Image
-              src={imageUrl}
-              alt={value?.alt || "Image"}
-              width={800}
-              height={600}
-              className="w-full h-auto"
-              priority
+              src={imageUrl} // Use the raw image URL from Sanity
+              alt={value?.alt || "Image"} // Default alt text
+              width={800} // Set width
+              height={600} // Set height
+              className="w-full h-auto" // Make image responsive
+              priority // Optional: prioritize loading
             />
           </div>
         );
@@ -81,6 +78,7 @@ export default function BlogArticle({ data }: { data: fullBlog }) {
     <>
       <Navbar />
       <div className="mt-8 max-w-4xl mx-auto px-4 pb-20">
+        {/* Back Button */}
         <Link href="/">
           <Button
             variant="outline"
@@ -93,27 +91,17 @@ export default function BlogArticle({ data }: { data: fullBlog }) {
         <h1 className="text-5xl sm:text-6xl md:text-7xl text-center text-white font-extrabold shadow-lg">
           {data.title}
         </h1>
+
+        {/* Estimated Read Time */}
         <p className="mt-2 text-center text-gray-400 text-lg">{estimatedReadTime}</p>
 
         <div className="mt-6 prose prose-blue dark:prose-invert">
-          <PortableText value={data.content} components={myPortableTextComponents} />
+          <PortableText
+            value={data.content}
+            components={myPortableTextComponents} // Custom components for PortableText
+          />
         </div>
       </div>
     </>
   );
-}
-
-// Generate static params if using static generation
-export async function generateStaticParams() {
-  const query = `*[_type == "blog"]{
-    slug {
-      current
-    }
-  }`;
-
-  const slugs = await client.fetch(query);
-
-  return slugs.map((slug: { slug: { current: string } }) => ({
-    slug: slug.slug.current,
-  }));
 }

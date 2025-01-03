@@ -26,8 +26,10 @@ async function getData(slug: string) {
 
 // BlogArticle component
 export default async function BlogArticle({ params }: { params: { slug: string } }) {
-  const { slug } = await params; // Ensure params is awaited here
-  const data: fullBlog = await getData(slug); // Fetch blog data
+  // Ensure params is awaited here
+  const { slug } = await params;
+
+  const data: fullBlog = await getData(slug); // Fetch blog data based on the slug
 
   if (!data) {
     return (

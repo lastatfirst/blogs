@@ -89,7 +89,7 @@ export default function LikeButton({ postId }: LikeButtonProps) {
       onClick={handleLike}
       disabled={isLoading || isLiked} 
       variant={isLiked ? 'default' : 'outline'}
-      className="flex items-center gap-2 transition-all duration-300"
+      className="flex items-center gap-2 transition-all duration-300 border-2 border-gray-300 rounded-lg"
     >
       <Heart
         className={`w-5 h-5 transition-all duration-300 ${isLiked ? 'fill-white' : 'fill-none'}`}

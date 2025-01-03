@@ -1,80 +1,112 @@
-"use client";
+"use client"
+import { useEffect, useState } from 'react';
+import { createClient } from '@supabase/supabase-js'; // Import createClient from supabase-js
+import { Button } from '@/components/ui/button';
 
-import { useState, useEffect } from "react";
+// Fetch the environment variables
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-// Define the type for the props
+// Ensure the environment variables are not undefined
+if (!supabaseUrl || !supabaseAnonKey) {
+  throw new Error('Supabase URL and anon key are required');
+}
+
+// Initialize Supabase Client
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
 interface LikeButtonProps {
-  postId: string; // postId should be a string
+  postId: string;
 }
 
 const LikeButton = ({ postId }: LikeButtonProps) => {
-  const [likeCount, setLikeCount] = useState(0);
-  const [liked, setLiked] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
+  const [likes, setLikes] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
-  // Retrieve like count and liked status from localStorage
   useEffect(() => {
-    const storedLikes = localStorage.getItem(postId);
-    if (storedLikes) {
-      const parsedData = JSON.parse(storedLikes);
-      setLikeCount(parsedData.likeCount);
-      setLiked(parsedData.liked);
+    // Check if the user has already liked the post
+    const liked = localStorage.getItem(`liked_${postId}`);
+    if (liked) {
+      setIsLiked(true);
     }
+
+    // Fetch the current number of likes
+    const fetchLikes = async () => {
+      const { data, error } = await supabase
+        .from('likes')
+        .select('id')
+        .eq('post_id', postId);
+
+      if (error) {
+        console.error('Error fetching likes:', error.message || error);
+        return;
+      }
+
+      setLikes(data ? data.length : 0); // Set the total likes
+    };
+
+    fetchLikes();
   }, [postId]);
 
-  // Handle clicking the like button
   const handleLike = async () => {
-    if (liked) {
-      return; // Prevent further likes if already liked
-    }
-
-    const newLikeStatus = !liked;
-    const newLikeCount = newLikeStatus ? likeCount + 1 : likeCount;
-
-    // Update state
-    setLiked(newLikeStatus);
-    setLikeCount(newLikeCount);
-
-    // Save the like status and count to localStorage
-    localStorage.setItem(
-      postId,
-      JSON.stringify({
-        likeCount: newLikeCount,
-        liked: newLikeStatus,
-      })
-    );
-
-    // Optionally, here you can call your backend to store the like data persistently
     try {
-      const response = await fetch('/api/like', {
-        method: 'POST',
-        body: JSON.stringify({ postId, liked: newLikeStatus, likeCount: newLikeCount }),
-        headers: { 'Content-Type': 'application/json' },
-      });
+      setIsLoading(true);
 
-      if (!response.ok) {
-        throw new Error('Failed to update like');
+      if (isLiked) {
+        // If already liked, remove the like
+        const { data, error } = await supabase
+          .from('likes')
+          .delete()
+          .match({ post_id: postId })
+          .select();
+
+        if (error) {
+          console.error('Delete error details:', error.message || error);
+          return;
+        }
+
+        console.log('Deleted like:', data);
+        setLikes((prev) => prev - 1);
+        setIsLiked(false);
+        localStorage.removeItem(`liked_${postId}`);
+      } else {
+        // Add a new like
+        const { data, error } = await supabase
+          .from('likes')
+          .insert([{ post_id: postId, created_at: new Date().toISOString() }])
+          .select();
+
+        if (error) {
+          console.error('Insert error details:', error.message || error);
+          return;
+        }
+
+        console.log('Added like:', data);
+        setLikes((prev) => prev + 1);
+        setIsLiked(true);
+        localStorage.setItem(`liked_${postId}`, 'true');
       }
-    } catch (error) {
-      console.error("Error liking post:", error);
+    } catch (error: any) {
+      console.error('Like action error:', error);
+      console.error('Error details:', error.message);
+      if (error.details) console.error('Error details:', error.details);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <div>
-      <button
+    <div className="flex items-center space-x-2">
+      <Button
+        variant="outline"
+        className={`px-4 py-2 rounded-md ${isLiked ? 'bg-red-600 text-white' : 'bg-gray-600 text-white'}`}
         onClick={handleLike}
-        className={`like-button ${liked ? "liked" : ""}`}
-        style={{
-          backgroundColor: liked ? "#FF5733" : "#ddd",
-          color: liked ? "white" : "black",
-          padding: "10px 20px",
-          border: "none",
-          borderRadius: "5px",
-          cursor: "pointer",
-        }}
+        disabled={isLoading}
       >
-        {liked ? "Liked" : "Like"} ({likeCount})
-      </button>
+        {isLiked ? 'Liked' : 'Like'}
+      </Button>
+      <span className="text-white">{likes} likes</span>
     </div>
   );
 };

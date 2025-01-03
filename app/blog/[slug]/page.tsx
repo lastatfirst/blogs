@@ -1,4 +1,3 @@
-
 import { PortableText } from "@portabletext/react";
 import { fullBlog } from "@/app/lib/interface";
 import { client } from "@/app/lib/sanity";
@@ -7,6 +6,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { PageProps } from "@/app/lib/interface";
 import Image from "next/image";
+import LikeButton from "@/app/components/LikeButton";
 
 // Fetch blog data based on the slug
 async function getData(slug: string) {
@@ -42,7 +42,8 @@ export default async function BlogArticle({ params }: PageProps) {
   const wordsPerMinute = 200;
   const wordCount = data.content.reduce((count, block) => {
     if (block._type === "block" && block.children) {
-      return count + block.children.reduce((childCount, child) => child.text?.split(/\s+/).length + childCount, 0);
+      return count + block.children.reduce((childCount, child) => 
+        (child.text ? child.text.split(/\s+/).length : 0) + childCount, 0);
     }
     return count;
   }, 0);
@@ -95,6 +96,11 @@ export default async function BlogArticle({ params }: PageProps) {
         {/* Estimated Read Time */}
         <p className="mt-2 text-center text-gray-400 text-lg">{estimatedReadTime}</p>
 
+        {/* Like Button */}
+        <div className="mt-4 flex justify-center">
+          <LikeButton postId={slug} />
+        </div>
+
         <div className="mt-6 prose prose-blue dark:prose-invert">
           <PortableText
             value={data.content}
@@ -104,4 +110,19 @@ export default async function BlogArticle({ params }: PageProps) {
       </div>
     </>
   );
+}
+
+// Generate static params if using static generation
+export async function generateStaticParams() {
+  const query = `*[_type == "blog"]{
+    slug {
+      current
+    }
+  }`;
+  
+  const slugs = await client.fetch(query);
+  
+  return slugs.map((slug: { slug: { current: string } }) => ({
+    slug: slug.slug.current,
+  }));
 }

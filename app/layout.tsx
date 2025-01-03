@@ -1,4 +1,4 @@
-"use client"; 
+"use client";
 
 import { useState, useEffect } from "react";
 import Head from "next/head";
@@ -6,6 +6,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "./components/theme-provider";
 import { Card, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
+import { Provider } from "@lyket/react";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -36,17 +37,19 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <Head>
-        <title>Vihan&apos;s Blog</title> {/* Set your desired tab title */}
+        <title>Vihan&apos;s Blog</title>
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       </Head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <ThemeProvider 
-          attribute="class" 
-          defaultTheme="system" 
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <Provider apiKey="pt_ac9956a36f2b598b4543a2b53dfb6f">
+            {children}
+          </Provider>
         </ThemeProvider>
 
         {showPopup && (
@@ -78,7 +81,11 @@ export default function RootLayout({
                 </CardTitle>
               </CardHeader>
               <div style={{ padding: "10px 20px 15px 20px", fontSize: "16px" }}>
-                <p>The developer is allergic to graphic designing, continue only if you are fine with this. Anything nearly visually appealing is purely coincidental.</p>
+                <p>
+                  The developer is allergic to graphic designing, continue only if you
+                  are fine with this. Anything nearly visually appealing is purely
+                  coincidental.
+                </p>
               </div>
               <CardFooter>
                 <button
@@ -94,8 +101,12 @@ export default function RootLayout({
                     fontSize: "14px",
                     transition: "background-color 0.3s ease, border 0.3s ease",
                   }}
-                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = "#f1f1f1"}
-                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = "white"}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.backgroundColor = "#f1f1f1")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.backgroundColor = "white")
+                  }
                 >
                   Accept
                 </button>

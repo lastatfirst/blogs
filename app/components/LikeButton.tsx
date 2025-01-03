@@ -1,38 +1,5 @@
 "use client";
 
-<<<<<<< HEAD
-import { useState } from "react";
-import supabase from '../lib/supabaseClient';
-
-type LikeButtonProps = {
-  postId: string;
-};
-
-export default function LikeButton({ postId }: LikeButtonProps) {
-  const [likes, setLikes] = useState(0);
-
-  const handleLike = async () => {
-    const { data, error } = await supabase
-      .from("likes")
-      .upsert({ post_id: postId, like_count: likes + 1 });
-
-    if (error) {
-      console.error("Error liking post:", error.message);
-    } else {
-      setLikes((prev) => prev + 1);
-    }
-  };
-
-  return (
-    <button
-      onClick={handleLike}
-      className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700"
-    >
-      Like ({likes})
-    </button>
-  );
-}
-=======
 import { useState, useEffect } from "react";
 
 // Define the type for the props
@@ -55,9 +22,13 @@ const LikeButton = ({ postId }: LikeButtonProps) => {
   }, [postId]);
 
   // Handle clicking the like button
-  const handleLike = () => {
+  const handleLike = async () => {
+    if (liked) {
+      return; // Prevent further likes if already liked
+    }
+
     const newLikeStatus = !liked;
-    const newLikeCount = newLikeStatus ? likeCount + 1 : likeCount - 1;
+    const newLikeCount = newLikeStatus ? likeCount + 1 : likeCount;
 
     // Update state
     setLiked(newLikeStatus);
@@ -71,6 +42,21 @@ const LikeButton = ({ postId }: LikeButtonProps) => {
         liked: newLikeStatus,
       })
     );
+
+    // Optionally, here you can call your backend to store the like data persistently
+    try {
+      const response = await fetch('/api/like', {
+        method: 'POST',
+        body: JSON.stringify({ postId, liked: newLikeStatus, likeCount: newLikeCount }),
+        headers: { 'Content-Type': 'application/json' },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update like');
+      }
+    } catch (error) {
+      console.error("Error liking post:", error);
+    }
   };
 
   return (
@@ -94,4 +80,3 @@ const LikeButton = ({ postId }: LikeButtonProps) => {
 };
 
 export default LikeButton;
->>>>>>> e553ea1f6291f4fdddbe0cfd1ab540aedfc56412

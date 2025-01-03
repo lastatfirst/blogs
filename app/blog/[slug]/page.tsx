@@ -6,7 +6,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import LikeButton from "@/app/components/LikeButton";
 import Image from "next/image";
-import LikeButton from "@/app/components/LikeButton"; // Import LikeButton component
 
 // Fetch blog data based on the slug
 async function getData(slug: string) {
@@ -27,7 +26,7 @@ async function getData(slug: string) {
 
 // BlogArticle component
 export default async function BlogArticle({ params }: { params: { slug: string } }) {
-  const { slug } = params; // Destructure slug from params (no await needed)
+  const { slug } = await params; // Ensure params is awaited here
   const data: fullBlog = await getData(slug); // Fetch blog data
 
   if (!data) {
@@ -90,14 +89,8 @@ export default async function BlogArticle({ params }: { params: { slug: string }
         </h1>
         <p className="mt-2 text-center text-gray-400 text-lg">{estimatedReadTime}</p>
 
-<<<<<<< HEAD
-        <div className="mt-4 text-center">
-          <LikeButton postId={slug} />
-=======
-        {/* Like Button */}
         <div className="mt-4 flex justify-center">
           <LikeButton postId={slug} /> {/* Pass slug as postId */}
->>>>>>> e553ea1f6291f4fdddbe0cfd1ab540aedfc56412
         </div>
 
         <div className="mt-6 prose prose-blue dark:prose-invert">

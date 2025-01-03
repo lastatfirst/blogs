@@ -4,7 +4,7 @@ import { client } from "@/app/lib/sanity";
 import Navbar from "@/app/components/Navbar";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { PageProps } from "@/app/lib/interface";
+import LikeButton from "@/app/components/LikeButton";
 import Image from "next/image";
 
 // Fetch blog data based on the slug
@@ -25,9 +25,9 @@ async function getData(slug: string) {
 }
 
 // BlogArticle component
-export default async function BlogArticle({ params }: PageProps) {
-  const { slug } = await params; // Await the params object to get the slug
-  const data: fullBlog = await getData(slug); // Fetch blog data based on the slug
+export default async function BlogArticle({ params }: { params: { slug: string } }) {
+  const { slug } = params; // Destructure slug from params (no await needed)
+  const data: fullBlog = await getData(slug); // Fetch blog data
 
   if (!data) {
     return (
@@ -37,7 +37,6 @@ export default async function BlogArticle({ params }: PageProps) {
     );
   }
 
-  // Calculate estimated read time
   const wordsPerMinute = 200;
   const wordCount = data.content.reduce((count, block) => {
     if (block._type === "block" && block.children) {
@@ -47,25 +46,24 @@ export default async function BlogArticle({ params }: PageProps) {
   }, 0);
   const estimatedReadTime = `${Math.ceil(wordCount / wordsPerMinute)} min read`;
 
-  // Custom PortableText components for rendering images
   const myPortableTextComponents = {
     types: {
       image: ({ value }: { value: { asset: { url: string }; alt?: string } }) => {
         const imageUrl = value?.asset?.url;
 
         if (!imageUrl) {
-          return <p>No image available</p>; // Fallback if image URL is missing
+          return <p>No image available</p>;
         }
 
         return (
           <div className="my-4">
             <Image
-              src={imageUrl} // Use the raw image URL from Sanity
-              alt={value?.alt || "Image"} // Default alt text
-              width={800} // Set width
-              height={600} // Set height
-              className="w-full h-auto" // Make image responsive
-              priority // Optional: prioritize loading
+              src={imageUrl}
+              alt={value?.alt || "Image"}
+              width={800}
+              height={600}
+              className="w-full h-auto"
+              priority
             />
           </div>
         );
@@ -77,7 +75,6 @@ export default async function BlogArticle({ params }: PageProps) {
     <>
       <Navbar />
       <div className="mt-8 max-w-4xl mx-auto px-4 pb-20">
-        {/* Back Button */}
         <Link href="/">
           <Button
             variant="outline"
@@ -90,15 +87,14 @@ export default async function BlogArticle({ params }: PageProps) {
         <h1 className="text-5xl sm:text-6xl md:text-7xl text-center text-white font-extrabold shadow-lg">
           {data.title}
         </h1>
-
-        {/* Estimated Read Time */}
         <p className="mt-2 text-center text-gray-400 text-lg">{estimatedReadTime}</p>
 
+        <div className="mt-4 text-center">
+          <LikeButton postId={slug} />
+        </div>
+
         <div className="mt-6 prose prose-blue dark:prose-invert">
-          <PortableText
-            value={data.content}
-            components={myPortableTextComponents} // Custom components for PortableText
-          />
+          <PortableText value={data.content} components={myPortableTextComponents} />
         </div>
       </div>
     </>

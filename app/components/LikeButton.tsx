@@ -1,6 +1,6 @@
 "use client"
 import { useState, useEffect } from 'react';
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { createClient } from '@supabase/supabase-js';
 import { Button } from '@/components/ui/button';
 import { Heart } from 'lucide-react';
 
@@ -27,7 +27,7 @@ export default function LikeButton({ postId }: LikeButtonProps) {
   useEffect(() => {
     const fetchLikes = async () => {
       try {
-        const { data, error, count } = await supabase
+        const { error, count } = await supabase
           .from('likes')
           .select('*', { count: 'exact' })
           .eq('post_id', postId);
@@ -57,11 +57,10 @@ export default function LikeButton({ postId }: LikeButtonProps) {
       setIsLoading(true);
 
       if (isLiked) {
-        const { data, error } = await supabase
+        const { error } = await supabase
           .from('likes')
           .delete()
-          .match({ post_id: postId })
-          .select();
+          .match({ post_id: postId });
 
         if (error) {
           console.error('Error removing like:', error.message);
@@ -72,13 +71,12 @@ export default function LikeButton({ postId }: LikeButtonProps) {
         setIsLiked(false);
         localStorage.removeItem(`liked_${postId}`);
       } else {
-        const { data, error } = await supabase
+        const { error } = await supabase
           .from('likes')
           .insert([{ 
             post_id: postId,
             created_at: new Date().toISOString()
-          }])
-          .select();
+          }]);
 
         if (error) {
           console.error('Error adding like:', error.message);

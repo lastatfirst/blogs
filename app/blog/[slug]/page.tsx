@@ -1,4 +1,3 @@
-// app/blog/[slug]/page.tsx
 import { PortableText } from "@portabletext/react";
 import { fullBlog } from "@/app/lib/interface";
 import { client } from "@/app/lib/sanity";
@@ -9,7 +8,7 @@ import LikeButton from "@/app/components/LikeButton";
 import Image from "next/image";
 
 // Define proper types for the page props
-type BlogArticleProps = {
+type Props = {
   params: {
     slug: string;
   };
@@ -50,7 +49,7 @@ async function getData(slug: string): Promise<fullBlog> {
 }
 
 // BlogArticle component
-export default async function BlogArticle({ params }: BlogArticleProps) {
+export default async function BlogArticle({ params }: Props) {
   const { slug } = params;
 
   const data = await getData(slug);

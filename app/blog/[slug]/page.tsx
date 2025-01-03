@@ -1,5 +1,4 @@
 import { PortableText } from "@portabletext/react";
-import { fullBlog } from "@/app/lib/interface";
 import { client } from "@/app/lib/sanity";
 import Navbar from "@/app/components/Navbar";
 import Link from "next/link";
@@ -25,10 +24,15 @@ type PortableImageProps = {
   };
 };
 
+// Define the type for the blog data (useful for type safety)
+type ContentBlock = {
+  _type: string;
+  children?: { text?: string }[];
+};
+
 // Fetch blog data based on the slug
-async function getData(slug: string): Promise<fullBlog> {
-  const query = `
-    *[_type == "blog" && slug.current == $slug] {
+async function getData(slug: string) {
+  const query = `*[_type == "blog" && slug.current == $slug] {
       title,
       content[] {
         ...,
@@ -36,33 +40,37 @@ async function getData(slug: string): Promise<fullBlog> {
           url
         }
       }
-    }[0]
-  `;
-  
+    }[0]`;
+
   const data = await client.fetch(query, { slug });
-  
+
   if (!data) {
     throw new Error('Blog post not found');
   }
-  
+
   return data;
 }
 
 // BlogArticle component
 export default async function BlogArticle({ params }: Props) {
   const { slug } = params;
+  let data;
 
-  const data = await getData(slug);
+  try {
+    data = await getData(slug);
+  } catch (error) {
+    return <div>Blog post not found</div>;
+  }
 
   const wordsPerMinute = 200;
-  const wordCount = data.content.reduce((count, block) => {
+  const wordCount = data.content.reduce((count: number, block: ContentBlock) => {
     if (block._type === "block" && block.children) {
-      return count + block.children.reduce((childCount, child) => 
+      return count + block.children.reduce((childCount: number, child: { text?: string }) =>
         (child.text ? child.text.split(/\s+/).length : 0) + childCount, 0);
     }
     return count;
   }, 0);
-  
+
   const estimatedReadTime = `${Math.ceil(wordCount / wordsPerMinute)} min read`;
 
   const myPortableTextComponents = {
@@ -120,16 +128,16 @@ export default async function BlogArticle({ params }: Props) {
   );
 }
 
-// Generate static params if using static generation
+// Generate static params for dynamic routing
 export async function generateStaticParams() {
   const query = `*[_type == "blog"]{
     slug {
       current
     }
   }`;
-  
+
   const slugs = await client.fetch(query);
-  
+
   return slugs.map((slug: { slug: { current: string } }) => ({
     slug: slug.slug.current,
   }));

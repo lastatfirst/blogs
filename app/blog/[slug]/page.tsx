@@ -4,68 +4,57 @@ import { client } from "@/app/lib/sanity";
 import Navbar from "@/app/components/Navbar";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import LikeButton from "@/app/components/LikeButton";
 import Image from "next/image";
 
-// Define proper types for the page props
-type Props = {
-  params: {
-    slug: string;
-  };
-  searchParams?: { [key: string]: string | string[] | undefined };
-};
-
-// Define type for the portable text image component props
-type PortableImageProps = {
-  value: {
-    asset: {
-      url: string;
-    };
-    alt?: string;
-  };
-};
-
 // Fetch blog data based on the slug
-async function getData(slug: string): Promise<fullBlog> {
-  const query = `*[_type == "blog" && slug.current == $slug] {
-    title,
-    content[] {
-      ...,
-      asset->{
-        url
+async function getData(slug: string) {
+  const query = `
+    *[_type == "blog" && slug.current == $slug] {
+      title,
+      content[] {
+        ...,
+        asset->{
+          url
+        }
       }
-    }
-  }[0]`;
-
+    }[0]
+  `;
   const data = await client.fetch(query, { slug });
-
-  if (!data) {
-    throw new Error('Blog post not found');
-  }
-
   return data;
 }
 
+// Server-side function to fetch the necessary blog data
+export async function getServerSideProps({ params }: { params: { slug: string } }) {
+  const data = await getData(params.slug); // Fetch blog data based on the slug
+
+  // If the data doesn't exist, return a 404 page
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      data,
+    },
+  };
+}
+
 // BlogArticle component
-export default async function BlogArticle({ params }: Props) {
-  const { slug } = params;
-
-  const data = await getData(slug);
-
+export default function BlogArticle({ data }: { data: fullBlog }) {
   const wordsPerMinute = 200;
   const wordCount = data.content.reduce((count, block) => {
     if (block._type === "block" && block.children) {
-      return count + block.children.reduce((childCount, child) =>
-        (child.text ? child.text.split(/\s+/).length : 0) + childCount, 0);
+      return count + block.children.reduce((childCount, child) => child.text?.split(/\s+/).length + childCount, 0);
     }
     return count;
   }, 0);
-
   const estimatedReadTime = `${Math.ceil(wordCount / wordsPerMinute)} min read`;
 
   const myPortableTextComponents = {
     types: {
-      image: ({ value }: PortableImageProps) => {
+      image: ({ value }: { value: { asset: { url: string }; alt?: string } }) => {
         const imageUrl = value?.asset?.url;
 
         if (!imageUrl) {
@@ -106,10 +95,6 @@ export default async function BlogArticle({ params }: Props) {
         </h1>
         <p className="mt-2 text-center text-gray-400 text-lg">{estimatedReadTime}</p>
 
-        <div className="mt-4 flex justify-center">
-          <LikeButton postId={slug} />
-        </div>
-
         <div className="mt-6 prose prose-blue dark:prose-invert">
           <PortableText value={data.content} components={myPortableTextComponents} />
         </div>
@@ -118,7 +103,7 @@ export default async function BlogArticle({ params }: Props) {
   );
 }
 
-// Generate static params for dynamic routing
+// Generate static params if using static generation
 export async function generateStaticParams() {
   const query = `*[_type == "blog"]{
     slug {

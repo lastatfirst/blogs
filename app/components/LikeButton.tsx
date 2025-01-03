@@ -1,22 +1,19 @@
-"use client";
+"use client"
 import { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import { Button } from '@/components/ui/button';
 import { Heart } from 'lucide-react';
 
-// Ensure the Supabase URL and Anon Key are available
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-if (!supabaseUrl || !supabaseAnonKey) {
-  console.error('Supabase URL or Anon Key is missing.');
-}
-
-const supabase = createClient(supabaseUrl!, supabaseAnonKey!, {
-  auth: {
-    persistSession: false // Since we're not using authentication
+// Initialize Supabase client
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  {
+    auth: {
+      persistSession: false // Since we're not using authentication
+    }
   }
-});
+);
 
 interface LikeButtonProps {
   postId: string;
@@ -57,39 +54,28 @@ export default function LikeButton({ postId }: LikeButtonProps) {
 
   const handleLike = async () => {
     try {
+      if (isLiked) {
+        return; // Don't allow unliking if already liked
+      }
+
       setIsLoading(true);
 
-      if (isLiked) {
-        const { error } = await supabase
-          .from('likes')
-          .delete()
-          .match({ post_id: postId });
+      // Add like only if not already liked
+      const { error } = await supabase
+        .from('likes')
+        .insert([{ 
+          post_id: postId,
+          created_at: new Date().toISOString()
+        }]);
 
-        if (error) {
-          console.error('Error removing like:', error.message);
-          return;
-        }
-
-        setLikes((prev) => prev - 1);
-        setIsLiked(false);
-        localStorage.removeItem(`liked_${postId}`);
-      } else {
-        const { error } = await supabase
-          .from('likes')
-          .insert([{ 
-            post_id: postId,
-            created_at: new Date().toISOString()
-          }]);
-
-        if (error) {
-          console.error('Error adding like:', error.message);
-          return;
-        }
-
-        setLikes((prev) => prev + 1);
-        setIsLiked(true);
-        localStorage.setItem(`liked_${postId}`, 'true');
+      if (error) {
+        console.error('Error adding like:', error.message);
+        return;
       }
+
+      setLikes((prev) => prev + 1);
+      setIsLiked(true);
+      localStorage.setItem(`liked_${postId}`, 'true');
     } catch (error: unknown) {
       if (error instanceof Error) {
         console.error('Error during like action:', error.message);
@@ -102,7 +88,7 @@ export default function LikeButton({ postId }: LikeButtonProps) {
   return (
     <Button
       onClick={handleLike}
-      disabled={isLoading}
+      disabled={isLoading || isLiked} // Disable if already liked
       variant={isLiked ? 'default' : 'outline'}
       className="flex items-center gap-2 transition-all duration-300"
     >

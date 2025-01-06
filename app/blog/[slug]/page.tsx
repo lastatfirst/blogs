@@ -7,6 +7,9 @@ import { Button } from "@/components/ui/button";
 import { PageProps } from "@/app/lib/interface";
 import Image from "next/image";
 import LikeButton from "@/app/components/LikeButton";
+import katex from "katex";
+import "katex/dist/katex.min.css"; // Import KaTeX CSS for styling
+
 async function getData(slug: string) {
   const query = `
     *[_type == "blog" && slug.current == $slug] {
@@ -24,8 +27,8 @@ async function getData(slug: string) {
 }
 
 export default async function BlogArticle({ params }: PageProps) {
-  const { slug } = await params; 
-  const data: fullBlog = await getData(slug); 
+  const { slug } = await params;
+  const data: fullBlog = await getData(slug);
 
   if (!data) {
     return (
@@ -38,7 +41,7 @@ export default async function BlogArticle({ params }: PageProps) {
   const wordsPerMinute = 200;
   const wordCount = data.content.reduce((count, block) => {
     if (block._type === "block" && block.children) {
-      return count + block.children.reduce((childCount, child) => 
+      return count + block.children.reduce((childCount, child) =>
         (child.text ? child.text.split(/\s+/).length : 0) + childCount, 0);
     }
     return count;
@@ -67,6 +70,15 @@ export default async function BlogArticle({ params }: PageProps) {
           </div>
         );
       },
+      math: ({ value }: { value: { equation: string; inline: boolean } }) => {
+        // Render LaTeX equation using KaTeX
+        const mathHtml = katex.renderToString(value.equation, {
+          throwOnError: false,
+          displayMode: !value.inline, // Render inline or block based on the 'inline' property
+        });
+
+        return <span dangerouslySetInnerHTML={{ __html: mathHtml }} />;
+      },
     },
   };
 
@@ -74,7 +86,6 @@ export default async function BlogArticle({ params }: PageProps) {
     <>
       <Navbar />
       <div className="mt-8 max-w-4xl mx-auto px-4 pb-20">
-        {/* Back Button */}
         <Link href="/">
           <Button
             variant="outline"
@@ -88,10 +99,8 @@ export default async function BlogArticle({ params }: PageProps) {
           {data.title}
         </h1>
 
-        {/* Estimated Read Time */}
         <p className="mt-2 text-center text-gray-400 text-lg">{estimatedReadTime}</p>
 
-        {/* Like Button */}
         <div className="mt-4 flex justify-center">
           <LikeButton postId={slug} />
         </div>
@@ -99,7 +108,7 @@ export default async function BlogArticle({ params }: PageProps) {
         <div className="mt-6 prose prose-blue dark:prose-invert">
           <PortableText
             value={data.content}
-            components={myPortableTextComponents} 
+            components={myPortableTextComponents}
           />
         </div>
       </div>
@@ -113,9 +122,7 @@ export async function generateStaticParams() {
       current
     }
   }`;
-  
   const slugs = await client.fetch(query);
-  
   return slugs.map((slug: { slug: { current: string } }) => ({
     slug: slug.slug.current,
   }));

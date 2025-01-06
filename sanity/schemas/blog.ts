@@ -61,6 +61,25 @@ export default defineType({
             },
           ],
         },
+        {
+          name: "math",
+          type: "object",
+          title: "Math Equation",
+          fields: [
+            {
+              name: "inline",
+              type: "boolean",
+              title: "Inline",
+              description: "Check this box for inline equations.",
+            },
+            {
+              name: "equation",
+              type: "string",
+              title: "LaTeX Equation",
+              description: "Write the LaTeX equation here.",
+            },
+          ],
+        },
       ],
     },
   ],

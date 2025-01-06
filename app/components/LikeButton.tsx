@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import { Button } from '@/components/ui/button';
@@ -28,6 +28,7 @@ export default function LikeButton({ postId }: LikeButtonProps) {
     const fetchLikes = async () => {
       try {
         const { error, count } = await supabase
+        
           .from('likes')
           .select('*', { count: 'exact' })
           .eq('post_id', postId);
@@ -89,12 +90,12 @@ export default function LikeButton({ postId }: LikeButtonProps) {
       onClick={handleLike}
       disabled={isLoading || isLiked} 
       variant={isLiked ? 'default' : 'outline'}
-      className="flex items-center gap-2 transition-all duration-300 border-2 border-gray-300 rounded-lg"
+      className="flex items-center gap-3 transition-all duration-300 border-2 border-gray-300 rounded-lg px-6 py-3 text-lg"
     >
       <Heart
-        className={`w-5 h-5 transition-all duration-300 ${isLiked ? 'fill-white' : 'fill-none'}`}
+        className={`w-6 h-6 transition-all duration-300 ${isLiked ? 'fill-white' : 'fill-none'}`}
       />
-      <span>{likes}</span>
+      <span className="text-xl">{likes}</span>
     </Button>
   );
 }

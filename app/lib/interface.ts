@@ -6,6 +6,7 @@ export interface simpleBlogCard {
   }
   
   export interface fullBlog {
+    slug: any;
     likes: number;
     currentSlug: string;
     title: string;

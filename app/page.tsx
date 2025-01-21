@@ -1,10 +1,11 @@
-import type { simpleBlogCard } from "./lib/interface"
-import { client } from "./lib/sanity"
-import Link from "next/link"
-import Navbar from "./components/Navbar"
-import { Button } from "@/components/ui/button"
+import type { simpleBlogCard } from "./lib/interface";
+import { client } from "./lib/sanity";
+import Link from "next/link";
+import Navbar from "./components/Navbar";
+import { Button } from "@/components/ui/button";
+import Snowfall from './components/Snowfall'; // Import the Snowfall component
 
-export const revalidate = 30 // revalidate at most 30 seconds
+export const revalidate = 30; // revalidate at most 30 seconds
 
 async function getData() {
   const query = `
@@ -13,28 +14,29 @@ async function getData() {
     smallDescription,
     "currentSlug": slug.current,
     _createdAt
-  }`
+  }`;
 
-  const data = await client.fetch(query)
-  return data
+  const data = await client.fetch(query);
+  return data;
 }
 
 export default async function Home() {
-  const data: simpleBlogCard[] = await getData()
+  const data: simpleBlogCard[] = await getData();
 
   return (
     <>
       <Navbar />
+      <Snowfall /> {/* Add the snowfall effect */}
       <main className="max-w-3xl mx-auto px-4 py-6">
         <h1 className="text-4xl font-bold mb-8 heading">Blog</h1>
         <div className="space-y-8">
           {data.map((post, idx) => {
-            const createdDate = new Date(post._createdAt)
+            const createdDate = new Date(post._createdAt);
             const formattedDate = createdDate.toLocaleDateString("en-US", {
               year: "numeric",
               month: "long",
               day: "numeric",
-            })
+            });
 
             return (
               <article key={idx} className="border-b border-gray-200 pb-6 last:border-b-0">
@@ -62,11 +64,10 @@ export default async function Home() {
                 <p className="text-sm text-gray-600 dark:text-gray-300 mb-2 font-sans">{post.smallDescription}</p>
                 <time className="text-sm text-gray-500 font-sans">{formattedDate}</time>
               </article>
-            )
+            );
           })}
         </div>
       </main>
     </>
-  )
+  );
 }
-

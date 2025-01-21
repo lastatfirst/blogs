@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Gabarito&display=swap'); /* Import only Gabarito font */
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap'); /* Import Inconsolata font */
 
 /* Tailwind's base, components, and utilities */
 @tailwind base;
@@ -98,16 +98,16 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: "Gabarito", sans-serif; /* Apply Gabarito font */
+    font-family: 'Inconsolata', monospace; /* Apply Inconsolata font */
   }
 
   h1, h2, h3 {
-    font-family: "Gabarito", sans-serif; /* Apply Gabarito font */
+    font-family: 'Inconsolata', monospace; /* Apply Inconsolata font */
     font-weight: 600;
   }
 
   .emphasized {
-    font-family: "Gabarito", sans-serif;
+    font-family: 'Inconsolata', monospace;
     font-weight: 600;
     font-style: oblique;
   }

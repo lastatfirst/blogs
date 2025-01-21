@@ -15,7 +15,6 @@ async function getData() {
     "currentSlug": slug.current,
     _createdAt
   }`;
-
   const data = await client.fetch(query);
   return data;
 }
@@ -27,9 +26,9 @@ export default async function Home() {
     <>
       <Navbar />
       <Snowfall /> {/* Add the snowfall effect */}
-      <main className="max-w-3xl mx-auto px-4 py-6">
-        <h1 className="text-4xl font-bold mb-8 heading" style={{ fontFamily: 'Jersey 10, sans-serif' }}>Blog</h1> {/* Apply Jersey 10 font here */}
-        <div className="space-y-8">
+      <main className="max-w-4xl mx-auto px-6 py-8"> {/* Increased padding and max-width */}
+        <h1 className="text-5xl font-bold mb-10 heading" style={{ fontFamily: 'Jersey 10, sans-serif' }}>Blog</h1> {/* Increased font size */}
+        <div className="space-y-12"> {/* Increased vertical space between articles */}
           {data.map((post, idx) => {
             const createdDate = new Date(post._createdAt);
             const formattedDate = createdDate.toLocaleDateString("en-US", {
@@ -39,30 +38,29 @@ export default async function Home() {
             });
 
             return (
-              <article key={idx} className="border-b border-gray-200 pb-6 last:border-b-0">
-                <div className="flex justify-between items-start mb-2">
-                  <h2 className="text-lg font-semibold group" style={{ fontFamily: 'Jersey 10, sans-serif' }}> {/* Apply Jersey 10 font here */}
+              <article key={idx} className="border-b border-gray-200 pb-8 last:border-b-0"> {/* Increased bottom padding */}
+                <div className="flex justify-between items-start mb-4"> {/* Increased margin */}
+                  <h2 className="text-xl font-semibold group" style={{ fontFamily: 'Jersey 10, sans-serif' }}>
                     <Link
                       href={`/blog/${post.currentSlug}`}
                       className="inline-block transition-transform duration-200 ease-in-out hover:translate-x-1"
                     >
                       {post.title}
-                      <span className="inline-block transition-transform duration-200 ease-in-out group-hover:translate-x-1 ml-1">
+                      <span className="inline-block transition-transform duration-200 ease-in-out group-hover:translate-x-1 ml-2">
                         →
                       </span>
                     </Link>
                   </h2>
                   <Button
                     variant="outline"
-                    size="sm"
-                    asChild
-                    className="ml-4 shrink-0 bg-white text-black border-black hover:bg-gray-100 hover:text-black"
+                    size="default"
+                    className="ml-6 shrink-0 bg-white text-black border-black hover:bg-gray-100 hover:text-black"
                   >
-                    <Link href={`/blog/${post.currentSlug}`}>Read More</Link>
+                    <Link href={`/blog/${post.currentSlug}`}>Read</Link>
                   </Button>
                 </div>
-                <p className="text-sm text-gray-600 dark:text-gray-300 mb-2" style={{ fontFamily: 'Jersey 10, sans-serif' }}>{post.smallDescription}</p> {/* Apply Jersey 10 font here */}
-                <time className="text-sm text-gray-500" style={{ fontFamily: 'Jersey 10, sans-serif' }}>{formattedDate}</time> {/* Apply Jersey 10 font here */}
+                <p className="text-base text-gray-600 dark:text-gray-300 mb-3" style={{ fontFamily: 'Jersey 10, sans-serif' }}>{post.smallDescription}</p> {/* Increased font size */}
+                <time className="text-base text-gray-500" style={{ fontFamily: 'Jersey 10, sans-serif' }}>{formattedDate}</time> {/* Increased font size */}
               </article>
             );
           })}

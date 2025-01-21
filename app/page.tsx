@@ -28,7 +28,7 @@ export default async function Home() {
       <Navbar />
       <Snowfall /> {/* Add the snowfall effect */}
       <main className="max-w-3xl mx-auto px-4 py-6">
-        <h1 className="text-4xl font-bold mb-8 heading">Blog</h1>
+        <h1 className="text-4xl font-bold mb-8 heading" style={{ fontFamily: 'Jersey 10, sans-serif' }}>Blog</h1> {/* Apply Jersey 10 font here */}
         <div className="space-y-8">
           {data.map((post, idx) => {
             const createdDate = new Date(post._createdAt);
@@ -41,7 +41,7 @@ export default async function Home() {
             return (
               <article key={idx} className="border-b border-gray-200 pb-6 last:border-b-0">
                 <div className="flex justify-between items-start mb-2">
-                  <h2 className="text-lg font-semibold group font-sans">
+                  <h2 className="text-lg font-semibold group" style={{ fontFamily: 'Jersey 10, sans-serif' }}> {/* Apply Jersey 10 font here */}
                     <Link
                       href={`/blog/${post.currentSlug}`}
                       className="inline-block transition-transform duration-200 ease-in-out hover:translate-x-1"
@@ -61,8 +61,8 @@ export default async function Home() {
                     <Link href={`/blog/${post.currentSlug}`}>Read More</Link>
                   </Button>
                 </div>
-                <p className="text-sm text-gray-600 dark:text-gray-300 mb-2 font-sans">{post.smallDescription}</p>
-                <time className="text-sm text-gray-500 font-sans">{formattedDate}</time>
+                <p className="text-sm text-gray-600 dark:text-gray-300 mb-2" style={{ fontFamily: 'Jersey 10, sans-serif' }}>{post.smallDescription}</p> {/* Apply Jersey 10 font here */}
+                <time className="text-sm text-gray-500" style={{ fontFamily: 'Jersey 10, sans-serif' }}>{formattedDate}</time> {/* Apply Jersey 10 font here */}
               </article>
             );
           })}

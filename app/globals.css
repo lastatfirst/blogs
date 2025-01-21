@@ -1,5 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Gabarito&display=swap'); /* Import only Gabarito font */
 
+/* Tailwind's base, components, and utilities */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -60,36 +61,35 @@
     --chart-5: 340 75% 55%;
   }
 
-/* Snowfall styles */
-.snow {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none; /* Prevents the snowflakes from blocking any UI elements */
-  z-index: 9999; /* Makes sure snowflakes are in front of everything */
-}
-
-.snowflake {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background-color: white;
-  opacity: 0.8;
-  animation: fall linear infinite;
-}
-
-/* Animation for falling snowflakes */
-@keyframes fall {
-  0% {
-    transform: translateY(-100px) translateX(0);
+  /* Snowfall styles */
+  .snow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
   }
-  100% {
-    transform: translateY(100vh) translateX(calc(100px * (random() - 0.5)));
-  }
-}
 
+  .snowflake {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    opacity: 0.8;
+    animation: fall linear infinite;
+  }
+
+  /* Animation for falling snowflakes */
+  @keyframes fall {
+    0% {
+      transform: translateY(-100px) translateX(0);
+    }
+    100% {
+      transform: translateY(100vh) translateX(calc(100px * (random() - 0.5)));
+    }
+  }
 
   /* General styling */
   * {
@@ -98,6 +98,17 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: "JetBrains Mono", monospace;
+    font-family: "Gabarito", sans-serif; /* Apply Gabarito font */
+  }
+
+  h1, h2, h3 {
+    font-family: "Gabarito", sans-serif; /* Apply Gabarito font */
+    font-weight: 600;
+  }
+
+  .emphasized {
+    font-family: "Gabarito", sans-serif;
+    font-weight: 600;
+    font-style: oblique;
   }
 }

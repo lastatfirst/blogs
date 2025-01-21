@@ -26,9 +26,9 @@ export default async function Home() {
     <>
       <Navbar />
       <Snowfall /> {/* Add the snowfall effect */}
-      <main className="max-w-4xl mx-auto px-6 py-8"> {/* Increased padding and max-width */}
-        <h1 className="text-5xl font-bold mb-10 heading" style={{ fontFamily: 'Jersey 10, sans-serif' }}>Blog</h1> {/* Increased font size */}
-        <div className="space-y-12"> {/* Increased vertical space between articles */}
+      <main className="max-w-4xl mx-auto px-4 py-6"> {/* Reduced padding and max-width */}
+        <h1 className="text-4xl font-bold mb-8 heading" style={{ fontFamily: 'Jersey 10, sans-serif' }}>Blog</h1> {/* Reduced font size */}
+        <div className="space-y-5"> {/* Reduced vertical space between articles */}
           {data.map((post, idx) => {
             const createdDate = new Date(post._createdAt);
             const formattedDate = createdDate.toLocaleDateString("en-US", {
@@ -38,9 +38,9 @@ export default async function Home() {
             });
 
             return (
-              <article key={idx} className="border-b border-gray-200 pb-8 last:border-b-0"> {/* Increased bottom padding */}
-                <div className="flex justify-between items-start mb-4"> {/* Increased margin */}
-                  <h2 className="text-xl font-semibold group" style={{ fontFamily: 'Jersey 10, sans-serif' }}>
+              <article key={idx} className="border-b border-gray-200 pb-6 last:border-b-0"> {/* Reduced bottom padding */}
+                <div className="flex justify-between items-start mb-3"> {/* Reduced margin */}
+                  <h2 className="text-lg font-semibold group" style={{ fontFamily: 'Jersey 10, sans-serif' }}>
                     <Link
                       href={`/blog/${post.currentSlug}`}
                       className="inline-block transition-transform duration-200 ease-in-out hover:translate-x-1"
@@ -54,13 +54,13 @@ export default async function Home() {
                   <Button
                     variant="outline"
                     size="default"
-                    className="ml-6 shrink-0 bg-white text-black border-black hover:bg-gray-100 hover:text-black"
+                    className="ml-4 shrink-0 bg-white text-black border-black hover:bg-gray-100 hover:text-black"
                   >
                     <Link href={`/blog/${post.currentSlug}`}>Read</Link>
                   </Button>
                 </div>
-                <p className="text-base text-gray-600 dark:text-gray-300 mb-3" style={{ fontFamily: 'Jersey 10, sans-serif' }}>{post.smallDescription}</p> {/* Increased font size */}
-                <time className="text-base text-gray-500" style={{ fontFamily: 'Jersey 10, sans-serif' }}>{formattedDate}</time> {/* Increased font size */}
+                <p className="text-base text-gray-600 dark:text-gray-300 mb-2" style={{ fontFamily: 'Jersey 10, sans-serif' }}>{post.smallDescription}</p> {/* Reduced font size */}
+                <time className="text-sm text-gray-500" style={{ fontFamily: 'Jersey 10, sans-serif' }}>{formattedDate}</time> {/* Reduced font size */}
               </article>
             );
           })}

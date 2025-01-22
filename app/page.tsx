@@ -41,9 +41,11 @@ export default async function Home() {
   return (
     <div className="min-h-screen bg-black text-white">
       <Navbar />
-      <header className="py-8 px-6 font-mono text-sm">
-        <nav>
-          <span>blog</span>
+      <header className="py-16 px-6 font-mono">
+        <nav className="text-center">
+          <span className="text-3xl tracking-tight text-gray-200 hover:text-white transition-all duration-500 font-light border-b border-gray-800 pb-2 hover:border-gray-500">
+            words from me to me
+          </span>
         </nav>
       </header>
 
@@ -67,7 +69,10 @@ export default async function Home() {
                     >
                       <div className="flex items-baseline space-x-4">
                         <time className="text-base text-gray-500">{formattedDate}</time>
-                        <h3 className="text-base group-hover:text-white">{post.title}</h3>
+                        <div>
+                          <h3 className="text-base group-hover:text-white">{post.title}</h3>
+                          <p className="text-sm text-gray-500 mt-1">{post.smallDescription}</p>
+                        </div>
                       </div>
                     </Link>
                   </article>

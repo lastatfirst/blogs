@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inconsolata&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -31,6 +31,8 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+    --font-geist: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-sohne: "Söhne", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   }
 
   .dark {
@@ -66,7 +68,9 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: "Inconsolata", monospace;
+    font-family: var(--font-sohne);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   h1,
@@ -80,6 +84,11 @@
     font-family: "Inconsolata", monospace;
     font-weight: 600;
     font-style: oblique;
+  }
+
+  .font-mono {
+    font-family: var(--font-sohne);
+    letter-spacing: -0.025em;
   }
 }
 

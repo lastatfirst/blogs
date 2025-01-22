@@ -8,7 +8,6 @@ import { ThemeProvider } from "./components/theme-provider";
 import { Card, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Provider } from "@lyket/react";
 import "./globals.css";
-import { AlertTriangle } from "lucide-react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -64,21 +63,22 @@ export default function RootLayout({
           >
             <Card className="w-[90%] max-w-[450px] bg-black/90 border border-white/10 shadow-2xl backdrop-blur-sm"
                   style={{ animation: "slideIn 0.3s ease-out" }}>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-xl font-light tracking-wide text-white/80 flex items-center gap-2">
-                  <AlertTriangle size={18} className="text-white/60" />
-                  hello there
+              <CardHeader>
+                <CardTitle className="text-xl font-light tracking-wide text-white/80">
+                  -Warning
                 </CardTitle>
               </CardHeader>
-              <div className="px-6 py-2 text-sm text-gray-400 leading-relaxed">
+              <div className="px-6 py-3 text-sm text-gray-400 leading-relaxed">
                 <p>
-                  fair warning: any aesthetic appeal you find here is purely coincidental
+                  The developer is allergic to graphic designing, continue only if you
+                  are fine with this. Anything nearly visually appealing is purely
+                  coincidental.
                 </p>
               </div>
               <CardFooter className="pb-4">
                 <button
                   onClick={handleClose}
-                  className="w-full py-2.5 px-4 bg-white/5 hover:bg-white/10 text-sm text-white/80 border border-white/10 rounded-md transition-all duration-300 hover:border-white/20"
+                  className="w-full py-2.5 px-4 bg-red-950/30 hover:bg-red-900/40 text-sm text-red-200/80 border border-red-900/30 rounded-md transition-all duration-300 hover:border-red-800/50"
                 >
                   understood
                 </button>

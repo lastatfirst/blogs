@@ -65,12 +65,14 @@ export default function RootLayout({
                   style={{ animation: "slideIn 0.3s ease-out" }}>
               <CardHeader>
                 <CardTitle className="text-xl font-light tracking-wide text-white/80">
-                  hello there
+                  -Warning
                 </CardTitle>
               </CardHeader>
               <div className="px-6 py-3 text-sm text-gray-400 leading-relaxed">
                 <p>
-                  fair warning: any aesthetic appeal you find here is purely coincidental
+                  The developer is allergic to graphic designing, continue only if you
+                  are fine with this. Anything nearly visually appealing is purely
+                  coincidental.
                 </p>
               </div>
               <CardFooter className="pb-4">

@@ -1,7 +1,6 @@
 import type { simpleBlogCard } from "./lib/interface"
 import { client } from "./lib/sanity"
 import Link from "next/link"
-import { Plus } from "lucide-react"
 import Navbar from "./components/Navbar"
 
 export const revalidate = 30

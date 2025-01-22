@@ -80,7 +80,7 @@ export default function RootLayout({
                   onClick={handleClose}
                   className="w-full py-2.5 px-4 bg-red-950/30 hover:bg-red-900/40 text-sm text-red-200/80 border border-red-900/30 rounded-md transition-all duration-300 hover:border-red-800/50"
                 >
-                  understood
+                  Accept
                 </button>
               </CardFooter>
             </Card>

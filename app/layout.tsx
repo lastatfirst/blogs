@@ -27,10 +27,14 @@ export default function RootLayout({
   const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
-    setShowPopup(true);
+    const hasAccepted = localStorage.getItem('warningAccepted');
+    if (!hasAccepted) {
+      setShowPopup(true);
+    }
   }, []);
 
   const handleClose = () => {
+    localStorage.setItem('warningAccepted', 'true');
     setShowPopup(false);
   };
 
@@ -54,61 +58,27 @@ export default function RootLayout({
 
         {showPopup && (
           <div
-            style={{
-              position: "fixed",
-              top: "-50px",
-              left: 0,
-              width: "100%",
-              height: "100%",
-              backgroundColor: "rgba(0, 0, 0, 0.7)",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              zIndex: 1000,
-            }}
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50"
+            style={{ animation: "fadeIn 0.3s ease-in-out" }}
           >
-            <Card
-              style={{
-                width: "600px",
-                backgroundColor: "black",
-                color: "white",
-                border: "2px solid white",
-              }}
-            >
+            <Card className="w-[90%] max-w-[450px] bg-black/90 border border-white/10 shadow-2xl backdrop-blur-sm"
+                  style={{ animation: "slideIn 0.3s ease-out" }}>
               <CardHeader>
-                <CardTitle style={{ fontSize: "30px", fontWeight: "bold" }}>
-                  -- Warning!!
+                <CardTitle className="text-xl font-light tracking-wide text-white/80">
+                  hello there
                 </CardTitle>
               </CardHeader>
-              <div style={{ padding: "10px 20px 15px 20px", fontSize: "16px" }}>
+              <div className="px-6 py-3 text-sm text-gray-400 leading-relaxed">
                 <p>
-                  The developer is allergic to graphic designing, continue only if you
-                  are fine with this. Anything nearly visually appealing is purely
-                  coincidental.
+                  fair warning: any aesthetic appeal you find here is purely coincidental
                 </p>
               </div>
-              <CardFooter>
+              <CardFooter className="pb-4">
                 <button
                   onClick={handleClose}
-                  style={{
-                    width: "100%",
-                    padding: "8px 15px",
-                    backgroundColor: "white",
-                    color: "black",
-                    border: "2px solid white",
-                    borderRadius: "4px",
-                    cursor: "pointer",
-                    fontSize: "14px",
-                    transition: "background-color 0.3s ease, border 0.3s ease",
-                  }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.backgroundColor = "#f1f1f1")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.backgroundColor = "white")
-                  }
+                  className="w-full py-2.5 px-4 bg-white/5 hover:bg-white/10 text-sm text-white/80 border border-white/10 rounded-md transition-all duration-300 hover:border-white/20"
                 >
-                  Accept
+                  understood
                 </button>
               </CardFooter>
             </Card>
@@ -117,6 +87,22 @@ export default function RootLayout({
 
         <Analytics />
       </body>
+      <style jsx global>{`
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes slideIn {
+          from { 
+            opacity: 0;
+            transform: translateY(-20px);
+          }
+          to { 
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </html>
   );
 }

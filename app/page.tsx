@@ -62,7 +62,7 @@ export default async function Home() {
                 })
 
                 return (
-                  <article key={idx} className="group border-b border-white/10">
+                  <article key={idx} className="group border-b border-white/40">
                     <Link 
                       href={`/blog/${post.currentSlug}`} 
                       className="flex justify-between items-baseline p-3 -mx-2 rounded-lg transition-colors duration-200 hover:bg-white/5"

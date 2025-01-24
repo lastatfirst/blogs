@@ -78,7 +78,7 @@
     font-family: var(--font-inter);
     font-weight: 600;
   }
-
+  
   .emphasized {
     font-family: var(--font-inter);
     font-weight: 600;
@@ -90,7 +90,3 @@
     letter-spacing: -0.025em;
   }
 }
-
-
-
-  

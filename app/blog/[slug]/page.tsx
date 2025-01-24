@@ -9,6 +9,8 @@ import Image from "next/image";
 import LikeButton from "@/app/components/LikeButton";
 import katex from "katex";
 import "katex/dist/katex.min.css"; // Import KaTeX CSS for styling
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { okaidia } from "react-syntax-highlighter/dist/esm/styles/prism"; // Syntax highlighter style
 
 async function getData(slug: string) {
   const query = `
@@ -71,13 +73,21 @@ export default async function BlogArticle({ params }: PageProps) {
         );
       },
       math: ({ value }: { value: { equation: string; inline: boolean } }) => {
-        // Render LaTeX equation using KaTeX
         const mathHtml = katex.renderToString(value.equation, {
           throwOnError: false,
-          displayMode: !value.inline, // Render inline or block based on the 'inline' property
+          displayMode: !value.inline,
         });
 
         return <span dangerouslySetInnerHTML={{ __html: mathHtml }} />;
+      },
+      code: ({ value }: { value: { code: string; language: string } }) => {
+        return (
+          <div className="my-4">
+            <SyntaxHighlighter language={value.language} style={okaidia}>
+              {value.code}
+            </SyntaxHighlighter>
+          </div>
+        );
       },
     },
   };
@@ -127,4 +137,3 @@ export async function generateStaticParams() {
     slug: slug.slug.current,
   }));
 }
-

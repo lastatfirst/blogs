@@ -43,7 +43,7 @@ export default async function Home() {
       <Navbar />
       <header className="py-16 px-6 font-mono">
         <nav className="text-center">
-          <span className="text-3xl tracking-tight text-gray-200 hover:text-white transition-all duration-500 font-light border-b border-gray-800 pb-2 hover:border-gray-500">
+          <span className="text-3xl tracking-tight text-gray-200 hover:text-white transition-all duration-500 font-light border-b border-gray-800 pb-2 hover:border-gray-500 underline-animation">
             words from me to me
           </span>
         </nav>

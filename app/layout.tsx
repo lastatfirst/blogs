@@ -84,7 +84,7 @@ export default function RootLayout({
                 </button>
               </CardFooter>
             </Card>
-          </div>
+          </div>  
         )}
 
         <Analytics />

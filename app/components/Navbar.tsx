@@ -7,10 +7,21 @@ export default function Navbar() {
     <>
       {/* Top Navbar */}
       <nav className="w-full relative flex items-center justify-between max-w-2xl mx-auto px-4 py-5 border-b border-gray-300">
-        <Link href="/" className="font-bold text-4xl">
+        <Link href="/index.html" className="font-bold text-4xl">
           <span className="text-primary">vt.</span>
         </Link>
-        <ModeToggle />
+        <div className="flex items-center space-x-4">
+          <Link href="/home.tsx" className="px-2 py-2">
+            Home
+          </Link>
+          <Link href="/blog" className="px-2 py-2">
+            Blogs
+          </Link>
+          <Link href="/portfolio" className="px-2 py-2">
+            Portfolio
+          </Link>
+          <ModeToggle />
+        </div>
       </nav>
 
       {/* Bottom Navbar */}

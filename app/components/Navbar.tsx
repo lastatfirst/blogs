@@ -11,13 +11,13 @@ export default function Navbar() {
           <span className="text-primary">vt.</span>
         </Link>
         <div className="flex items-center space-x-4">
-          <Link href="/home.tsx" className="px-2 py-2">
+          <Link href="https://vihan.vercel.app/" className="px-2 py-2">
             Home
           </Link>
-          <Link href="/blog" className="px-2 py-2">
+          <Link href="https://vtblog.vercel.app/" className="px-2 py-2">
             Blogs
           </Link>
-          <Link href="/portfolio" className="px-2 py-2">
+          <Link href="https://vihan.vercel.app" className="px-2 py-2">
             Portfolio
           </Link>
           <ModeToggle />

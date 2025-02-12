@@ -52,7 +52,7 @@ export default function Navbar() {
           onClick={toggleDropdown}
           className="text-lg focus:outline-none hover:text-red-600 transition-colors"
         >
-          ☰ Menu {/* Hamburger Icon */}
+          ☰ {/* Hamburger Icon */}
         </button>
 
         {/* Animated Dropdown Menu */}

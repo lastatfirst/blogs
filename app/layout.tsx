@@ -1,9 +1,10 @@
-"use client";
+"use client"; // Important
+
 import { Geist } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import type React from "react";
-import ProgressBar from "./components/ProgressBar";
+import ProgressBar from "./components/ProgressBar"; // Import
 
 const geist = Geist({
   subsets: ["latin"],

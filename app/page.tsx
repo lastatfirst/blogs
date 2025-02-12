@@ -44,7 +44,7 @@ export default async function Home() {
       <Navbar />
       <div className="max-w-2xl mx-auto px-6">
         <header className="pt-16 pb-12">
-          <h1 className="text-3xl" style={{ color: '#db0042' }}>
+          <h1 className="text-3xl" style={{ color: '#e91e63 ' }}>
             words from me to me
           </h1>
         </header>
@@ -52,7 +52,7 @@ export default async function Home() {
         <main>
           {years.map((year) => (
             <section key={year} className="mb-16">
-              <h2 className="text-sm">{year}</h2>
+              <h2 className="text-lg">{year}</h2>
               <div className="space-y-6">
                 {postsByYear[year].map((post, idx) => {
                   const date = new Date(post._createdAt);
@@ -62,13 +62,13 @@ export default async function Home() {
                   });
 
                   return (
-                    <article key={idx} className="group">
+                    <article key={idx} className="group border-b border-gray-700 pb-4">
                       <Link
                         href={`/blog/${post.currentSlug}`}
                         className="block py-2"
                       >
                         <div className="flex items-baseline justify-between">
-                          <h3 className="text-lg group-hover:text-[#db0042]">
+                          <h3 className="text-md group-hover:text-[#db0042]">
                             {post.title}
                           </h3>
                           <time className="text-sm">
@@ -76,7 +76,7 @@ export default async function Home() {
                           </time>
                         </div>
                         {post.smallDescription && (
-                          <p className="text-base mt-1">
+                          <p className="text-sm mt-1 ml-4"> {/* Increaesed size */}
                             {post.smallDescription}
                           </p>
                         )}

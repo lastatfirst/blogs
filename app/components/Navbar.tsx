@@ -68,16 +68,16 @@ export default function Navbar() {
             >
               <div className="py-1" role="none">
                 <Link
-                  href="/archive"
+                  href="https://vihan.vercel.app"
                   className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-[#db0042] transition-colors"
                   role="menuitem"
                   tabIndex={-1}
                   id="menu-item-0"
                 >
-                  Archive
+                  Home
                 </Link>
                 <Link
-                  href="https://twitter.com"
+                  href="https://x.com/weeye"
                   className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-[#db0042] transition-colors"
                   role="menuitem"
                   tabIndex={-1}
@@ -86,22 +86,22 @@ export default function Navbar() {
                   Twitter
                 </Link>
                 <Link
-                  href="https://instagram.com"
+                  href="https://github.com/vihanvt"
                   className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-[#db0042] transition-colors"
                   role="menuitem"
                   tabIndex={-1}
                   id="menu-item-2"
                 >
-                  Instagram
+                  Github
                 </Link>
                 <Link
-                  href="/subscribe"
+                  href="https://linkedin.com/in/vihanvt"
                   className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-[#db0042] transition-colors"
                   role="menuitem"
                   tabIndex={-1}
                   id="menu-item-3"
                 >
-                  Subscribe
+                  LinkedIn
                 </Link>
               </div>
             </animated.div>

@@ -6,7 +6,7 @@ import { useTransition, animated } from 'react-spring';  // Import react-spring
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false); // State for dropdown visibility
-  const dropdownRef = useRef(null); // Create a ref
+  const dropdownRef = useRef<HTMLDivElement>(null); // Create a ref
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -14,8 +14,8 @@ export default function Navbar() {
 
   //Close dropdown when clicking outside
   useEffect(() => {
-    function handleClickOutside(event: any) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !(dropdownRef.current.contains(event.target as Node))) {
         setIsOpen(false);
       }
     }
@@ -52,7 +52,7 @@ export default function Navbar() {
           onClick={toggleDropdown}
           className="text-lg focus:outline-none hover:text-red-600 transition-colors"
         >
-          ☰ {/* Hamburger Icon */}
+          ☰ Menu {/* Hamburger Icon */}
         </button>
 
         {/* Animated Dropdown Menu */}
@@ -60,7 +60,7 @@ export default function Navbar() {
           item && (
             <animated.div
               className="absolute right-0 mt-2 w-48 rounded-md shadow-xl  ring-1 ring-black ring-opacity-5 focus:outline-none"
-              style={{ ...style, backgroundColor: '#1e1e1e' }}
+              style={{ ...style, backgroundColor: '#1e1e1e' }} // Background Color
               role="menu"
               aria-orientation="vertical"
               aria-labelledby="menu-button"

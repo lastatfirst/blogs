@@ -41,7 +41,7 @@ export default function Navbar() {
     <nav className="flex items-center justify-between max-w-4xl mx-auto px-6 py-8 border-b border-gray-700">
       <Link
         href="/"
-        className="text-2xl font-medium tracking-tight hover:text-red-600 transition-colors"
+        className="text-2xl font-medium tracking-tight hover:text-red-600 transition-colors text-[#e91e63]"
         style={{ fontSize: '2rem' }}
       >
         vt.

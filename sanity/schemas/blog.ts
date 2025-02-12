@@ -76,7 +76,7 @@ export default defineType({
               name: "equation",
               type: "string",
               title: "LaTeX Equation",
-              description: "Write the LaTeX equation here.",
+              description: "write the LaTeX equation here.",
             },
           ],
         },

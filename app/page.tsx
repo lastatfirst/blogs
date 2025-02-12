@@ -1,9 +1,9 @@
-import type { simpleBlogCard } from "./lib/interface"
-import { client } from "./lib/sanity"
-import Link from "next/link"
-import Navbar from "./components/Navbar"
+import type { simpleBlogCard } from "./lib/interface";
+import { client } from "./lib/sanity";
+import Link from "next/link";
+import Navbar from "./components/Navbar";
 
-export const revalidate = 30
+export const revalidate = 30;
 
 async function getData() {
   const query = `
@@ -12,78 +12,83 @@ async function getData() {
     smallDescription,
     "currentSlug": slug.current,
     _createdAt
-  }`
-  const data = await client.fetch(query)
-  return data
+  }
+  `;
+  const data = await client.fetch(query);
+  return data;
 }
 
 export default async function Home() {
-  const data: simpleBlogCard[] = await getData()
+  const data: simpleBlogCard[] = await getData();
 
   // Group posts by year
   const postsByYear = data.reduce(
     (acc, post) => {
-      const year = new Date(post._createdAt).getFullYear()
+      const year = new Date(post._createdAt).getFullYear();
       if (!acc[year]) {
-        acc[year] = []
+        acc[year] = [];
       }
-      acc[year].push(post)
-      return acc
+      acc[year].push(post);
+      return acc;
     },
     {} as Record<number, simpleBlogCard[]>,
-  )
+  );
 
-  // Sort years in descending order
+  //sorting the years
   const years = Object.keys(postsByYear)
     .map(Number)
-    .sort((a, b) => b - a)
+    .sort((a, b) => b - a);
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-[#1e1e1e] text-[#d4d4d4] font-geist">
       <Navbar />
-      <header className="py-16 px-6 font-mono">
-        <nav className="text-center">
-          <span className="text-3xl tracking-tight text-gray-200 hover:text-white transition-all duration-500 font-light border-b border-gray-800 pb-2 hover:border-gray-500 underline-animation">
+      <div className="max-w-2xl mx-auto px-6">
+        <header className="pt-16 pb-12">
+          <h1 className="text-3xl" style={{ color: '#db0042' }}>
             words from me to me
-          </span>
-        </nav>
-      </header>
+          </h1>
+        </header>
 
-      <main className="px-6 pb-20 font-mono max-w-2xl mx-auto">
-        {years.map((year) => (
-          <section key={year} className="mb-16">
-            <h2 className="text-sm mb-8">{year}</h2>
-            <div className="space-y-0">
-              {postsByYear[year].map((post, idx) => {
-                const date = new Date(post._createdAt)
-                const formattedDate = date.toLocaleDateString("en-US", {
-                  month: "2-digit",
-                  day: "2-digit",
-                })
+        <main>
+          {years.map((year) => (
+            <section key={year} className="mb-16">
+              <h2 className="text-sm">{year}</h2>
+              <div className="space-y-6">
+                {postsByYear[year].map((post, idx) => {
+                  const date = new Date(post._createdAt);
+                  const formattedDate = date.toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                  });
 
-                return (
-                  <article key={idx} className="group border-b border-white/40">
-                    <Link 
-                      href={`/blog/${post.currentSlug}`} 
-                      className="flex justify-between items-baseline p-3 -mx-2 rounded-lg transition-colors duration-200 hover:bg-white/5"
-                    >
-                      <div className="flex items-baseline space-x-4">
-                        <time className="text-base text-gray-500">{formattedDate}</time>
-                        <div>
-                          <h3 className="text-base group-hover:text-white">{post.title}</h3>
-                          <p className="text-sm text-gray-500 mt-1">{post.smallDescription}</p>
+                  return (
+                    <article key={idx} className="group">
+                      <Link
+                        href={`/blog/${post.currentSlug}`}
+                        className="block py-2"
+                      >
+                        <div className="flex items-baseline justify-between">
+                          <h3 className="text-lg group-hover:text-[#db0042]">
+                            {post.title}
+                          </h3>
+                          <time className="text-sm">
+                            {formattedDate}
+                          </time>
                         </div>
-                      </div>
-                    </Link>
-                  </article>
-                )
-              })}
-            </div>
-          </section>
-        ))}
-      </main>
+                        {post.smallDescription && (
+                          <p className="text-base mt-1">
+                            {post.smallDescription}
+                          </p>
+                        )}
+                      </Link>
+                    </article>
+                  );
+                })}
+              </div>
+            </section>
+          ))}
+        </main>
+      </div>
     </div>
-  )
+  );
 }
-
-

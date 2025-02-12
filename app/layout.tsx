@@ -1,9 +1,9 @@
 "use client";
-
 import { Geist } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import type React from "react";
+import ProgressBar from "./components/ProgressBar";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -24,6 +24,7 @@ export default function RootLayout({
           color: "#d4d4d4",
         }}
       >
+        <ProgressBar /> {/* Add the progress bar */}
         {children}
         <Analytics />
       </body>

@@ -50,9 +50,9 @@ export default function Navbar() {
       <div className="relative" ref={dropdownRef}>
         <button
           onClick={toggleDropdown}
-          className="text-lg focus:outline-none hover:text-red-600 transition-colors"
+          className="text-2xl focus:outline-none hover:text-red-600 transition-colors"  // Changed text-lg to text-2xl
         >
-          ☰ {/* Hamburger Icon */}
+          ☰
         </button>
 
         {/* Animated Dropdown Menu */}

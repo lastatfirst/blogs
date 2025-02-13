@@ -1,12 +1,12 @@
 import { PortableText } from "@portabletext/react";
 import { fullBlog } from "@/app/lib/interface";
 import { client } from "@/app/lib/sanity";
-import Navbar from "@/app/components/Navbar";
+import Navbar from "@/app/blog/components/Navbar";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { PageProps } from "@/app/lib/interface";
 import Image from "next/image";
-import LikeButton from "@/app/components/LikeButton";
+import LikeButton from "@/app/blog/components/LikeButton";
 import katex from "katex";
 import "katex/dist/katex.min.css"; // Import KaTeX CSS for styling
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";

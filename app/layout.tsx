@@ -1,15 +1,16 @@
-"use client"; // Important
-
+import type { Metadata } from "next";
 import { Geist } from "next/font/google";
-import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
-import type React from "react";
-import ProgressBar from "./components/ProgressBar"; // Import
 
 const geist = Geist({
   subsets: ["latin"],
   variable: "--font-geist",
 });
+
+export const metadata: Metadata = {
+  title: "Your Name",
+  description: "Your personal website",
+};
 
 export default function RootLayout({
   children,
@@ -17,17 +18,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
-      <body
-        className={`${geist.variable} antialiased`}
-        style={{
-          backgroundColor: "#1e1e1e",
-          color: "#d4d4d4",
-        }}
-      >
-        <ProgressBar /> {/* Add the progress bar */}
+    <html lang="en">
+      <body className={`${geist.variable} font-sans`}>
         {children}
-        <Analytics />
       </body>
     </html>
   );

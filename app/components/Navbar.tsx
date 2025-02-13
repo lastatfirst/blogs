@@ -38,11 +38,11 @@ export default function Navbar() {
 
 
   return (
-    <nav className="flex items-center justify-between max-w-4xl mx-auto px-6 py-8 border-b border-gray-700">
+    <nav className="flex items-center justify-between max-w-4xl mx-auto px-6 py-4 border-b border-gray-700">
       <Link
         href="/"
-        className="text-2xl font-medium tracking-tight hover:text-red-600 transition-colors text-[#e91e63]"
-        style={{ fontSize: '2rem' }}
+        className="font-medium tracking-tight hover:text-red-600 transition-colors text-[#e91e63]"
+        style={{ fontSize: '3rem' }} // Using inline style
       >
         vt.
       </Link>
@@ -50,7 +50,7 @@ export default function Navbar() {
       <div className="relative" ref={dropdownRef}>
         <button
           onClick={toggleDropdown}
-          className="text-2xl focus:outline-none hover:text-red-600 transition-colors"  // Changed text-lg to text-2xl
+          className="text-2xl focus:outline-none hover:text-red-600 transition-colors"
         >
           ☰
         </button>

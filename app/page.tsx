@@ -2,6 +2,9 @@ import type { simpleBlogCard } from "./lib/interface";
 import { client } from "./lib/sanity";
 import Link from "next/link";
 import Navbar from "./components/Navbar";
+import { format } from 'date-fns';
+import { enUS } from 'date-fns/locale'; // Or your preferred locale
+//import { formatInTimeZone } from 'date-fns-tz';
 
 export const revalidate = 30;
 
@@ -43,7 +46,7 @@ export default async function Home() {
     <div className="min-h-screen bg-[#1e1e1e] text-[#d4d4d4] font-geist">
       <Navbar />
       <div className="max-w-2xl mx-auto px-6">
-        <header className="pt-16 pb-12">
+        <header className="pt-8 pb-12">
           <h1 className="text-3xl" style={{ color: '#e91e63 ' }}>
             words from me to me
           </h1>
@@ -56,10 +59,13 @@ export default async function Home() {
               <div className="space-y-6">
                 {postsByYear[year].map((post, idx) => {
                   const date = new Date(post._createdAt);
-                  const formattedDate = date.toLocaleDateString("en-US", {
-                    month: "short",
-                    day: "numeric",
-                  });
+                  // const formattedDate = date.toLocaleDateString("en-US", { // REMOVE THIS LINE
+                  //   month: "short",
+                  //   day: "numeric",
+                  // });
+
+                  const formattedDate = format(date, 'MMM d', { locale: enUS }); // Use date-fns
+
 
                   return (
                     <article key={idx} className="group border-b border-gray-700 pb-4">

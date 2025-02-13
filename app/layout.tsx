@@ -8,7 +8,7 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Your Name",
+  title: "vt.",
   description: "Your personal website",
 };
 

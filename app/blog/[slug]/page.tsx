@@ -105,12 +105,11 @@ export default async function BlogArticle({ params }: PageProps) {
           </Button>
         </Link>
 
-        <h1 className="text-5xl sm:text-6xl md:text-7xl text-center text-white font-extrabold shadow-lg">
+        <h1 className="text-5xl sm:text-6xl md:text-7xl text-center font-extrabold text-white">
           {data.title}
         </h1>
 
         <p className="mt-2 text-center text-gray-400 text-lg">{estimatedReadTime}</p>
-
         <div className="mt-4 flex justify-center">
           <LikeButton postId={slug} />
         </div>

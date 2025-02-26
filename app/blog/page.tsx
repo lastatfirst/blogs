@@ -3,8 +3,7 @@ import { client } from "../lib/sanity";
 import Link from "next/link";
 import Navbar from "@/app/blog/components/Navbar";
 import { format } from 'date-fns';
-import { enUS } from 'date-fns/locale'; // Or your preferred locale
-//import { formatInTimeZone } from 'date-fns-tz';
+import { enUS } from 'date-fns/locale'; 
 
 export const revalidate = 30;
 
@@ -24,7 +23,7 @@ async function getData() {
 export default async function Home() {
   const data: simpleBlogCard[] = await getData();
 
-  // Group posts by year
+
   const postsByYear = data.reduce(
     (acc, post) => {
       const year = new Date(post._createdAt).getFullYear();
@@ -47,7 +46,7 @@ export default async function Home() {
       <Navbar />
       <div className="max-w-2xl mx-auto px-6">
         <header className="pt-8 pb-12">
-          <h1 className="text-3xl" style={{ color: '#e91e63 ' }}>
+          <h1 className="text-3xl font-bold" style={{ color: '#e91e63 ' }}>
             words from me to me
           </h1>
         </header>
@@ -55,7 +54,7 @@ export default async function Home() {
         <main>
           {years.map((year) => (
             <section key={year} className="mb-16">
-              <h2 className="text-lg">{year}</h2>
+              <h2 className="text-lg font-bold">{year}</h2>
               <div className="space-y-6">
                 {postsByYear[year].map((post, idx) => {
                   const date = new Date(post._createdAt);
@@ -74,7 +73,7 @@ export default async function Home() {
                         className="block py-2"
                       >
                         <div className="flex items-baseline justify-between">
-                          <h3 className="text-md group-hover:text-[#db0042]">
+                          <h3 className="text-md font-bold group-hover:text-[#db0042]">
                             {post.title}
                           </h3>
                           <time className="text-sm">

@@ -9,7 +9,7 @@ const geist = Geist({
 
 export const metadata: Metadata = {
   title: "vt.",
-  description: "Your personal website",
+  description: "Yap Site"
 };
 
 export default function RootLayout({

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --font-geist: Geist, sans-serif; /*  Replace "Geist" with your font name if needed */
+  --font-geist: Geist, sans-serif; 
 }
 
 body {
@@ -12,6 +12,6 @@ body {
 
 @layer base {
   body {
-    @apply text-gray-900; /* Remove if you're setting text color inline */
+    @apply text-gray-900;
   }
 }

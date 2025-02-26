@@ -12,6 +12,7 @@ import "katex/dist/katex.min.css"; // Import KaTeX CSS for styling
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { okaidia } from "react-syntax-highlighter/dist/esm/styles/prism"; // Syntax highlighter style
 
+// Fetch blog data from Sanity
 async function getData(slug: string) {
   const query = `
     *[_type == "blog" && slug.current == $slug] {
@@ -32,6 +33,7 @@ export default async function BlogArticle({ params }: PageProps) {
   const { slug } = await params;
   const data: fullBlog = await getData(slug);
 
+  // If no data is found, show a "Blog Not Found" message
   if (!data) {
     return (
       <div className="mt-8 text-center prose prose-blue dark:prose-invert">
@@ -40,6 +42,7 @@ export default async function BlogArticle({ params }: PageProps) {
     );
   }
 
+  // Calculate estimated read time
   const wordsPerMinute = 200;
   const wordCount = data.content.reduce((count, block) => {
     if (block._type === "block" && block.children) {
@@ -50,8 +53,10 @@ export default async function BlogArticle({ params }: PageProps) {
   }, 0);
   const estimatedReadTime = `${Math.ceil(wordCount / wordsPerMinute)} min read`;
 
+  // Custom components for PortableText
   const myPortableTextComponents = {
     types: {
+      // Handle images
       image: ({ value }: { value: { asset: { url: string }; alt?: string } }) => {
         const imageUrl = value?.asset?.url;
 
@@ -60,18 +65,19 @@ export default async function BlogArticle({ params }: PageProps) {
         }
 
         return (
-          <div className="my-4">
+          <div className="my-8">
             <Image
-              src={imageUrl} 
+              src={imageUrl}
               alt={value?.alt || "Image"}
-              width={800}
-              height={600} 
-              className="w-full h-auto" 
-              priority 
+              width={1000} // Slightly decreased width
+              height={600}
+              className="w-full h-auto rounded-lg shadow-lg"
+              priority
             />
           </div>
         );
       },
+      // Handle math equations
       math: ({ value }: { value: { equation: string; inline: boolean } }) => {
         const mathHtml = katex.renderToString(value.equation, {
           throwOnError: false,
@@ -80,9 +86,10 @@ export default async function BlogArticle({ params }: PageProps) {
 
         return <span dangerouslySetInnerHTML={{ __html: mathHtml }} />;
       },
+      // Handle code blocks
       code: ({ value }: { value: { code: string; language: string } }) => {
         return (
-          <div className="my-4">
+          <div className="my-8">
             <SyntaxHighlighter language={value.language} style={okaidia}>
               {value.code}
             </SyntaxHighlighter>
@@ -95,7 +102,9 @@ export default async function BlogArticle({ params }: PageProps) {
   return (
     <>
       <Navbar />
-      <div className="mt-8 max-w-4xl mx-auto px-4 pb-20">
+      {/* Main container with slightly decreased width */}
+      <div className="mt-8 max-w-4xl mx-auto px-6 pb-20">
+        {/* Back button */}
         <Link href="/">
           <Button
             variant="outline"
@@ -105,16 +114,19 @@ export default async function BlogArticle({ params }: PageProps) {
           </Button>
         </Link>
 
+        {/* Blog title */}
         <h1 className="text-5xl sm:text-6xl md:text-7xl text-center font-extrabold text-white">
           {data.title}
         </h1>
 
+        {/* Estimated read time and like button */}
         <p className="mt-2 text-center text-gray-400 text-lg">{estimatedReadTime}</p>
         <div className="mt-4 flex justify-center">
           <LikeButton postId={slug} />
         </div>
 
-        <div className="mt-6 prose prose-blue dark:prose-invert">
+        {/* Blog content */}
+        <div className="mt-8 prose prose-lg prose-blue dark:prose-invert max-w-none">
           <PortableText
             value={data.content}
             components={myPortableTextComponents}
@@ -125,6 +137,7 @@ export default async function BlogArticle({ params }: PageProps) {
   );
 }
 
+// Generate static paths for SSG
 export async function generateStaticParams() {
   const query = `*[_type == "blog"]{
     slug {

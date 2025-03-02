@@ -108,25 +108,25 @@ export default async function BlogArticle({ params }: PageProps) {
         <Link href="/">
           <Button
             variant="outline"
-            className="mb-8 border-2 border-white text-white hover:bg-white hover:text-black px-6 py-2 rounded-md"
+            className="mb-8 border-2 border-white text-white hover:bg-white hover:text-black px-6 py-2 rounded-md text-sm"
           >
             ← Back
           </Button>
         </Link>
 
         {/* Blog title */}
-        <h1 className="text-5xl sm:text-6xl md:text-7xl text-center font-extrabold text-white">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl text-center font-extrabold text-white">
           {data.title}
         </h1>
 
         {/* Estimated read time and like button */}
-        <p className="mt-2 text-center text-gray-400 text-lg">{estimatedReadTime}</p>
+        <p className="mt-2 text-center text-gray-400 text-base">{estimatedReadTime}</p>
         <div className="mt-4 flex justify-center">
           <LikeButton postId={slug} />
         </div>
 
         {/* Blog content */}
-        <div className="mt-8 prose prose-lg prose-blue dark:prose-invert max-w-none">
+        <div className="mt-8 prose prose-blue dark:prose-invert max-w-none">
           <PortableText
             value={data.content}
             components={myPortableTextComponents}

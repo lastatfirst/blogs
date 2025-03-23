@@ -6,7 +6,7 @@ export interface simpleBlogCard {
 }
 
 export interface fullBlog {
-  slug: string;  // Replace 'any' with 'string' or another appropriate type
+  slug: string; // Replace 'any' with 'string' or another appropriate type
   likes: number;
   currentSlug: string;
   title: string;
@@ -36,5 +36,3 @@ export type MarkDef = {
 export interface PageProps {
   params: Promise<{ slug: string }>;
 }
-
-

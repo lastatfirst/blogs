@@ -3,8 +3,7 @@ import { client } from "../lib/sanity";
 import Link from "next/link";
 import Navbar from "@/app/blog/components/Navbar";
 import { format } from 'date-fns';
-import { enUS } from 'date-fns/locale'; 
-
+import { enUS } from 'date-fns/locale';
 export const revalidate = 30;
 
 async function getData() {
@@ -22,8 +21,6 @@ async function getData() {
 
 export default async function Home() {
   const data: simpleBlogCard[] = await getData();
-
-
   const postsByYear = data.reduce(
     (acc, post) => {
       const year = new Date(post._createdAt).getFullYear();
@@ -35,14 +32,23 @@ export default async function Home() {
     },
     {} as Record<number, simpleBlogCard[]>,
   );
-
   //sorting the years
   const years = Object.keys(postsByYear)
     .map(Number)
     .sort((a, b) => b - a);
-
+  
   return (
-    <div className="min-h-screen bg-[#1e1e1e] text-[#d4d4d4] font-geist">
+    <div className="relative min-h-screen text-[#d4d4d4] font-geist">
+      {/* Background image with clean implementation */}
+      <div className="fixed inset-0 z-[-1] bg-[#1e1e1e]">
+        <div 
+          className="absolute inset-0 bg-[url('/background.png')] bg-cover bg-center bg-no-repeat"
+          style={{ 
+            backgroundSize: '100% 100%'
+          }}
+        />
+      </div>
+      
       <Navbar />
       <div className="max-w-2xl mx-auto px-6">
         <header className="pt-8 pb-12">
@@ -50,7 +56,6 @@ export default async function Home() {
             words from me to me
           </h1>
         </header>
-
         <main>
           {years.map((year) => (
             <section key={year} className="mb-16">
@@ -62,10 +67,7 @@ export default async function Home() {
                   //   month: "short",
                   //   day: "numeric",
                   // });
-
                   const formattedDate = format(date, 'MMM d', { locale: enUS }); // Use date-fns
-
-
                   return (
                     <article key={idx} className="group border-b border-gray-700 pb-4">
                       <Link

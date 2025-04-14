@@ -100,7 +100,17 @@ export default async function BlogArticle({ params }: PageProps) {
   };
 
   return (
-    <>
+    <div className="relative min-h-screen text-[#d4d4d4] font-geist">
+      {/* Background image with clean implementation */}
+      <div className="fixed inset-0 z-[-1] bg-[#1e1e1e]">
+        <div 
+          className="absolute inset-0 bg-[url('/background.png')] bg-cover bg-center bg-no-repeat"
+          style={{ 
+            backgroundSize: '100% 100%'
+          }}
+        />
+      </div>
+      
       <Navbar />
       {/* Main container with slightly decreased width */}
       <div className="mt-8 max-w-4xl mx-auto px-6 pb-20">
@@ -133,7 +143,7 @@ export default async function BlogArticle({ params }: PageProps) {
           />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

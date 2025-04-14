@@ -7,8 +7,7 @@ const Snowfall = () => {
     const createSnowflakes = () => {
       const snowContainer = document.createElement('div');
       snowContainer.className = 'snow';
-      document.body.appendChild(snowContainer);
-
+      document.body.appendChild(snowContainer); 
       // Create 50 snowflakes
       for (let i = 0; i < 50; i++) {
         const snowflake = document.createElement('div');

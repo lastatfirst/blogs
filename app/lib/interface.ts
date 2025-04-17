@@ -7,7 +7,7 @@ export interface simpleBlogCard {
 
 export interface fullBlog {
   title: string;
-  content: any;
+  content: PortableTextBlock[];
   likes?: number;
   _createdAt: string;
 }

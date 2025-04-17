@@ -2,7 +2,7 @@ import React from "react";
 import { PortableTextComponents } from "@portabletext/react";
 import Image from "next/image";
 
-export const myPortableTextComponents: PortableTextComponents = {
+export const myPortableTextComponents = {
   types: {
     code: ({ value }: { value: { code: string; language: string } }): JSX.Element => (
       <pre className="bg-zinc-900 rounded p-4 overflow-x-auto my-4">
@@ -40,4 +40,4 @@ export const myPortableTextComponents: PortableTextComponents = {
     ),
     code: ({ children }: { children: React.ReactNode }): JSX.Element => <code className="bg-zinc-900 text-[#00ff66] rounded px-1 py-0.5">{children}</code>,
   },
-};
+} as PortableTextComponents;

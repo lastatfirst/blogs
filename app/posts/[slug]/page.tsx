@@ -1,12 +1,8 @@
 import { PortableText } from "@portabletext/react";
-import { fullBlog } from "@/app/lib/interface";
+import { fullBlog, PortableTextBlock, PortableTextChild } from "@/app/lib/interface";
 import { client } from "@/app/lib/sanity";
 import Link from "next/link";
-import Image from "next/image";
-import katex from "katex";
-import "katex/dist/katex.min.css";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { okaidia } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { myPortableTextComponents } from "@/app/lib/portableTextComponents";
 import LikeButton from "@/app/components/LikeButton";
 
 async function getData(slug: string) {
@@ -28,99 +24,20 @@ async function getData(slug: string) {
   return data;
 }
 
-async function updateLikes(slug: string, likes: number) {
-  const response = await fetch('/api/likes', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ slug, likes })
-  });
-  return response.json();
-}
-
 export default async function BlogPost({ params }: { params: { slug: string } }) {
   const { slug } = await params;
   const data: fullBlog = await getData(slug);
 
   const wordsPerMinute = 200;
 
-  interface BlockChild {
-    text?: string;
-  }
-
-  interface ContentBlock {
-    _type: string;
-    children?: BlockChild[];
-  }
-
-  const wordCount = data.content.reduce((count: number, block: ContentBlock) => {
+  const wordCount = data.content.reduce((count: number, block: PortableTextBlock) => {
     if (block._type === "block" && block.children) {
-      return count + block.children.reduce((childCount: number, child: BlockChild) =>
-        (child.text ? child.text.split(/\s+/).length : 0) + childCount, 0);
+      return count + block.children.reduce((sum: number, child: PortableTextChild) =>
+        sum + (child.text ? child.text.split(/\s+/).length : 0), 0);
     }
     return count;
   }, 0);
   const estimatedReadTime = `${Math.ceil(wordCount / wordsPerMinute)} min read`;
-
-  const myPortableTextComponents = {
-    types: {
-      image: ({ value }: { value: { asset: { url: string }; alt?: string } }) => {
-        const imageUrl = value?.asset?.url;
-        if (!imageUrl) {
-          return <p className="text-zinc-400">No image available</p>;
-        }
-        return (
-          <div className="my-8">
-            <Image
-              src={imageUrl}
-              alt={value?.alt || "Image"}
-              width={1000}
-              height={600}
-              className="w-full h-auto rounded-sm"
-              priority
-            />
-          </div>
-        );
-      },
-      math: ({ value }: { value: { equation: string; inline: boolean } }) => {
-        const mathHtml = katex.renderToString(value.equation, {
-          throwOnError: false,
-          displayMode: !value.inline,
-        });
-        return <span dangerouslySetInnerHTML={{ __html: mathHtml }} />;
-      },
-      code: ({ value }: { value: { code: string; language: string } }) => {
-        return (
-          <div className="my-8">
-            <SyntaxHighlighter language={value.language} style={okaidia}>
-              {value.code}
-            </SyntaxHighlighter>
-          </div>
-        );
-      },
-    },
-    block: {
-      h1: ({ children }: any) => <h1 className="text-4xl font-bold mt-12 mb-4 text-white">{children}</h1>,
-      h2: ({ children }: any) => <h2 className="text-3xl font-bold mt-10 mb-4 text-white">{children}</h2>,
-      h3: ({ children }: any) => <h3 className="text-2xl font-bold mt-8 mb-4 text-white">{children}</h3>,
-      normal: ({ children }: any) => <p className="text-zinc-300 mb-4 leading-relaxed">{children}</p>,
-    },
-    marks: {
-      link: ({ children, value }: any) => {
-        return (
-          <a href={value?.href} className="text-[#00ff66] hover:text-[#33ff85] underline">
-            {children}
-          </a>
-        );
-      },
-      code: ({ children }: any) => {
-        return (
-          <code className="bg-zinc-900 text-[#00ff66] rounded px-1 py-0.5">
-            {children}
-          </code>
-        );
-      },
-    },
-  };
 
   if (!data) {
     return (
@@ -166,10 +83,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
         </header>
 
         <main className="prose prose-invert prose-lg max-w-none">
-          <PortableText
-            value={data.content}
-            components={myPortableTextComponents}
-          />
+          <PortableText value={data.content} components={myPortableTextComponents} />
         </main>
       </div>
 

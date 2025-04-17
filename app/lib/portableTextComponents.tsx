@@ -1,5 +1,6 @@
 import React from "react";
 import { PortableTextComponents } from "@portabletext/react";
+import Image from "next/image";
 
 export const myPortableTextComponents: PortableTextComponents = {
   types: {
@@ -11,7 +12,18 @@ export const myPortableTextComponents: PortableTextComponents = {
     image: ({ value }: { value: { asset: { url: string }; alt?: string } }): JSX.Element => {
       const url = value?.asset?.url;
       if (!url) return <span className="text-zinc-400">No image available</span>;
-      return <img src={url} alt={value.alt || "Image"} className="my-8 rounded" />;
+      return (
+        <div className="my-8">
+          <Image
+            src={url}
+            alt={value.alt || "Image"}
+            width={800}
+            height={600}
+            className="w-full rounded"
+            priority
+          />
+        </div>
+      );
     },
   },
   block: {

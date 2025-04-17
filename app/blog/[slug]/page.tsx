@@ -1,5 +1,5 @@
 import { PortableText } from "@portabletext/react";
-import { fullBlog, PageProps, PortableTextBlock, PortableTextChild } from "@/app/lib/interface";
+import { fullBlog, PortableTextBlock, PortableTextChild } from "@/app/lib/interface";
 import { client } from "@/app/lib/sanity";
 import Link from "next/link";
 import { myPortableTextComponents } from "@/app/lib/portableTextComponents";
@@ -23,7 +23,7 @@ async function getData(slug: string) {
   return data;
 }
 
-export default async function BlogArticle({ params }: PageProps) {
+export default async function BlogArticle({ params }: any) {
   const { slug } = await params;
   const data: fullBlog = await getData(slug);
 

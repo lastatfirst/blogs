@@ -2,14 +2,9 @@ import { PortableText } from "@portabletext/react";
 import { fullBlog, PageProps, PortableTextBlock, PortableTextChild } from "@/app/lib/interface";
 import { client } from "@/app/lib/sanity";
 import Link from "next/link";
-import Image from "next/image";
-import katex from "katex";
-import "katex/dist/katex.min.css";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { okaidia } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { myPortableTextComponents } from "@/app/lib/portableTextComponents";
 import Navbar from "@/app/components/Navbar";
 import LikeButton from "@/app/components/LikeButton";
-import { myPortableTextComponents } from "@/app/lib/portableTextComponents";
 
 async function getData(slug: string) {
   const query = `

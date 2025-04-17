@@ -1,30 +1,53 @@
+import { client } from "./lib/sanity";
 import Link from "next/link";
-import Navbar from "@/app/blog/components/Navbar";
+import { simpleBlogCard } from "./lib/interface";
 
-export default function Home() {
+async function getLatestPosts(): Promise<simpleBlogCard[]> {
+  const query = `
+  *[_type == "blog"] | order(_createdAt desc)[0...3] {
+    title,
+    "currentSlug": slug.current,
+    _createdAt,
+    likes
+  }`;
+  return await client.fetch(query);
+}
+
+export default async function Home() {
+  const posts = await getLatestPosts();
+
   return (
-    <div className="relative min-h-screen text-[#d4d4d4] font-geist">
-      {/* Background image with overlay to remove edge effects */}
-      <div className="fixed inset-0 z-[-1] bg-[#1e1e1e]">
-        <div 
-          className="absolute inset-0 bg-[url('/background.png')] bg-cover bg-center bg-no-repeat"
-          style={{ 
-            backgroundSize: '100% 100%',  // Forces image to stretch full width/height
-            imageRendering: 'pixelated'   // Helps with texture quality
-          }}
-        />
-      </div>
-      
-      <Navbar />
-      <div className="max-w-2xl mx-auto px-6">
-        <header className="pt-8 pb-12">
-          <h1 className="text-3xl" style={{ color: '#e91e63' }}>
-            you have reached the home -{" "}
-            <Link href="/blog" style={{ color: '#FFD700' }} className="hover:underline">
-              blog
-            </Link>
+    <div className="min-h-screen bg-black">
+      <div className="max-w-5xl mx-auto px-6 py-16">
+        <section className="border-b border-white/20 pb-16 mb-16">
+          <h1 className="text-2xl text-white mb-6">
+            you have reached the home
           </h1>
-        </header>
+        </section>
+
+        <section>
+          <div className="border-b border-white/20 pb-16">
+            <h2 className="text-2xl text-yellow-400 mb-8">~ latest posts</h2>
+            <div className="space-y-4 pl-8 border-l border-white/20">
+              {posts.map((post, idx) => (
+                <Link
+                  key={idx}
+                  href={`/posts/${post.currentSlug}`}
+                  className="block group"
+                >
+                  <div className="flex items-baseline gap-4">
+                    <span className="text-white/60 font-mono text-lg">
+                      {new Date(post._createdAt).toISOString().split('T')[0].replace(/-/g, '')} —
+                    </span>
+                    <span className="text-lg text-white group-hover:text-white/80">
+                      {post.title}
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   );

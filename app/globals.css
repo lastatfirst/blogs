@@ -3,15 +3,34 @@
 @tailwind utilities;
 
 :root {
-  --font-geist: Geist, sans-serif; 
+  --foreground-rgb: 255, 255, 255;
+  --background-rgb: 0, 0, 0;
 }
 
 body {
-  font-family: var(--font-geist);
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+  font-family: 'Space Grotesk', sans-serif;
 }
 
-@layer base {
-  body {
-    @apply text-gray-900;
-  }
+.breadcrumb {
+  display: flex;
+  gap: 0.75rem;
+  align-items: baseline;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.breadcrumb a {
+  color: rgb(var(--foreground-rgb));
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb span {
+  color: rgba(255, 255, 255, 0.6);
 }

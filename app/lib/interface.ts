@@ -1,16 +1,15 @@
 export interface simpleBlogCard {
-  _createdAt: string | number | Date;
   title: string;
-  smallDescription: string;
   currentSlug: string;
+  _createdAt: string;
+  likes?: number;
 }
 
 export interface fullBlog {
-  slug: string; // Replace 'any' with 'string' or another appropriate type
-  likes: number;
-  currentSlug: string;
   title: string;
-  content: PortableTextBlock[];
+  content: any;
+  likes?: number;
+  _createdAt: string;
 }
 
 export type PortableTextBlock = {
@@ -34,5 +33,7 @@ export type MarkDef = {
 };
 
 export interface PageProps {
-  params: Promise<{ slug: string }>;
+  params: {
+    slug: string;
+  }
 }

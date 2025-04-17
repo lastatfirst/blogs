@@ -76,7 +76,7 @@ export default function Navbar() {
                   tabIndex={-1}
                   id="menu-item-1"
                 >
-                  Blog
+                  vt.
                 </Link>
                 <Link
                   href="https://x.com/weeye"

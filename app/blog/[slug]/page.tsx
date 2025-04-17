@@ -23,7 +23,7 @@ async function getData(slug: string) {
   return data;
 }
 
-export default async function BlogArticle({ params }: any) {
+export default async function BlogArticle({ params }: { params: { slug: string } }) {
   const { slug } = await params;
   const data: fullBlog = await getData(slug);
 

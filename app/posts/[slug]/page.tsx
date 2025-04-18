@@ -25,7 +25,7 @@ async function getData(slug: string) {
 }
 
 export default async function BlogPost({ params }: { params: { slug: string } }) {
-  const { slug } = await params;
+  const { slug } = params;
   const data: fullBlog = await getData(slug);
 
   const wordsPerMinute = 200;

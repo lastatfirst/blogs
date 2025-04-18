@@ -31,9 +31,3 @@ export type MarkDef = {
   _type: string;
   href?: string;
 };
-
-export interface PageProps {
-  params: {
-    slug: string;
-  }
-}

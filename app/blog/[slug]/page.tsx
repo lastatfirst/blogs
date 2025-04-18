@@ -59,20 +59,21 @@ const getData = async (slug: string): Promise<fullBlog | null> => {
   const query = `
     *[_type == "post" && slug.current == "${slug}"][0] {
       title,
-      "slug": slug.current, // Fetch slug for LikeButton if needed differently
+      "slug": slug.current,
       content[]{
         ...,
-        _type == "image" => { // Conditional projection for images
+        _type == "image" => {
+          ...,
           asset->{
-            url,
+            "_id": _id,
+            "url": "https://cdn.sanity.io/images/YOUR_PROJECT_ID/production/" + _id.replace('image-', '').replace('-jpg', '.jpg').replace('-png', '.png').replace('-webp', '.webp').replace('-jpeg', '.jpeg'),
             metadata {
               dimensions,
-              lqip // Low Quality Image Placeholder (optional)
+              lqip
             }
           }
         }
       }
-      // Add other fields you might need, e.g., published date, author
     }
   `;
   try {
@@ -134,19 +135,29 @@ export default async function PostArticle({
     types: {
       // --- Image Component ---
       image: ({ value }: { value: SanityImageValue }) => {
-        if (!value?.asset?.url) {
+        // Check for different possible URL structures
+        const imageUrl = value?.asset?.url || 
+                       (value?.asset?._ref && `https://cdn.sanity.io/images/YOUR_PROJECT_ID/production/${value.asset._ref
+                          .replace('image-', '')
+                          .replace('-jpg', '.jpg')
+                          .replace('-png', '.png')
+                          .replace('-webp', '.webp')
+                          .replace('-jpeg', '.jpeg')}`);
+        
+        if (!imageUrl) {
+          console.error("Image URL not found in:", value);
           return <p className="text-red-500">Image not available</p>;
         }
         
         return (
           <div className="my-8 relative">
             <Image
-              src={value.asset.url}
+              src={imageUrl}
               alt={value.alt || "Blog image"}
-              width={1000} // Default dimensions
+              width={1000}
               height={600}
               className="rounded-lg shadow-lg w-full h-auto"
-              priority // Prioritize loading for above-the-fold images
+              priority
             />
             {value.caption && (
               <p className="text-center text-sm text-gray-400 mt-2">{value.caption}</p>
@@ -208,25 +219,23 @@ export default async function PostArticle({
     },
     // Optional: Add custom block or mark definitions if needed
     block: {
-      h1: (props) => <h1 className="text-3xl font-bold mt-8 mb-4 text-white">{props.children}</h1>,
-      h2: (props) => <h2 className="text-2xl font-semibold mt-7 mb-3 text-white">{props.children}</h2>,
-      h3: (props) => <h3 className="text-xl font-semibold mt-6 mb-2 text-white">{props.children}</h3>,
-      // Add other block types as needed (h4, h5, h6, blockquote, etc.)
-      // Ensure default rendering for p tags etc. is handled by prose classes or explicitly here
+      h1: (props) => <h1 className="text-4xl font-bold mt-10 mb-4 text-white">{props.children}</h1>,
+      h2: (props) => <h2 className="text-3xl font-semibold mt-8 mb-3 text-white">{props.children}</h2>,
+      h3: (props) => <h3 className="text-2xl font-semibold mt-7 mb-2 text-white">{props.children}</h3>,
+      normal: (props) => <p className="text-lg mb-4">{props.children}</p>,
+      // Add other block types as needed
     },
-    // Optional: Add custom marks (bold, italic, links, etc.)
-    // mark: {
-    //   link: ({children, value}) => {
-    //     const rel = value.href.startsWith('/') ? undefined : 'noreferrer noopener'
-    //     return (
-    //       <a href={value.href} rel={rel} className="text-blue-400 hover:underline">
-    //         {children}
-    //       </a>
-    //     )
-    //   },
-    //   // Add other marks like code, strong, em
-    //   code: ({children}) => <code className="bg-gray-800 text-gray-200 px-1 rounded">{children}</code>,
-    // },
+    marks: {
+      link: ({children, value}) => {
+        const rel = !value.href.startsWith('/') ? 'noreferrer noopener' : undefined;
+        return (
+          <a href={value.href} rel={rel} className="text-blue-400 hover:underline">
+            {children}
+          </a>
+        );
+      },
+      code: ({children}) => <code className="bg-gray-800 text-gray-200 px-1 rounded text-base">{children}</code>,
+    },
   };
 
   return (
@@ -267,7 +276,7 @@ export default async function PostArticle({
         {/* Prose classes style the Portable Text output */}
         {/* Max-w-none allows the content to take the full width of its container */}
         {/* Ensure your prose classes are configured for your dark theme */}
-        <div className="mt-8 prose prose-blue dark:prose-invert max-w-none">
+        <div className="mt-8 prose prose-blue dark:prose-invert max-w-none prose-lg">
           <PortableText
             value={content}
             components={myPortableTextComponents}

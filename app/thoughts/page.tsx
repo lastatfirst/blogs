@@ -68,9 +68,17 @@ export default async function ThoughtArticle({ params }: { params: { slug: strin
     types: {
       // Handle images
       image: ({ value }: { value: { asset: { url: string }; alt?: string } }) => {
-        const imageUrl = value?.asset?.url;
+        // Check for different possible URL structures
+        const imageUrl = value?.asset?.url || 
+                        (value?.asset?._ref && `https://cdn.sanity.io/images/YOUR_PROJECT_ID/production/${value.asset._ref
+                          .replace('image-', '')
+                          .replace('-jpg', '.jpg')
+                          .replace('-png', '.png')
+                          .replace('-webp', '.webp')
+                          .replace('-jpeg', '.jpeg')}`);
 
         if (!imageUrl) {
+          console.error("Image URL not found in:", value);
           return <p>No image available</p>;
         }
 
@@ -159,7 +167,7 @@ export default async function ThoughtArticle({ params }: { params: { slug: strin
         </div>
 
         {/* Blog content */}
-        <div className="mt-8 prose prose-blue dark:prose-invert max-w-none">
+        <div className="mt-8 prose prose-blue dark:prose-invert max-w-none prose-lg">
           <PortableText
             value={data.content}
             components={myPortableTextComponents}

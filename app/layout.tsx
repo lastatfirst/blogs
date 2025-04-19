@@ -21,10 +21,10 @@ export default function RootLayout({
         <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm">
           <div className="max-w-3xl mx-auto px-6 py-4">
             <nav className="flex justify-between items-center">
-              <Link href="/" className="text-[#db0042] text-5xl">vt.</Link>
-              <div className="flex gap-8 text-[#db0042] text-3xl">
-                <Link href="/posts" className="hover:underline">posts</Link>
-                <Link href="/projects" className="hover:underline">projects</Link>
+              <Link href="/" className="text-[#db0042] text-4xl">vt.</Link>
+              <div className="flex gap-8 text-[#db0042]">
+                <Link href="/posts" className="hover:underline text-[1.7rem]">posts</Link>
+                <Link href="/projects" className="hover:underline text-[1.7rem]">projects</Link>
               </div>
             </nav>
           </div>

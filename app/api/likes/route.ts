@@ -1,22 +1,57 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+import supabase from '@/app/lib/supabaseClient';
 
 export async function POST(req: Request) {
-  const { slug, likes } = await req.json();
+  try {
+    const { slug } = await req.json();
 
-  const { data, error } = await supabase
-    .from('likes')
-    .upsert({ slug, likes })
-    .select();
+    const { error } = await supabase
+      .from('likes')
+      .insert([{ 
+        post_id: slug,
+        created_at: new Date().toISOString()
+      }]);
 
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+
+    // Get updated count
+    const { data, error: countError } = await supabase
+      .from('likes')
+      .select('*', { count: 'exact' })
+      .eq('post_id', slug);
+
+    if (countError) {
+      return NextResponse.json({ error: countError.message }, { status: 500 });
+    }
+
+    return NextResponse.json({ likes: data?.length || 0 });
+  } catch (error) {
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
+}
 
-  return NextResponse.json({ data });
+export async function GET(req: Request) {
+  try {
+    const url = new URL(req.url);
+    const slug = url.searchParams.get('slug');
+
+    if (!slug) {
+      return NextResponse.json({ error: 'Slug is required' }, { status: 400 });
+    }
+
+    const { data, error } = await supabase
+      .from('likes')
+      .select('*', { count: 'exact' })
+      .eq('post_id', slug);
+
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+
+    return NextResponse.json({ likes: data?.length || 0 });
+  } catch (error) {
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  }
 }

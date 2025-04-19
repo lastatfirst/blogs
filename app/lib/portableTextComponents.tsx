@@ -1,43 +1,75 @@
 import React from "react";
 import { PortableTextComponents } from "@portabletext/react";
 import Image from "next/image";
+import katex from "katex";
+import "katex/dist/katex.min.css";
 
-export const myPortableTextComponents = {
+export const myPortableTextComponents: PortableTextComponents = {
   types: {
-    code: ({ value }: { value: { code: string; language: string } }): JSX.Element => (
+    math: ({ value }: any) => {
+      if (!value?.equation) {
+        return <span className="text-red-500">No equation provided</span>;
+      }
+
+      try {
+        const mathHtml = katex.renderToString(value.equation, {
+          throwOnError: false,
+          displayMode: !value.inline,
+        });
+
+        return (
+          <div className={value.inline ? "inline-block" : "my-4 text-center block"}>
+            <span dangerouslySetInnerHTML={{ __html: mathHtml }} />
+          </div>
+        );
+      } catch (error) {
+        console.error("KaTeX error:", error);
+        return <span className="text-red-500">Math rendering error</span>;
+      }
+    },
+    code: ({ value }: any) => (
       <pre className="bg-zinc-900 rounded p-4 overflow-x-auto my-4">
-        <code className="text-[#00ff66]">{value.code}</code>
+        <code>{value.code}</code>
       </pre>
     ),
-    image: ({ value }: { value: { asset: { url: string }; alt?: string } }): JSX.Element => {
-      const url = value?.asset?.url;
-      if (!url) return <span className="text-zinc-400">No image available</span>;
+    image: ({ value }: any) => {
+      if (!value?.asset?._ref) return null;
       return (
         <div className="my-8">
           <Image
-            src={url}
-            alt={value.alt || "Image"}
+            src={`https://cdn.sanity.io/images/oh713oov/production/${value.asset._ref
+              .replace('image-', '')
+              .replace('-jpg', '.jpg')
+              .replace('-png', '.png')
+              .replace('-webp', '.webp')}`}
+            alt={value.alt || "Blog image"}
             width={800}
             height={600}
             className="w-full rounded"
-            priority
           />
         </div>
       );
-    },
+    }
   },
   block: {
-    h1: ({ children }: { children: React.ReactNode }): JSX.Element => <h1 className="text-4xl font-bold mt-12 mb-4 text-white">{children}</h1>,
-    h2: ({ children }: { children: React.ReactNode }): JSX.Element => <h2 className="text-3xl font-bold mt-10 mb-4 text-white">{children}</h2>,
-    h3: ({ children }: { children: React.ReactNode }): JSX.Element => <h3 className="text-2xl font-bold mt-8 mb-4 text-white">{children}</h3>,
-    normal: ({ children }: { children: React.ReactNode }): JSX.Element => <p className="text-zinc-300 mb-4 leading-relaxed">{children}</p>,
+    h1: ({ children }) => <h1 className="text-4xl font-bold mt-12 mb-4 text-white">{children}</h1>,
+    h2: ({ children }) => <h2 className="text-3xl font-bold mt-10 mb-4 text-white">{children}</h2>,
+    h3: ({ children }) => <h3 className="text-2xl font-bold mt-8 mb-4 text-white">{children}</h3>,
+    normal: ({ children }) => <p className="text-zinc-300 mb-4 leading-relaxed">{children}</p>,
   },
   marks: {
-    link: ({ children, value }: { children: React.ReactNode; value: { href: string } }): JSX.Element => (
-      <a href={value.href} className="text-[#00ff66] hover:text-[#33ff85] underline" target="_blank" rel="noopener noreferrer">
+    link: ({ children, value }: any) => (
+      <a
+        href={value?.href}
+        className="text-[#00ff66] hover:text-[#33ff85] underline transition-colors duration-200"
+        target={value?.blank ? "_blank" : "_self"}
+        rel={value?.blank ? "noopener noreferrer" : undefined}
+      >
         {children}
       </a>
     ),
-    code: ({ children }: { children: React.ReactNode }): JSX.Element => <code className="bg-zinc-900 text-[#00ff66] rounded px-1 py-0.5">{children}</code>,
-  },
-} as PortableTextComponents;
+    code: ({ children }) => (
+      <code className="bg-zinc-900 text-[#00ff66] rounded px-1 py-0.5">{children}</code>
+    ),
+  }
+};

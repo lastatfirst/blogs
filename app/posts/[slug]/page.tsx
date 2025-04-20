@@ -64,9 +64,9 @@ export default async function BlogPost({ params }: { params: { slug: string } })
   return (
     <div className="min-h-screen bg-black text-zinc-300">
       <ReadingProgress />
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
+      <div className="max-w-3xl mx-auto px-6 sm:px-8 py-20 sm:py-28">
         {/* Basic Breadcrumbs */}
-        <div className="breadcrumb mb-8 sm:mb-12 text-sm sm:text-base">
+        <div className="breadcrumb mb-12">
           <Link href="/">home</Link>
           <span>/</span>
           <Link href="/posts">posts</Link>
@@ -75,10 +75,10 @@ export default async function BlogPost({ params }: { params: { slug: string } })
         </div>
 
         {/* Basic Header */}
-        <header className="mb-12 sm:mb-16">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">{data.title}</h1>
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-t border-b border-zinc-700 py-4 mt-6">
-            <div className="text-sm text-zinc-400 flex items-center gap-4">
+        <header className="mb-16">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">{data.title}</h1>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-t border-b border-zinc-700 py-5 mt-8">
+            <div className="text-base text-zinc-400 flex items-center gap-4">
                <span>{new Date(data._createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
                <span>·</span>
                <span>{estimatedReadTime}</span>
@@ -87,7 +87,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
           </div>
         </header>
 
-        {/* Main Content - Simplified PortableText call */}
+        {/* Main Content */}
         <main className="prose prose-invert prose-lg max-w-none">
           <PortableText 
             value={data.content} 

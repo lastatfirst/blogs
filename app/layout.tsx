@@ -29,6 +29,7 @@ export default function RootLayout({
               <div className="flex gap-8 text-[#db0042]">
                 <Link href="/posts" className="hover:underline text-[1.5rem]">posts</Link>
                 <Link href="/projects" className="hover:underline text-[1.5rem]">projects</Link>
+                <Link href="/list" className="hover:underline text-[1.5rem]">list</Link>
               </div>
             </nav>
           </div>

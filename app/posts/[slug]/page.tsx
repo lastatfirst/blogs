@@ -74,9 +74,9 @@ export default async function BlogPost({ params }: { params: { slug: string } })
         </div>
 
         {/* Basic Header */}
-        <header className="mb-16">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-8 leading-[1.1]">{data.title}</h1>
-          <div className="flex flex-col sm:flex-row items-center border-t border-b border-zinc-700 py-5 mt-8">
+        <header className="mb-12">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-[1.1] underline decoration-[#db0042] decoration-4 underline-offset-4">{data.title}</h1>
+          <div className="flex flex-col sm:flex-row items-center border-t border-b border-zinc-700 py-3 mt-6">
             <div className="text-base text-zinc-400 flex items-center gap-4 mb-4 sm:mb-0">
                <span>{new Date(data._createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
                <span>·</span>

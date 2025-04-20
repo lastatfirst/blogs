@@ -35,31 +35,30 @@ export default async function Posts() {
   return (
     <div className="min-h-screen bg-black">
       <div className="max-w-5xl mx-auto px-6 py-16">
-        <div className="breadcrumb mb-12">
+        <div className="breadcrumb mb-8">
           <Link href="/">home</Link>
           <span>/</span>
           <span>posts</span>
         </div>
 
-        <main className="space-y-16">
+        <main className="space-y-12">
           {years.map((year) => (
-            <section key={year} className="border-t border-white/20 pt-8 first:border-t-0">
-              <h2 className="text-3xl text-white mb-12"># {year}</h2>
-              <div className="space-y-6">
+            <section key={year} className="border-t border-white/20 pt-4 first:border-t-0">
+              <h2 className="text-3xl text-yellow-400 mb-6 underline decoration-[#db0042] decoration-4 underline-offset-4">~ {year}</h2>
+              <div className="space-y-4">
                 {postsByYear[year].map((post, idx) => (
                   <Link
                     key={idx}
                     href={`/posts/${post.currentSlug}`}
                     className="block group"
                   >
-                    <div className="flex items-baseline justify-between gap-4">
-                      <div className="flex items-baseline gap-4">
-                        <span className="text-white/60 text-xl font-mono">{new Date(post._createdAt).toISOString().split('T')[0].replace(/-/g, '')}</span>
-                        <span className="text-white/20">—</span>
-                        <span className="text-xl text-white group-hover:text-white/80">
-                          {post.title}
-                        </span>
-                      </div>
+                    <div className="flex items-baseline gap-4">
+                      <span className="text-white/60 text-xl font-mono">
+                        {new Date(post._createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })} —
+                      </span>
+                      <span className="text-xl text-white group-hover:text-white/80">
+                        {post.title}
+                      </span>
                     </div>
                   </Link>
                 ))}

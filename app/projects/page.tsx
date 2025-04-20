@@ -13,15 +13,14 @@ export default function Projects() {
   return (
     <div className="min-h-screen bg-black">
       <div className="max-w-3xl mx-auto px-6 py-16">
-        <div className="breadcrumb mb-12">
+        <div className="breadcrumb mb-8">
           <Link href="/">home</Link>
           <span>/</span>
           <span>projects</span>
         </div>
-        <section className="border-b border-white/20 pb-16 mb-16">
-          <h1 className="text-4xl text-white mb-6">
-            projects
-          </h1>
+
+        <section className="border-b border-white/20 pb-8 mb-8">
+          <h1 className="text-4xl text-yellow-400 mb-4 underline decoration-[#db0042] decoration-4 underline-offset-4">~ projects</h1>
         </section>
 
         <section>

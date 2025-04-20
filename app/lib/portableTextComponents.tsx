@@ -52,10 +52,22 @@ export const myPortableTextComponents: PortableTextComponents = {
     }
   },
   block: {
-    h1: ({ children }) => <h1 className="text-4xl font-medium tracking-tight mt-16 mb-8 text-white">{children}</h1>,
-    h2: ({ children }) => <h2 className="text-3xl font-medium tracking-tight mt-14 mb-6 text-white">{children}</h2>,
-    h3: ({ children }) => <h3 className="text-2xl font-medium tracking-tight mt-12 mb-5 text-white">{children}</h3>,
-    normal: ({ children }) => <p className="text-zinc-300 mb-7 leading-relaxed tracking-tight">{children}</p>,
+    h1: ({ children }) => (
+      <h1 className="text-4xl font-medium tracking-tight mt-12 mb-6 text-white underline decoration-[#db0042] decoration-4 underline-offset-4">
+        {children}
+      </h1>
+    ),
+    h2: ({ children }) => (
+      <h2 className="text-3xl font-medium tracking-tight mt-10 mb-4 text-white underline decoration-[#db0042] decoration-4 underline-offset-4">
+        {children}
+      </h2>
+    ),
+    h3: ({ children }) => (
+      <h3 className="text-2xl font-medium tracking-tight mt-8 mb-4 text-white underline decoration-[#db0042] decoration-4 underline-offset-4">
+        {children}
+      </h3>
+    ),
+    normal: ({ children }) => <p className="text-zinc-300 mb-5 leading-relaxed tracking-tight">{children}</p>,
   },
   marks: {
     link: ({ children, value }: any) => (

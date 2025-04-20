@@ -44,7 +44,7 @@ export default async function Home() {
                   className="block group"
                 >
                   <div className="flex items-baseline gap-4">
-                    <span className="text-white/60 font-mono text-lg">
+                    <span className="text-white/60 text-lg">
                       {new Date(post._createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })} —
                     </span>
                     <span className="text-lg text-white group-hover:text-white/80">

@@ -53,8 +53,8 @@ export default async function Posts() {
                     className="block group"
                   >
                     <div className="flex items-baseline gap-4">
-                      <span className="text-white/60 text-xl font-mono">
-                        {new Date(post._createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })} —
+                      <span className="text-white/60 text-base font-mono">
+                        {new Date(post._createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} —
                       </span>
                       <span className="text-xl text-white group-hover:text-white/80">
                         {post.title}

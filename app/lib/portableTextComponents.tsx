@@ -52,16 +52,16 @@ export const myPortableTextComponents: PortableTextComponents = {
     }
   },
   block: {
-    h1: ({ children }) => <h1 className="text-4xl font-bold mt-12 mb-4 text-white">{children}</h1>,
-    h2: ({ children }) => <h2 className="text-3xl font-bold mt-10 mb-4 text-white">{children}</h2>,
-    h3: ({ children }) => <h3 className="text-2xl font-bold mt-8 mb-4 text-white">{children}</h3>,
-    normal: ({ children }) => <p className="text-zinc-300 mb-4 leading-relaxed">{children}</p>,
+    h1: ({ children }) => <h1 className="text-3xl font-medium tracking-tight mt-12 mb-6 text-white">{children}</h1>,
+    h2: ({ children }) => <h2 className="text-2xl font-medium tracking-tight mt-10 mb-5 text-white">{children}</h2>,
+    h3: ({ children }) => <h3 className="text-xl font-medium tracking-tight mt-8 mb-4 text-white">{children}</h3>,
+    normal: ({ children }) => <p className="text-zinc-300 mb-5 leading-relaxed tracking-tight">{children}</p>,
   },
   marks: {
     link: ({ children, value }: any) => (
       <a
         href={value?.href}
-        className="text-[#00ff66] hover:text-[#33ff85] underline transition-colors duration-200"
+        className="text-[#00ff66] hover:text-[#33ff85] transition-colors duration-200 border-b border-[#00ff66]/30 hover:border-[#33ff85]"
         target={value?.blank ? "_blank" : "_self"}
         rel={value?.blank ? "noopener noreferrer" : undefined}
       >
@@ -69,7 +69,7 @@ export const myPortableTextComponents: PortableTextComponents = {
       </a>
     ),
     code: ({ children }) => (
-      <code className="bg-zinc-900 text-[#00ff66] rounded px-1 py-0.5">{children}</code>
+      <code className="bg-zinc-900 text-[#00ff66] rounded-md px-2 py-0.5 text-[0.85em] font-normal">{children}</code>
     ),
   }
 };

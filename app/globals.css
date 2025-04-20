@@ -11,27 +11,59 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb));
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Lexend', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  font-feature-settings: 'ss01', 'ss02', 'cv01', 'cv02', 'cv03';
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.02em;
+}
+
+@media (min-width: 768px) {
+  body {
+    font-size: 16px;
+  }
 }
 
 .breadcrumb {
   display: flex;
   gap: 0.75rem;
   align-items: baseline;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   line-height: 1.75rem;
   color: rgba(255, 255, 255, 0.6);
+  font-weight: 450;
 }
 
 .breadcrumb a {
   color: rgb(var(--foreground-rgb));
   text-decoration: none;
+  transition: opacity 0.15s ease;
 }
 
 .breadcrumb a:hover {
-  text-decoration: underline;
+  opacity: 0.8;
 }
 
 .breadcrumb span {
   color: rgba(255, 255, 255, 0.6);
+}
+
+.prose {
+  font-size: 1rem;
+  line-height: 1.75;
+  letter-spacing: -0.011em;
+}
+
+.prose p {
+  margin-bottom: 1.75em;
+  font-weight: 400;
+}
+
+@media (min-width: 768px) {
+  .prose {
+    font-size: 1.125rem;
+  }
 }

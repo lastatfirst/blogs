@@ -11,14 +11,13 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb));
-  font-family: 'Lexend', sans-serif;
-  font-size: 17px;
-  line-height: 1.6;
   font-feature-settings: 'ss01', 'ss02', 'cv01', 'cv02', 'cv03';
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
+  font-size: 17px;
+  line-height: 1.6;
 }
 
 @media (min-width: 768px) {
@@ -54,12 +53,12 @@ body {
 
 .prose {
   font-size: 1.125rem;
-  line-height: 1.85;
+  line-height: 1.75;
   letter-spacing: -0.011em;
 }
 
 .prose p {
-  margin-bottom: 2em;
+  margin-bottom: 1.75em;
   font-weight: 400;
 }
 

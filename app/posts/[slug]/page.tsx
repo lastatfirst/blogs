@@ -63,7 +63,6 @@ export default async function BlogPost({ params }: { params: { slug: string } })
 
   return (
     <div className="min-h-screen bg-black text-zinc-300">
-      <ReadingProgress />
       <div className="max-w-3xl mx-auto px-6 sm:px-8 py-20 sm:py-28">
         {/* Basic Breadcrumbs */}
         <div className="breadcrumb mb-12">
@@ -76,14 +75,16 @@ export default async function BlogPost({ params }: { params: { slug: string } })
 
         {/* Basic Header */}
         <header className="mb-16">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">{data.title}</h1>
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-t border-b border-zinc-700 py-5 mt-8">
-            <div className="text-base text-zinc-400 flex items-center gap-4">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-8 leading-[1.1]">{data.title}</h1>
+          <div className="flex flex-col sm:flex-row items-center border-t border-b border-zinc-700 py-5 mt-8">
+            <div className="text-base text-zinc-400 flex items-center gap-4 mb-4 sm:mb-0">
                <span>{new Date(data._createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
                <span>·</span>
                <span>{estimatedReadTime}</span>
             </div>
-            <LikeButton initialLikes={data.likes || 0} slug={params.slug} />
+            <div className="sm:ml-auto">
+              <LikeButton initialLikes={data.likes || 0} slug={params.slug} />
+            </div>
           </div>
         </header>
 
@@ -95,6 +96,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
           />
         </main>
       </div>
+      <ReadingProgress />
     </div>
   );
 }

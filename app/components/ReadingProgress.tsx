@@ -20,7 +20,7 @@ export default function ReadingProgress() {
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 w-full h-1 bg-white/10">
+    <div className="fixed bottom-0 left-0 w-full h-1 bg-white/10">
       <div 
         className="h-full bg-[#db0042] transition-all duration-200"
         style={{ width: `${progress}%` }}

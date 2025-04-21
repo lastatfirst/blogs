@@ -156,7 +156,7 @@ export default async function ThoughtArticle({ params }: { params: { slug: strin
         </Link>
 
         {/* Blog title */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl text-center font-extrabold text-[#d2dffd]">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl text-center font-extrabold text-[#ffe66d]">
           {data.title}
         </h1>
 

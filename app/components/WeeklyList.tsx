@@ -28,14 +28,14 @@ export default function WeeklyList({ weekStart, weekEnd, items }: WeeklyListProp
         {items.map((item, index) => (
           <div key={index} className="flex items-center gap-4 group">
             <div 
-              className={`w-5 h-5 rounded border-2 transition-all duration-200 flex items-center justify-center
+              className={`min-w-[1.5rem] w-6 h-6 rounded border-2 transition-all duration-200 flex items-center justify-center
                 ${item.completed 
                   ? 'border-[#db0042] bg-[#db0042]' 
                   : 'border-gray-600 hover:border-[#db0042]/50'
                 }`}
             >
               {item.completed && (
-                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M13.5 4.5L6 12L2.5 8.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               )}

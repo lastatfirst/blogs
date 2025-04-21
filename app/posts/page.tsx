@@ -44,7 +44,7 @@ export default async function Posts() {
         <main className="space-y-12">
           {years.map((year) => (
             <section key={year} className="border-t border-white/20 pt-4 first:border-t-0">
-              <h2 className="text-3xl text-[#d2dffd] mb-6">~ {year}</h2>
+              <h2 className="text-3xl text-[#ffe66d] mb-6">~ {year}</h2>
               <div className="space-y-4">
                 {postsByYear[year].map((post, idx) => (
                   <Link

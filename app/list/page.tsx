@@ -28,7 +28,7 @@ export default async function ListPage() {
         </div>
 
         <section className="border-b border-white/20 pb-8 mb-8">
-          <h1 className="text-4xl text-[#d2dffd] mb-4">~ weekly list</h1>
+          <h1 className="text-4xl text-[#ffe66d] mb-4">~ weekly list</h1>
           <p className="text-gray-400">interesting blogs/articles/papers/books dump</p>
         </section>
 

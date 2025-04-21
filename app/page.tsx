@@ -35,7 +35,7 @@ export default async function Home() {
 
         <section>
           <div className="border-b border-white/20 pb-8 mb-8">
-            <h2 className="text-2xl text-[#d2dffd] mb-6">~ latest posts</h2>
+            <h2 className="text-2xl text-[#ffe66d] mb-6">~ latest posts</h2>
             <div className="space-y-4 pl-8 border-l border-white/20">
               {posts.map((post, idx) => (
                 <Link
@@ -59,7 +59,7 @@ export default async function Home() {
 
         <section>
           <div className="border-b border-white/20 pb-8">
-            <h2 className="text-2xl text-[#d2dffd] mb-6">~ projects</h2>
+            <h2 className="text-2xl text-[#ffe66d] mb-6">~ projects</h2>
             <div className="space-y-4 pl-8 border-l border-white/20">
               {projects.map((project, idx) => (
                 <Link

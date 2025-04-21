@@ -53,17 +53,17 @@ export const myPortableTextComponents: PortableTextComponents = {
   },
   block: {
     h1: ({ children }) => (
-      <h1 className="text-4xl font-medium tracking-tight mt-12 mb-6 text-[#d2dffd]">
+      <h1 className="text-4xl font-medium tracking-tight mt-12 mb-6 text-[#ffe66d]">
         {children}
       </h1>
     ),
     h2: ({ children }) => (
-      <h2 className="text-3xl font-medium tracking-tight mt-10 mb-4 text-[#d2dffd]">
+      <h2 className="text-3xl font-medium tracking-tight mt-10 mb-4 text-[#ffe66d]">
         {children}
       </h2>
     ),
     h3: ({ children }) => (
-      <h3 className="text-2xl font-medium tracking-tight mt-8 mb-4 text-[#d2dffd]">
+      <h3 className="text-2xl font-medium tracking-tight mt-8 mb-4 text-[#ffe66d]">
         {children}
       </h3>
     ),

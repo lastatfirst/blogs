@@ -25,8 +25,8 @@ export default function RootLayout({
         <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm">
           <div className="max-w-3xl mx-auto px-6 py-4">
             <nav className="flex justify-between items-center">
-              <Link href="/" className="text-[#db0042] text-3xl">vt.</Link>
-              <div className="flex gap-8 text-[#db0042]">
+              <Link href="/" className="text-[#e5383b] text-3xl">vt.</Link>
+              <div className="flex gap-8 text-[#e5383b]">
                 <Link href="/posts" className="hover:underline text-[1.5rem]">posts</Link>
                 <Link href="/projects" className="hover:underline text-[1.5rem]">projects</Link>
                 <Link href="/list" className="hover:underline text-[1.5rem]">list</Link>

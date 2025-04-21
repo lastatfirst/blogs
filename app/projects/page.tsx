@@ -4,7 +4,7 @@ export default function Projects() {
   const projects = [
     {
       title: "QuSCII",
-      description: "a lightweight HTTP server written from scratch in C, handling GET requests with multi-threading support.",
+      description: "a quantum ascii art generator",
       tags: ["c"],
       link: "#"
     }

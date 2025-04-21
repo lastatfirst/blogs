@@ -2,7 +2,7 @@ export default {
   name: 'readingList',
   title: 'Reading List',
   type: 'document',
-  // Add permission to allow updates
+ 
   permissions: [
     {
       update: true

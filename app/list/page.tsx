@@ -29,7 +29,7 @@ export default async function ListPage() {
 
         <section className="border-b border-white/20 pb-8 mb-8">
           <h1 className="text-4xl text-yellow-400 mb-4 underline decoration-[#db0042] decoration-4 underline-offset-4">~ weekly list</h1>
-          <p className="text-gray-400">my weekly lists</p>
+          <p className="text-gray-400">interesting blogs/articles/papers/books dump</p>
         </section>
 
         <section>

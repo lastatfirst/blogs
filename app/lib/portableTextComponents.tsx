@@ -53,17 +53,17 @@ export const myPortableTextComponents: PortableTextComponents = {
   },
   block: {
     h1: ({ children }) => (
-      <h1 className="text-4xl font-medium tracking-tight mt-12 mb-6 text-[#ffe66d]">
+      <h1 className="text-4xl font-medium tracking-tight mt-12 mb-6 text-[#d2dffd]">
         {children}
       </h1>
     ),
     h2: ({ children }) => (
-      <h2 className="text-3xl font-medium tracking-tight mt-10 mb-4 text-[#ffe66d]">
+      <h2 className="text-3xl font-medium tracking-tight mt-10 mb-4 text-[#d2dffd]">
         {children}
       </h2>
     ),
     h3: ({ children }) => (
-      <h3 className="text-2xl font-medium tracking-tight mt-8 mb-4 text-[#ffe66d]">
+      <h3 className="text-2xl font-medium tracking-tight mt-8 mb-4 text-[#d2dffd]">
         {children}
       </h3>
     ),
@@ -73,7 +73,7 @@ export const myPortableTextComponents: PortableTextComponents = {
     link: ({ children, value }: any) => (
       <a
         href={value?.href}
-        className="text-[#00ff66] hover:text-[#33ff85] transition-colors duration-200 border-b border-[#00ff66]/30 hover:border-[#33ff85]"
+        className="text-[#d2dffd] hover:text-[#b8c9ff] transition-colors duration-200 border-b border-[#d2dffd]/30 hover:border-[#b8c9ff]"
         target={value?.blank ? "_blank" : "_self"}
         rel={value?.blank ? "noopener noreferrer" : undefined}
       >

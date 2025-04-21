@@ -53,7 +53,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">404 - Not Found</h1>
           <p className="text-zinc-400 mb-8">Could not find the requested post.</p>
-          <Link href="/posts" className="text-[#00ff66] hover:underline">
+          <Link href="/posts" className="text-[#d2dffd] hover:text-[#b8c9ff]">
             Back to Posts
           </Link>
         </div>
@@ -75,7 +75,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
 
         {/* Basic Header */}
         <header className="mb-12">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#ffe66d] mb-6 leading-[1.1]">{data.title}</h1>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#d2dffd] mb-6 leading-[1.1]">{data.title}</h1>
           <div className="flex flex-col sm:flex-row items-center border-t border-b border-zinc-700 py-3 mt-6">
             <div className="text-base text-zinc-400 flex items-center gap-4 mb-4 sm:mb-0">
                <span className="font-mono">{new Date(data._createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>

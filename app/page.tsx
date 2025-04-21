@@ -81,7 +81,7 @@ export default async function Home() {
             <div className="mt-4">
               <Link 
                 href="/projects" 
-                className="text-white/60 hover:text-white transition-colors duration-200"
+                className="text-[#d2dffd] hover:text-[#b8c9ff] transition-colors duration-200"
               >
                 view all projects →
               </Link>

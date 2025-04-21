@@ -38,13 +38,13 @@ body {
 }
 
 .breadcrumb a {
-  color: rgb(var(--foreground-rgb));
+  color: #d2dffd;
   text-decoration: none;
-  transition: opacity 0.15s ease;
+  transition: all 0.2s ease;
 }
 
 .breadcrumb a:hover {
-  opacity: 0.8;
+  color: #b8c9ff;
 }
 
 .breadcrumb span {

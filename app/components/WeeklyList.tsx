@@ -47,7 +47,7 @@ export default function WeeklyList({ weekStart, weekEnd, items }: WeeklyListProp
               className={`text-base transition-all duration-200 ${
                 item.completed 
                   ? 'text-gray-500 line-through' 
-                  : 'text-gray-300 hover:text-[#db0042]'
+                  : 'text-[#d2dffd] hover:text-[#b8c9ff]'
               }`}
             >
               {item.title}

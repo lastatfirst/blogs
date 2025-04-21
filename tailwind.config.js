@@ -12,9 +12,9 @@ module.exports = {
           css: {
             color: '#fff',
             a: {
-              color: '#00ff66',
+              color: '#d2dffd',
               '&:hover': {
-                color: '#33ff85',
+                color: '#b8c9ff',
               },
             },
             strong: {

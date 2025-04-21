@@ -20,7 +20,7 @@ export default function Projects() {
         </div>
 
         <section className="border-b border-white/20 pb-8 mb-8">
-          <h1 className="text-4xl text-yellow-400 mb-4 underline decoration-[#db0042] decoration-4 underline-offset-4">~ projects</h1>
+          <h1 className="text-4xl text-[#d2dffd] mb-4">~ projects</h1>
         </section>
 
         <section>

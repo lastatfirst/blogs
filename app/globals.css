@@ -72,19 +72,31 @@
 }
 
 ::-webkit-scrollbar {
-  height: 6px;
-  width: 6px;
+  height: 14px; /* Increased horizontal scrollbar thickness */
+  width: 12px; /* Increased vertical scrollbar thickness */
 }
 
 ::-webkit-scrollbar-track {
   background: transparent;
+  border-radius: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #ddd;
-  border-radius: 4px;
+  background: #aaa; /* Darker color for better visibility */
+  border-radius: 8px;
+  border: 2px solid rgb(var(--background-rgb)); /* Border to create inset effect */
+  min-height: 40px; /* Ensure minimum thumb size */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #ccc;
+  background: #888; /* Even darker on hover for better feedback */
+}
+
+/* Styles for LaTeX rendering */
+.katex {
+  color: rgb(var(--foreground-rgb)) !important;
+}
+
+.katex-html {
+  color: rgb(var(--foreground-rgb)) !important;
 }

@@ -28,14 +28,14 @@ export default async function Home() {
     <div className="min-h-screen bg-black">
       <div className="max-w-5xl mx-auto px-6 py-16">
         <section className="border-b border-white/20 pb-8 mb-8">
-          <h1 className="text-2xl text-white mb-4">
+          <h1 className="text-2xl text-white mb-4 font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
             you have reached the home
           </h1>
         </section>
 
         <section>
           <div className="border-b border-white/20 pb-8 mb-8">
-            <h2 className="text-2xl text-[#ffe66d] mb-6">~ latest posts</h2>
+            <h2 className="text-2xl text-[#ffe66d] mb-6 font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">~ latest posts</h2>
             <div className="space-y-4 pl-8 border-l border-white/20">
               {posts.map((post, idx) => (
                 <Link

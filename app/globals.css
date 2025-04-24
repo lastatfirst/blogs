@@ -8,21 +8,24 @@
   --background-rgb: 0, 0, 0;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-rgb));
-  font-feature-settings: 'ss01', 'ss02', 'cv01', 'cv02', 'cv03';
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  letter-spacing: -0.015em;
-  font-size: 17px;
-  line-height: 1.6;
-}
-
-@media (min-width: 768px) {
+@layer base {
   body {
-    font-size: 18px;
+    font-family: 'et-book', Palatino, 'Palatino Linotype', 'Palatino LT STD', 'Book Antiqua', Georgia, serif;
+    color: rgb(var(--foreground-rgb));
+    background: rgb(var(--background-rgb));
+    font-feature-settings: 'ss01', 'ss02', 'cv01', 'cv02', 'cv03';
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: -0.015em;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      font-size: 18px;
+    }
   }
 }
 

@@ -53,21 +53,40 @@ export const myPortableTextComponents: PortableTextComponents = {
   },
   block: {
     h1: ({ children }) => (
-      <h1 className="text-4xl font-medium tracking-tight mt-12 mb-6 text-[#d2dffd]">
+      <h1 className="text-4xl font-medium tracking-tight mt-12 mb-6 text-[#d2dffd] font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
         {children}
       </h1>
     ),
     h2: ({ children }) => (
-      <h2 className="text-3xl font-medium tracking-tight mt-10 mb-4 text-[#d2dffd]">
+      <h2 className="text-3xl font-medium tracking-tight mt-10 mb-4 text-[#d2dffd] font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
         {children}
       </h2>
     ),
     h3: ({ children }) => (
-      <h3 className="text-2xl font-medium tracking-tight mt-8 mb-4 text-[#d2dffd]">
+      <h3 className="text-2xl font-medium tracking-tight mt-8 mb-4 text-[#d2dffd] font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
         {children}
       </h3>
     ),
-    normal: ({ children }) => <p className="text-zinc-300 mb-5 leading-relaxed tracking-tight">{children}</p>,
+    normal: ({ children }) => (
+      <p className="text-zinc-300 mb-5 leading-relaxed tracking-tight font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
+        {children}
+      </p>
+    ),
+    blockquote: ({ children }) => (
+      <blockquote className="border-l-4 border-[#d2dffd] pl-4 my-6 italic font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
+        {children}
+      </blockquote>
+    ),
+    bullet: ({ children }) => (
+      <ul className="list-disc list-inside mb-5 text-zinc-300 font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
+        {children}
+      </ul>
+    ),
+    number: ({ children }) => (
+      <ol className="list-decimal list-inside mb-5 text-zinc-300 font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
+        {children}
+      </ol>
+    ),
   },
   marks: {
     link: ({ children, value }: any) => (

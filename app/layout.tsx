@@ -21,7 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable}`}>
-      <body className="font-sans antialiased">
+      <body className="font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif] antialiased">
         <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm">
           <div className="max-w-3xl mx-auto px-6 py-4">
             <nav className="flex justify-between items-center">

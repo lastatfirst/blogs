@@ -20,7 +20,7 @@ export default function Projects() {
         </div>
 
         <section className="border-b border-white/20 pb-8 mb-8">
-          <h1 className="text-4xl text-[#ffe66d] mb-4">~ projects</h1>
+          <h1 className="text-4xl text-[#ffe66d] mb-4 font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">~ projects</h1>
         </section>
 
         <section>
@@ -35,7 +35,7 @@ export default function Projects() {
                   <span className="text-white/60 font-mono text-lg">
                     {project.tags.join(", ")} —
                   </span>
-                  <span className="text-lg text-white group-hover:text-white/80">
+                  <span className="text-lg text-white group-hover:text-white/80 font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
                     {project.title}
                   </span>
                 </div>

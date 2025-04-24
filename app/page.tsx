@@ -25,18 +25,18 @@ export default async function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen">
       <div className="max-w-5xl mx-auto px-6 py-16">
-        <section className="border-b border-white/20 pb-8 mb-8">
-          <h1 className="text-2xl text-white mb-4 font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
+        <section className="border-b border-[#111]/10 pb-8 mb-8">
+          <h1 className="text-2xl text-[#111] mb-4 font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
             you have reached the home
           </h1>
         </section>
 
         <section>
-          <div className="border-b border-white/20 pb-8 mb-8">
-            <h2 className="text-2xl text-[#ffe66d] mb-6 font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">~ latest posts</h2>
-            <div className="space-y-4 pl-8 border-l border-white/20">
+          <div className="border-b border-[#111]/10 pb-8 mb-8">
+            <h2 className="text-2xl text-[#e5383b] mb-6 font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">~ latest posts</h2>
+            <div className="space-y-4 pl-8 border-l border-[#111]/10">
               {posts.map((post, idx) => (
                 <Link
                   key={idx}
@@ -44,10 +44,10 @@ export default async function Home() {
                   className="block group"
                 >
                   <div className="flex items-baseline gap-4">
-                    <span className="text-white/60 text-lg">
+                    <span className="text-[#111]/60 text-lg">
                       {new Date(post._createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })} —
                     </span>
-                    <span className="text-lg text-white group-hover:text-white/80">
+                    <span className="text-lg text-[#111] group-hover:text-[#111]/80">
                       {post.title}
                     </span>
                   </div>
@@ -58,9 +58,9 @@ export default async function Home() {
         </section>
 
         <section>
-          <div className="border-b border-white/20 pb-8">
-            <h2 className="text-2xl text-[#ffe66d] mb-6">~ projects</h2>
-            <div className="space-y-4 pl-8 border-l border-white/20">
+          <div className="border-b border-[#111]/10 pb-8">
+            <h2 className="text-2xl text-[#e5383b] mb-6">~ projects</h2>
+            <div className="space-y-4 pl-8 border-l border-[#111]/10">
               {projects.map((project, idx) => (
                 <Link
                   key={idx}
@@ -68,10 +68,10 @@ export default async function Home() {
                   className="block group"
                 >
                   <div className="flex items-baseline gap-4">
-                    <span className="text-white/60 font-mono text-lg">
+                    <span className="text-[#111]/60 font-mono text-lg">
                       {project.tags.join(", ")} —
                     </span>
-                    <span className="text-lg text-white group-hover:text-white/80">
+                    <span className="text-lg text-[#111] group-hover:text-[#111]/80">
                       {project.title}
                     </span>
                   </div>
@@ -81,7 +81,7 @@ export default async function Home() {
             <div className="mt-4">
               <Link 
                 href="/projects" 
-                className="text-[#d2dffd] hover:text-[#b8c9ff] transition-colors duration-200"
+                className="text-[#e5383b] hover:text-[#c72c2f] transition-colors duration-200"
               >
                 view all projects →
               </Link>

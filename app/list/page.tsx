@@ -19,7 +19,7 @@ export default async function ListPage() {
   const readingLists = await getReadingLists()
   
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen">
       <div className="max-w-3xl mx-auto px-6 py-16">
         <div className="breadcrumb mb-8">
           <Link href="/">home</Link>
@@ -27,9 +27,9 @@ export default async function ListPage() {
           <span>list</span>
         </div>
 
-        <section className="border-b border-white/20 pb-8 mb-8">
-          <h1 className="text-4xl text-[#ffe66d] mb-4">~ weekly list</h1>
-          <p className="text-gray-400">interesting blogs/articles/papers/books dump</p>
+        <section className="border-b border-[#111]/10 pb-8 mb-8">
+          <h1 className="text-4xl text-[#e5383b] mb-4">~ weekly list</h1>
+          <p className="text-[#111]/70">interesting blogs/articles/papers/books dump</p>
         </section>
 
         <section>

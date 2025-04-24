@@ -33,7 +33,7 @@ export default async function Posts() {
     .sort((a, b) => b - a);
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen">
       <div className="max-w-5xl mx-auto px-6 py-16">
         <div className="breadcrumb mb-8">
           <Link href="/">home</Link>
@@ -43,8 +43,8 @@ export default async function Posts() {
 
         <main className="space-y-12">
           {years.map((year) => (
-            <section key={year} className="border-t border-white/20 pt-4 first:border-t-0">
-              <h2 className="text-3xl text-[#ffe66d] mb-6 font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">~ {year}</h2>
+            <section key={year} className="border-t border-[#111]/10 pt-4 first:border-t-0">
+              <h2 className="text-3xl text-[#e5383b] mb-6 font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">~ {year}</h2>
               <div className="space-y-4">
                 {postsByYear[year].map((post, idx) => (
                   <Link
@@ -53,10 +53,10 @@ export default async function Posts() {
                     className="block group"
                   >
                     <div className="flex items-baseline gap-4">
-                      <span className="text-white/60 text-base font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
+                      <span className="text-[#111]/60 text-base font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
                         {new Date(post._createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} —
                       </span>
-                      <span className="text-xl text-white group-hover:text-white/80 font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
+                      <span className="text-xl text-[#111] group-hover:text-[#111]/80 font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
                         {post.title}
                       </span>
                     </div>

@@ -4,8 +4,8 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 255, 255, 255;
-  --background-rgb: 0, 0, 0;
+  --foreground-rgb: 17, 17, 17;
+  --background-rgb: 255, 255, 227;
 }
 
 @layer base {
@@ -35,23 +35,23 @@
   align-items: baseline;
   font-size: 1.25rem;
   line-height: 1.75rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(17, 17, 17, 0.6);
   font-weight: 450;
   margin-bottom: 2rem;
 }
 
 .breadcrumb a {
-  color: #d2dffd;
+  color: #e5383b;
   text-decoration: none;
   transition: all 0.2s ease;
 }
 
 .breadcrumb a:hover {
-  color: #b8c9ff;
+  color: #c72c2f;
 }
 
 .breadcrumb span {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(17, 17, 17, 0.6);
 }
 
 .prose {
@@ -72,8 +72,8 @@
 }
 
 ::-webkit-scrollbar {
-  height: 8px;
-  width: 8px;
+  height: 6px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -81,10 +81,10 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #d2dffd;
+  background: #ddd;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #b8c9ff;
+  background: #ccc;
 }

@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import supabase from '@/app/lib/supabaseClient';
-import { Button } from '@/components/ui/button';
 import { Heart } from 'lucide-react';
 
 interface LikeButtonProps {
@@ -96,16 +95,24 @@ export default function LikeButton({ initialLikes, slug }: LikeButtonProps) {
   };
 
   return (
-    <Button
+    <button
       onClick={handleLike}
       disabled={isLoading || isLiked}
-      variant={isLiked ? 'default' : 'outline'}
-      className="flex items-center gap-3 transition-all duration-300 border-2 border-gray-300 rounded-lg px-4 py-2 text-base"
+      className={`
+        flex items-center gap-2 transition-all duration-200 
+        ${isLiked 
+          ? 'text-[#e5383b]' 
+          : 'text-[#555] hover:text-[#e5383b]'
+        }
+        disabled:opacity-50 disabled:cursor-not-allowed
+      `}
     >
       <Heart
-        className={`w-4 h-4 transition-all duration-300 ${isLiked ? 'fill-white' : 'fill-none'}`}
+        className={`w-4 h-4 transition-all duration-200 
+          ${isLiked ? 'fill-[#e5383b] stroke-[#e5383b]' : 'stroke-current fill-none'}
+        `}
       />
-      <span className="text-lg">{likes}</span>
-    </Button>
+      <span>{likes}</span>
+    </button>
   );
 }

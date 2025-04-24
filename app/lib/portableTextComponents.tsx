@@ -28,7 +28,7 @@ export const myPortableTextComponents: PortableTextComponents = {
       }
     },
     code: ({ value }: any) => (
-      <pre className="bg-zinc-900 rounded p-4 overflow-x-auto my-4">
+      <pre className="bg-[#f8f8f8] rounded p-4 overflow-x-auto my-4 text-[#111]">
         <code>{value.code}</code>
       </pre>
     ),
@@ -53,37 +53,37 @@ export const myPortableTextComponents: PortableTextComponents = {
   },
   block: {
     h1: ({ children }) => (
-      <h1 className="text-4xl font-medium tracking-tight mt-12 mb-6 text-[#d2dffd] font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
+      <h1 className="text-4xl font-medium tracking-tight mt-12 mb-6 text-[#111] font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
         {children}
       </h1>
     ),
     h2: ({ children }) => (
-      <h2 className="text-3xl font-medium tracking-tight mt-10 mb-4 text-[#d2dffd] font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
+      <h2 className="text-3xl font-medium tracking-tight mt-10 mb-4 text-[#111] font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
         {children}
       </h2>
     ),
     h3: ({ children }) => (
-      <h3 className="text-2xl font-medium tracking-tight mt-8 mb-4 text-[#d2dffd] font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
+      <h3 className="text-2xl font-medium tracking-tight mt-8 mb-4 text-[#111] font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
         {children}
       </h3>
     ),
     normal: ({ children }) => (
-      <p className="text-zinc-300 mb-5 leading-relaxed tracking-tight font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
+      <p className="text-[#111] mb-5 leading-relaxed tracking-tight font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
         {children}
       </p>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="border-l-4 border-[#d2dffd] pl-4 my-6 italic font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
+      <blockquote className="border-l-4 border-[#e5383b] pl-4 my-6 italic text-[#111]/80 font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
         {children}
       </blockquote>
     ),
     bullet: ({ children }) => (
-      <ul className="list-disc list-inside mb-5 text-zinc-300 font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
+      <ul className="list-disc list-inside mb-5 text-[#111] font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
         {children}
       </ul>
     ),
     number: ({ children }) => (
-      <ol className="list-decimal list-inside mb-5 text-zinc-300 font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
+      <ol className="list-decimal list-inside mb-5 text-[#111] font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
         {children}
       </ol>
     ),
@@ -92,7 +92,7 @@ export const myPortableTextComponents: PortableTextComponents = {
     link: ({ children, value }: any) => (
       <a
         href={value?.href}
-        className="text-[#d2dffd] hover:text-[#b8c9ff] transition-colors duration-200 border-b border-[#d2dffd]/30 hover:border-[#b8c9ff]"
+        className="text-[#e5383b] hover:text-[#c72c2f] transition-colors duration-200 border-b border-[#e5383b]/30 hover:border-[#c72c2f]"
         target={value?.blank ? "_blank" : "_self"}
         rel={value?.blank ? "noopener noreferrer" : undefined}
       >
@@ -100,7 +100,7 @@ export const myPortableTextComponents: PortableTextComponents = {
       </a>
     ),
     code: ({ children }) => (
-      <code className="bg-zinc-900 text-[#00ff66] rounded-md px-3 py-1 text-[0.95em] font-normal">{children}</code>
+      <code className="bg-[#f8f8f8] text-[#e5383b] rounded-md px-3 py-1 text-[0.95em] font-normal">{children}</code>
     ),
   }
 };

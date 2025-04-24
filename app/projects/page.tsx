@@ -11,7 +11,7 @@ export default function Projects() {
   ];
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen">
       <div className="max-w-3xl mx-auto px-6 py-16">
         <div className="breadcrumb mb-8">
           <Link href="/">home</Link>
@@ -19,12 +19,12 @@ export default function Projects() {
           <span>projects</span>
         </div>
 
-        <section className="border-b border-white/20 pb-8 mb-8">
-          <h1 className="text-4xl text-[#ffe66d] mb-4 font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">~ projects</h1>
+        <section className="border-b border-[#111]/10 pb-8 mb-8">
+          <h1 className="text-4xl text-[#e5383b] mb-4 font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">~ projects</h1>
         </section>
 
         <section>
-          <div className="space-y-4 pl-8 border-l border-white/20">
+          <div className="space-y-4 pl-8 border-l border-[#111]/10">
             {projects.map((project, idx) => (
               <Link
                 key={idx}
@@ -32,10 +32,10 @@ export default function Projects() {
                 className="block group"
               >
                 <div className="flex items-baseline gap-4">
-                  <span className="text-white/60 font-mono text-lg">
+                  <span className="text-[#111]/60 font-mono text-lg">
                     {project.tags.join(", ")} —
                   </span>
-                  <span className="text-lg text-white group-hover:text-white/80 font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
+                  <span className="text-lg text-[#111] group-hover:text-[#111]/80 font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
                     {project.title}
                   </span>
                 </div>

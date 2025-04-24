@@ -48,12 +48,12 @@ export default async function BlogPost({ params }: { params: { slug: string } })
   if (!data) {
     // Basic 404 rendering
     return (
-      <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center">
+      <div className="min-h-screen flex flex-col items-center justify-center">
         <ReadingProgress />
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">404 - Not Found</h1>
-          <p className="text-zinc-400 mb-8">Could not find the requested post.</p>
-          <Link href="/posts" className="text-[#d2dffd] hover:text-[#b8c9ff]">
+          <p className="text-[#111]/70 mb-8">Could not find the requested post.</p>
+          <Link href="/posts" className="text-[#e5383b] hover:text-[#c72c2f]">
             Back to Posts
           </Link>
         </div>
@@ -62,7 +62,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
   }
 
   return (
-    <div className="min-h-screen bg-black text-zinc-300">
+    <div className="min-h-screen">
       <div className="max-w-3xl mx-auto px-6 sm:px-8 py-20 sm:py-28">
         {/* Basic Breadcrumbs */}
         <div className="breadcrumb mb-12">
@@ -70,14 +70,14 @@ export default async function BlogPost({ params }: { params: { slug: string } })
           <span>/</span>
           <Link href="/posts">posts</Link>
           <span>/</span>
-          <span className="text-zinc-500">{params.slug}</span>
+          <span className="text-[#111]/50">{params.slug}</span>
         </div>
 
         {/* Basic Header */}
         <header className="mb-12">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif] text-[#d2dffd] mb-6 leading-[1.1]">{data.title}</h1>
-          <div className="flex flex-col sm:flex-row items-center border-t border-b border-zinc-700 py-3 mt-6">
-            <div className="text-base text-zinc-400 flex items-center gap-4 mb-4 sm:mb-0 font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif] text-[#111] mb-6 leading-[1.1]">{data.title}</h1>
+          <div className="flex flex-col sm:flex-row items-center border-t border-b border-[#111]/20 py-3 mt-6">
+            <div className="text-base text-[#111]/60 flex items-center gap-4 mb-4 sm:mb-0 font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
                <span className="font-mono">{new Date(data._createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
                <span>·</span>
                <span>{estimatedReadTime}</span>
@@ -89,7 +89,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
         </header>
 
         {/* Main Content */}
-        <main className="prose prose-invert prose-lg max-w-none">
+        <main className="prose max-w-none">
           <PortableText 
             value={data.content} 
             components={myPortableTextComponents} 

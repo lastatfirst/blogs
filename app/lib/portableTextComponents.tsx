@@ -3,6 +3,9 @@ import { PortableTextComponents } from "@portabletext/react";
 import Image from "next/image";
 import katex from "katex";
 import "katex/dist/katex.min.css";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import CodeBlock from "../components/CodeBlock";
 
 export const myPortableTextComponents: PortableTextComponents = {
   types: {
@@ -27,11 +30,28 @@ export const myPortableTextComponents: PortableTextComponents = {
         return <span className="text-red-500">Math rendering error</span>;
       }
     },
-    code: ({ value }: any) => (
-      <pre className="bg-[#f8f8f8] rounded p-4 overflow-x-auto my-4 text-[#111]">
-        <code>{value.code}</code>
-      </pre>
-    ),
+    code: ({ value }: any) => {
+      if (!value?.code) return null;
+      
+      return (
+        <CodeBlock code={value.code} language={value.language || 'text'}>
+          <SyntaxHighlighter 
+            language={value.language || 'text'} 
+            style={vscDarkPlus}
+            customStyle={{
+              margin: 0,
+              padding: '1rem',
+              borderRadius: '0.5rem',
+              backgroundColor: 'rgb(30, 30, 30)',
+              fontSize: '0.9rem',
+              lineHeight: '1.5'
+            }}
+          >
+            {value.code}
+          </SyntaxHighlighter>
+        </CodeBlock>
+      );
+    },
     image: ({ value }: any) => {
       if (!value?.asset?._ref) return null;
       return (
@@ -100,7 +120,14 @@ export const myPortableTextComponents: PortableTextComponents = {
       </a>
     ),
     code: ({ children }) => (
-      <code className="bg-[#f8f8f8] text-[#e5383b] rounded-md px-3 py-1 text-[0.95em] font-normal">{children}</code>
+      <code className="bg-[rgb(30,30,30)] text-[rgb(220,220,220)] rounded-md px-3 py-1 text-[0.85rem] font-mono">
+        {children}
+      </code>
+    ),
+    note: ({ children }) => (
+      <span className="bg-yellow-100 text-yellow-800 px-1 py-0.5 rounded text-[0.85rem]">
+        {children}
+      </span>
     ),
   }
 };

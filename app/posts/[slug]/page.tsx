@@ -28,11 +28,13 @@ async function getData(slug: string): Promise<fullBlog | null> {
 }
 
 export default async function BlogPost({ params }: { params: { slug: string } }) {
-  if (!params?.slug) {
+  const slug = params.slug; // Store slug in a separate variable
+  
+  if (!slug) {
     return null;
   }
 
-  const data = await getData(params.slug);
+  const data = await getData(slug);
 
   // Basic word count and read time logic
   const wordsPerMinute = 200;
@@ -70,7 +72,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
           <span>/</span>
           <Link href="/posts">posts</Link>
           <span>/</span>
-          <span className="text-[#111]/50">{params.slug}</span>
+          <span className="text-[#111]/50">{slug}</span>
         </div>
 
         {/* Basic Header */}
@@ -83,7 +85,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
                <span>{estimatedReadTime}</span>
             </div>
             <div className="sm:ml-auto">
-              <LikeButton initialLikes={data.likes || 0} slug={params.slug} />
+              <LikeButton initialLikes={data.likes || 0} slug={slug} />
             </div>
           </div>
         </header>

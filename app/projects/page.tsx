@@ -5,8 +5,20 @@ export default function Projects() {
     {
       title: "QuSCII",
       description: "a quantum ascii art generator",
-      tags: ["c"],
-      link: "#"
+      tags: ["a"],
+      link: "https://weeye.vercel.app/posts/quscii"
+    },
+    {
+      title: "NervParse",
+      description: "A neural dependency parser",
+      tags: ["a"],
+      link: "https://github.com/vihanvt/nervparse"
+    },
+    {
+      title:"QMusic",
+      description:"A quantum music generator",
+      tags:["c"],
+      link:"#"
     }
   ];
 
@@ -26,20 +38,39 @@ export default function Projects() {
         <section>
           <div className="space-y-4 pl-8 border-l border-[#111]/10">
             {projects.map((project, idx) => (
-              <Link
-                key={idx}
-                href={project.link}
-                className="block group"
-              >
-                <div className="flex items-baseline gap-4">
-                  <span className="text-[#111]/60 font-mono text-lg">
-                    {project.tags.join(", ")} —
-                  </span>
-                  <span className="text-lg text-[#111] group-hover:text-[#111]/80 font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
-                    {project.title}
-                  </span>
+              <div key={idx} className="block group">
+                <div className="flex flex-col gap-1">
+                  <div className="flex items-baseline gap-4">
+                    <span className="text-[#111]/60 font-mono text-lg">
+                      {project.tags.join(", ")} —
+                    </span>
+                    <div className="flex items-center gap-3">
+                      <span className="text-lg text-[#111] group-hover:text-[#111]/80 font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
+                        {project.title}
+                      </span>
+                      <div className="flex items-center gap-1.5">
+                        <div className={`w-2 h-2 rounded-full ${project.link === '#' ? 'bg-orange-500' : 'bg-green-500'}`}></div>
+                        <span className={`text-xs ${project.link === '#' ? 'text-orange-500' : 'text-green-500'}`}>
+                          {project.link === '#' ? 'in progress' : 'completed'}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="ml-16 text-[#111]/70 text-base">
+                    {project.description}
+                  </div>
+                  {project.link !== '#' && (
+                    <div className="ml-16 mt-1">
+                      <Link 
+                        href={project.link}
+                        className="text-[#e5383b] hover:text-[#c72c2f] text-sm transition-colors duration-200"
+                      >
+                        view project →
+                      </Link>
+                    </div>
+                  )}
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         </section>

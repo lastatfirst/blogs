@@ -6,6 +6,8 @@
 :root {
   --foreground-rgb: 17, 17, 17;
   --background-rgb: 255, 255, 227;
+  --code-bg: 30, 30, 30;
+  --code-text: 220, 220, 220;
 }
 
 @layer base {
@@ -55,8 +57,8 @@
 }
 
 .prose {
-  font-size: 1.125rem;
-  line-height: 1.75;
+  font-size: 1rem;
+  line-height: 1.7;
   letter-spacing: -0.011em;
 }
 
@@ -67,7 +69,7 @@
 
 @media (min-width: 768px) {
   .prose {
-    font-size: 1.25rem;
+    font-size: 1.13rem;
   }
 }
 
@@ -99,4 +101,119 @@
 
 .katex-html {
   color: rgb(var(--foreground-rgb)) !important;
+}
+
+/* Code block styling */
+pre {
+  position: relative;
+  background-color: rgb(var(--code-bg)) !important;
+  color: rgb(var(--code-text)) !important;
+  border-radius: 0.5rem;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 1rem !important; /* Increased from 0.9rem */
+  color: rgb(var(--code-text));
+}
+
+pre > code {
+  display: block;
+  padding: 0.75rem 0;
+  font-size: 1.05rem !important; /* Increased for better readability */
+  line-height: 1.6;
+}
+
+/* Code copy button */
+.code-block {
+  position: relative;
+}
+
+.copy-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 0.25rem;
+  color: #d1d1d1;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  opacity: 0;
+}
+
+.code-block:hover .copy-button {
+  opacity: 1;
+}
+
+.copy-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.copy-button.copied {
+  background-color: #4ade80;
+  color: #1e1e1e;
+}
+
+/* Fix syntax highlighting colors */
+.hljs-keyword, 
+.hljs-selector-tag, 
+.hljs-built_in, 
+.hljs-name, 
+.hljs-tag {
+  color: #cc99cd;
+}
+
+.hljs-string, 
+.hljs-title, 
+.hljs-section, 
+.hljs-attribute, 
+.hljs-literal, 
+.hljs-template-tag, 
+.hljs-template-variable, 
+.hljs-type, 
+.hljs-addition {
+  color: #7ec699;
+}
+
+.hljs-comment, 
+.hljs-quote, 
+.hljs-meta, 
+.hljs-bullet {
+  color: #999;
+}
+
+.hljs-number, 
+.hljs-symbol, 
+.hljs-variable, 
+.hljs-template-variable, 
+.hljs-literal, 
+.hljs-deletion {
+  color: #f08d49;
+}
+
+/* Ensure bullet points and list items have the correct color */
+ul, ol, li {
+  color: rgb(var(--foreground-rgb));
+}
+
+/* Explicitly set the bullet color */
+ul li::marker, 
+ol li::marker {
+  color: rgb(var(--foreground-rgb));
+}
+
+/* Fix for bold, strong, italic, emphasis and underlined text */
+b, strong, i, em, u, ins, mark {
+  color: rgb(var(--foreground-rgb));
+}
+
+/* Ensure consistency in nested elements */
+* {
+  color: inherit;
 }

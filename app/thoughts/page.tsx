@@ -40,7 +40,7 @@ async function getData(slug) {
 }
 
 export default async function ThoughtArticle({ params }: { params: { slug: string } }) {
-  const { slug } = params || {};
+  const slug = params?.slug || ""; // Store slug in a separate variable
   const data: fullBlog = await getData(slug);
 
   // If no data is found, show a "Thought Not Found" message

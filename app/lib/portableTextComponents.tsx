@@ -18,10 +18,16 @@ export const myPortableTextComponents: PortableTextComponents = {
         const mathHtml = katex.renderToString(value.equation, {
           throwOnError: false,
           displayMode: !value.inline,
+          output: 'html',
+          trust: true,
+          strict: false,
+          macros: {
+            "\\eqref": "\\href{###1}{(\\text{#1})}"
+          }
         });
 
         return (
-          <div className={value.inline ? "inline-block" : "my-4 text-center block"}>
+          <div className={value.inline ? "inline-block" : "my-4 overflow-x-auto"}>
             <span dangerouslySetInnerHTML={{ __html: mathHtml }} />
           </div>
         );

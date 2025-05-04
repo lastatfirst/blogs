@@ -11,7 +11,7 @@ export default function Projects() {
     {
       title: "NervParse",
       description: "A neural dependency parser",
-      tags: ["a"],
+      tags: ["b"],
       link: "https://github.com/vihanvt/nervparse"
     },
     {

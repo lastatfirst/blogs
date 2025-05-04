@@ -73,34 +73,92 @@
   }
 }
 
+/* Custom scrollbar styling for code and math elements */
+pre::-webkit-scrollbar,
+.katex-display::-webkit-scrollbar,
+.katex::-webkit-scrollbar {
+  height: 6px; /* Much thinner scrollbar */
+  width: 6px;
+}
+
+pre::-webkit-scrollbar-track,
+.katex-display::-webkit-scrollbar-track,
+.katex::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+pre::-webkit-scrollbar-thumb,
+.katex-display::-webkit-scrollbar-thumb,
+.katex::-webkit-scrollbar-thumb {
+  background: rgba(170, 170, 170, 0.3); /* Much lighter, nearly invisible */
+  border-radius: 4px;
+  border: none;
+}
+
+pre::-webkit-scrollbar-thumb:hover,
+.katex-display::-webkit-scrollbar-thumb:hover,
+.katex::-webkit-scrollbar-thumb:hover {
+  background: rgba(136, 136, 136, 0.5); /* Slightly more visible on hover */
+}
+
+/* Hide scrollbars by default and show them only when hovering */
+pre, .katex-display, .katex {
+  scrollbar-width: thin; /* For Firefox */
+}
+
+/* Make the global scrollbar settings less intrusive */
 ::-webkit-scrollbar {
-  height: 14px; /* Increased horizontal scrollbar thickness */
-  width: 12px; /* Increased vertical scrollbar thickness */
+  height: 8px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
   background: transparent;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #aaa; /* Darker color for better visibility */
-  border-radius: 8px;
-  border: 2px solid rgb(var(--background-rgb)); /* Border to create inset effect */
-  min-height: 40px; /* Ensure minimum thumb size */
+  background: rgba(170, 170, 170, 0.5);
+  border-radius: 4px;
+  border: 2px solid rgb(var(--background-rgb));
+  min-height: 30px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #888; /* Even darker on hover for better feedback */
+  background: rgba(136, 136, 136, 0.7);
 }
 
 /* Styles for LaTeX rendering */
 .katex {
   color: rgb(var(--foreground-rgb)) !important;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.25rem 0;
+}
+
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.5rem 0;
+  margin: 1em 0;
 }
 
 .katex-html {
   color: rgb(var(--foreground-rgb)) !important;
+  max-width: 100%;
+}
+
+/* Make sure inline math doesn't break layout */
+.inline-block .katex {
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+/* Add horizontal scrolling for very long equations only when necessary */
+.katex-display > .katex {
+  white-space: nowrap;
+  max-width: 100%;
 }
 
 /* Code block styling */

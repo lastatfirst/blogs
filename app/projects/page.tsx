@@ -4,7 +4,7 @@ export default function Projects() {
   const projects = [
     {
       title: "QuSCII",
-      description: "a quantum ascii art generator",
+      description: "A quantum ascii art generator",
       tags: ["a"],
       link: "https://weeye.vercel.app/posts/quscii"
     },
@@ -40,20 +40,20 @@ export default function Projects() {
             {projects.map((project, idx) => (
               <div key={idx} className="block group">
                 <div className="flex flex-col gap-1">
-                  <div className="flex items-baseline gap-4">
-                    <span className="text-[#111]/60 font-mono text-lg">
-                      {project.tags.join(", ")} —
-                    </span>
-                    <div className="flex items-center gap-3">
+                  <div className="flex items-baseline justify-between">
+                    <div className="flex items-baseline gap-4">
+                      <span className="text-[#111]/60 font-mono text-lg">
+                        {project.tags.join(", ")} —
+                      </span>
                       <span className="text-lg text-[#111] group-hover:text-[#111]/80 font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
                         {project.title}
                       </span>
-                      <div className="flex items-center gap-1.5">
-                        <div className={`w-2 h-2 rounded-full ${project.link === '#' ? 'bg-orange-500' : 'bg-green-500'}`}></div>
-                        <span className={`text-xs ${project.link === '#' ? 'text-orange-500' : 'text-green-500'}`}>
-                          {project.link === '#' ? 'in progress' : 'completed'}
-                        </span>
-                      </div>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <div className={`w-2 h-2 rounded-full ${project.link === '#' ? 'bg-orange-500' : 'bg-green-500'}`}></div>
+                      <span className={`text-xs ${project.link === '#' ? 'text-orange-500' : 'text-green-500'}`}>
+                        {project.link === '#' ? 'in progress' : 'completed'}
+                      </span>
                     </div>
                   </div>
                   <div className="ml-16 text-[#111]/70 text-base">

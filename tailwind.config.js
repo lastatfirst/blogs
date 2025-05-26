@@ -7,30 +7,48 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+      },
       typography: {
         DEFAULT: {
           css: {
             color: '#fff',
-            a: {
-              color: '#d2dffd',
-              '&:hover': {
-                color: '#b8c9ff',
-              },
-            },
-            strong: {
-              color: '#fff',
-            },
+            fontFamily: 'Inter, sans-serif',
             h1: {
               color: '#fff',
+              fontFamily: 'Inter, sans-serif',
             },
             h2: {
               color: '#fff',
+              fontFamily: 'Inter, sans-serif',
             },
             h3: {
               color: '#fff',
+              fontFamily: 'Inter, sans-serif',
             },
             h4: {
               color: '#fff',
+              fontFamily: 'Inter, sans-serif',
+            },
+            p: {
+              color: '#fff',
+              fontFamily: 'Inter, sans-serif',
+            },
+            li: {
+              color: '#fff',
+              fontFamily: 'Inter, sans-serif',
+            },
+            a: {
+              color: '#ffa896',
+              '&:hover': {
+                color: 'rgba(255, 168, 150, 0.8)',
+              },
+              fontFamily: 'Inter, sans-serif',
+            },
+            strong: {
+              color: '#fff',
+              fontFamily: 'Inter, sans-serif',
             },
             code: {
               color: '#00ff66',

@@ -131,48 +131,46 @@ export default async function ThoughtArticle({ params }: { params: { slug: strin
   };
 
   return (
-    <div className="relative min-h-screen text-[#d4d4d4] font-geist">
-      {/* Background image with clean implementation */}
-      <div className="fixed inset-0 z-[-1] bg-[#1e1e1e]">
-        <div 
-          className="absolute inset-0 bg-[url('/background.png')] bg-cover bg-center bg-no-repeat"
-          style={{ 
-            backgroundSize: '100% 100%'
-          }}
-        />
-      </div>
-      
-      <Navbar />
-      {/* Main container with slightly decreased width */}
-      <div className="mt-8 max-w-4xl mx-auto px-6 pb-20">
-        {/* Back button */}
-        <Link href="/thoughts">
-          <Button
-            variant="outline"
-            className="mb-8 border-2 border-white text-white hover:bg-white hover:text-black px-6 py-2 rounded-md text-sm"
-          >
-            ← Back to Thoughts
-          </Button>
-        </Link>
-
-        {/* Blog title */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl text-center font-extrabold text-[#ffe66d]">
-          {data.title}
-        </h1>
-
-        {/* Estimated read time and like button */}
-        <p className="mt-2 text-center text-gray-400 text-base">{estimatedReadTime}</p>
-        <div className="mt-4 flex justify-center">
-          <LikeButton postId={slug} />
+    <div className="min-h-screen">
+      <div className="max-w-3xl mx-auto px-6 py-16">
+        <div className="breadcrumb mb-8">
+          <Link href="/">home</Link>
+          <span>/</span>
+          <span className="text-white/60">thoughts</span>
         </div>
 
-        {/* Blog content */}
-        <div className="mt-8 prose prose-blue dark:prose-invert max-w-none prose-lg">
-          <PortableText
-            value={data.content}
-            components={myPortableTextComponents}
-          />
-        </div>
+        <section className="border-b border-white/10 pb-8 mb-8">          <h1 className="text-4xl text-[#ffa896] mb-4 font-nunito">~ thoughts</h1>
+          <p className="text-white/70 font-nunito">Random musings and quick notes.</p>
+        </section>
+
+        <section className="space-y-8">
+          {thoughts.map((thought, index) => (
+            <article key={index} className="pb-8 border-b border-white/10 last:border-0">
+              <div className="prose prose-invert max-w-none font-mono text-white">
+                <PortableText
+                  value={thought.content}
+                  components={components}
+                />
+              </div>
+              <div className="mt-4 flex items-center justify-between text-white/60 text-sm font-mono">
+                <time>
+                  {new Date(thought._createdAt).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
+                </time>
+                {thought.tags && (
+                  <div className="flex gap-2">
+                    {thought.tags.map((tag, idx) => (
+                      <span key={idx} className="text-[#ffa896]">#{tag}</span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </article>
+          ))}
+        </section>
       </div>
     </div>
   );

@@ -15,115 +15,87 @@ async function getLatestPosts(): Promise<simpleBlogCard[]> {
 
 export default async function Home() {
   const posts = await getLatestPosts();
-  const projects = [
-    {
+  const projects = [    {
       title: "QuSCII",
       description: "A quantum image to ascii generator",
-      tags: ["a"],
       link: "https://weeye.vercel.app/posts/quscii"
     },
     {
       title:"NervParse",
       description:"A neural based dependency parser ",
-      tags: ["b"],
       link:"https://github.com/vihanvt/nervparse"
-
     }
    
   ];
 
-  return (
-    <div className="min-h-screen">
-      <div className="max-w-5xl mx-auto px-6 py-16">
-        <section className="border-b border-[#111]/10 pb-8 mb-8">
-          <h1 className="text-3xl text-[#111] mb-4 font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
-            
+  return (    <div className="min-h-screen">
+      <div className="max-w-3xl mx-auto px-6 py-10">
+        <section className="border-b border-white/10 pb-4 mb-4">          <h1 className="text-3xl mb-3 font-bold" style={{ color: '#7b97aa' }}>
+            [weeye]
           </h1>
-          <p className="text-lg text-[#111]/70 mb-4">
+          <p className="text-lg mb-3" style={{ color: '#FFFAFA' }}>
             hello, i'm currently a cs undergradute student, my primary interests lie in quantum computing and neural networks
             ,in specific, understanding the operations of quantum circuits on graph neural networks.
-          </p>
-        </section>
-        {/* Projects section now comes first */}
-        <section>
-          <div className="border-b border-[#111]/10 pb-8 mb-8">
-            <h2 className="text-2xl text-[#e5383b] mb-6">~ projects</h2>
-            <div className="space-y-4 pl-8 border-l border-[#111]/10">
-              {projects.map((project, idx) => (
-                <div
-                  key={idx}
-                  className="block group"
-                >
-                  <div className="flex flex-col gap-1">
-                    <div className="flex items-baseline justify-between">
-                      <div className="flex items-baseline gap-4">
-                        <span className="text-[#111]/60 font-mono text-lg">
-                          {project.tags.join(", ")} —
-                        </span>
-                        <a 
-                          href={project.link} 
-                          target="_blank" 
-                          rel="noopener noreferrer" 
-                          className="text-lg text-[#111] group-hover:text-[#111]/80 hover:text-[#e5383b] transition-colors"
-                        >
-                          {project.title}
-                        </a>
-                      </div>
-                      <div className="flex items-center gap-1.5 ml-4">
-                        <div className={`w-2.5 h-2.5 rounded-full ${project.link === '#' ? 'bg-orange-500' : 'bg-green-500'}`}></div>
-                        <span className={`text-sm ${project.link === '#' ? 'text-orange-500' : 'text-green-500'}`}>
-                          {project.link === '#' ? 'in progress' : 'completed'}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="ml-16 text-[#111]/70 text-base">
-                      {project.description}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="mt-4">
-              <Link 
-                href="/projects" 
-                className="text-[#e5383b] hover:text-[#c72c2f] transition-colors duration-200"
-              >
-                view all projects →
-              </Link>
-            </div>
+          </p>          <div className="flex gap-4 text-lg">
+            <Link href="/projects" className="hover:text-white text-[#7b97aa] transition-colors">projects</Link>
+            <Link href="/posts" className="hover:text-white text-[#7b97aa] transition-colors">posts</Link>
+            <Link href="/thoughts" className="hover:text-white text-[#7b97aa] transition-colors">thoughts</Link>
+            <Link href="/list" className="hover:text-white text-[#7b97aa] transition-colors">reading list</Link>
           </div>
         </section>
-
-        {/* Posts section now comes second */}
-        <section>
-          <div className="border-b border-[#111]/10 pb-8">
-            <h2 className="text-2xl text-[#e5383b] mb-6 font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">~ latest posts</h2>
-            <div className="space-y-4 pl-8 border-l border-[#111]/10">
-              {posts.map((post, idx) => (
-                <Link
-                  key={idx}
-                  href={`/posts/${post.currentSlug}`}
-                  className="block group"
-                >
-                  <div className="flex items-baseline gap-4">
-                    <span className="text-[#111]/60 text-lg">
-                      {new Date(post._createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })} —
-                    </span>
-                    <span className="text-lg text-[#111] group-hover:text-[#111]/80">
-                      {post.title}
-                    </span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-            <div className="mt-4">
+        <section className="border-b border-white/10 pb-3 mb-3">          <h2 className="text-2xl mb-3" style={{ color: '#7b97aa' }}>
+            ~ recent posts
+          </h2>
+          <div className="space-y-4">
+            {posts.map((post) => (
               <Link 
-                href="/posts" 
-                className="text-[#e5383b] hover:text-[#c72c2f] transition-colors duration-200"
+                href={`/posts/${post.currentSlug}`} 
+                key={post.currentSlug}
+                className="block group"
               >
-                view all posts →
+                <div className="flex items-baseline justify-between">
+                  <span className="group-hover:text-[#7b97aa]" style={{ color: '#FFFAFA' }}>
+                    {post.title}
+                  </span>
+                  <span className="text-sm" style={{ color: '#FFFAFA' }}>
+                    {new Date(post._createdAt).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: '2-digit',
+                      day: '2-digit'
+                    })}
+                  </span>
+                </div>
               </Link>
-            </div>
+            ))}
+          </div>
+        </section>
+        <section>          <h2 className="text-2xl mb-3" style={{ color: '#FFFAFA' }}>
+            ~ featured projects
+          </h2>
+          <div className="space-y-3 pl-8 border-l border-white/10">
+            {projects.map((project, idx) => (
+              <div key={idx} className="block group">
+                <div className="flex flex-col gap-1">                  <div className="flex items-baseline justify-between">
+                    <div className="flex items-baseline gap-4">
+                      <span className="text-lg text-[#7b97aa] group-hover:text-[#7b97aa]">
+                        {project.title}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="text-base" style={{ color: '#FFFAFA' }}>
+                    {project.description}
+                  </div>
+                  <div className="ml-16 mt-1">
+                    <Link 
+                      href={project.link}
+                      className="text-sm transition-colors duration-200 text-[#7b97aa] hover:text-[#7b97aa]"
+                    >
+                      view project
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
       </div>

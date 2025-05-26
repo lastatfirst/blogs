@@ -1,13 +1,15 @@
 import Link from "next/link";
 import { client } from "../lib/sanity";
 import { simpleBlogCard } from "../lib/interface";
+import LikeButton from "../components/LikeButton";
 
 async function getData() {
   const query = `
   *[_type == "blog"] | order(_createdAt desc) {
     title,
     "currentSlug": slug.current,
-    _createdAt
+    _createdAt,
+    likes
   }`;
   const data = await client.fetch(query);
   return data;
@@ -34,38 +36,59 @@ export default async function Posts() {
 
   return (
     <div className="min-h-screen">
-      <div className="max-w-5xl mx-auto px-6 py-16">
+      <div className="max-w-3xl mx-auto px-6 py-16">
         <div className="breadcrumb mb-8">
           <Link href="/">home</Link>
           <span>/</span>
-          <span>posts</span>
+          <span className="text-white/60">posts</span>
         </div>
 
-        <main className="space-y-12">
-          {years.map((year) => (
-            <section key={year} className="border-t border-[#111]/10 pt-4 first:border-t-0">
-              <h2 className="text-3xl text-[#e5383b] mb-6 font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">~ {year}</h2>
-              <div className="space-y-4">
-                {postsByYear[year].map((post, idx) => (
+        <section className="border-b border-white/10 pb-8 mb-8">
+          <h1 className="text-4xl mb-4" style={{ color: '#7b97aa' }}>
+            ~ posts
+          </h1>
+          <p className="text-white">
+            All posts in chronological order.
+          </p>
+        </section>
+
+        <section>
+          {Object.entries(postsByYear).reverse().map(([year, posts]) => (
+            <div key={year} className="mb-12">
+              <h2 className="text-xl mb-6" style={{ color: '#7b97aa' }}>
+                {year}
+              </h2>
+              <div className="space-y-4 pl-8 border-l border-white/10">
+                {posts.map((post) => (
                   <Link
-                    key={idx}
                     href={`/posts/${post.currentSlug}`}
+                    key={post.currentSlug}
                     className="block group"
                   >
-                    <div className="flex items-baseline gap-4">
-                      <span className="text-[#111]/60 text-base font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
-                        {new Date(post._createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} —
-                      </span>
-                      <span className="text-xl text-[#111] group-hover:text-[#111]/80 font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
-                        {post.title}
-                      </span>
+                    <div className="flex items-start gap-3">
+                      <div className="mt-1">
+                        <LikeButton initialLikes={post.likes || 0} slug={post.currentSlug} />
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-baseline justify-between text-white/90">
+                          <span className="text-lg group-hover:text-[#7b97aa]">
+                            {post.title}
+                          </span>
+                          <span className="text-sm text-white/60">
+                            {new Date(post._createdAt).toLocaleDateString('en-US', {
+                              month: '2-digit',
+                              day: '2-digit'
+                            })}
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </Link>
                 ))}
               </div>
-            </section>
+            </div>
           ))}
-        </main>
+        </section>
       </div>
     </div>
   );

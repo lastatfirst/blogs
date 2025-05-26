@@ -1,27 +1,23 @@
 /* stylelint-disable at-rule-no-unknown */
+@import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;700&family=Source+Sans+Pro:ital,wght@0,400;0,600;1,400;1,600&family=IBM+Plex+Mono:wght@400;600&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 17, 17, 17;
-  --background-rgb: 255, 255, 227;
-  --code-bg: 30, 30, 30;
-  --code-text: 220, 220, 220;
+  --foreground: #7b97aa;
+  --background: #161618;
 }
 
 @layer base {
   body {
-    font-family: 'et-book', Palatino, 'Palatino Linotype', 'Palatino LT STD', 'Book Antiqua', Georgia, serif;
-    color: rgb(var(--foreground-rgb));
-    background: rgb(var(--background-rgb));
-    font-feature-settings: 'ss01', 'ss02', 'cv01', 'cv02', 'cv03';
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    letter-spacing: -0.015em;
-    font-size: 17px;
+    font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--foreground);
+    background: var(--background);
+    font-size: 16px;
+    min-height: 100vh;
     line-height: 1.6;
+    letter-spacing: -0.015em;
   }
 
   @media (min-width: 768px) {
@@ -31,247 +27,41 @@
   }
 }
 
-.breadcrumb {
-  display: flex;
-  gap: 0.75rem;
-  align-items: baseline;
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-  color: rgba(17, 17, 17, 0.6);
-  font-weight: 450;
-  margin-bottom: 2rem;
+a, h2, h3, h4, h5, h6, p, span, div, label, input, textarea, select, th, td, ul, ol, li, strong, b, em, i, u, ins, mark, small, code, pre, blockquote {
+  color: #fffafa; 
 }
-
-.breadcrumb a {
-  color: #e5383b;
+text-3xl mb-3{
+  color:#7b97aa;
+}
+a {
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: color 0.2s ease;
 }
 
-.breadcrumb a:hover {
-  color: #c72c2f;
+a:hover {
+  color: #fff !important;
 }
 
-.breadcrumb span {
-  color: rgba(17, 17, 17, 0.6);
+hr, .section-border {
+  border-color: #23262f !important;
 }
 
-.prose {
-  font-size: 1rem;
-  line-height: 1.7;
-  letter-spacing: -0.011em;
-}
-
-.prose p {
-  margin-bottom: 1.75em;
-  font-weight: 400;
-}
-
-@media (min-width: 768px) {
-  .prose {
-    font-size: 1.13rem;
-  }
-}
-
-/* Custom scrollbar styling for code and math elements */
-pre::-webkit-scrollbar,
-.katex-display::-webkit-scrollbar,
-.katex::-webkit-scrollbar {
-  height: 6px; /* Much thinner scrollbar */
-  width: 6px;
-}
-
-pre::-webkit-scrollbar-track,
-.katex-display::-webkit-scrollbar-track,
-.katex::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-pre::-webkit-scrollbar-thumb,
-.katex-display::-webkit-scrollbar-thumb,
-.katex::-webkit-scrollbar-thumb {
-  background: rgba(170, 170, 170, 0.3); /* Much lighter, nearly invisible */
-  border-radius: 4px;
-  border: none;
-}
-
-pre::-webkit-scrollbar-thumb:hover,
-.katex-display::-webkit-scrollbar-thumb:hover,
-.katex::-webkit-scrollbar-thumb:hover {
-  background: rgba(136, 136, 136, 0.5); /* Slightly more visible on hover */
-}
-
-/* Hide scrollbars by default and show them only when hovering */
-pre, .katex-display, .katex {
-  scrollbar-width: thin; /* For Firefox */
-}
-
-/* Make the global scrollbar settings less intrusive */
 ::-webkit-scrollbar {
-  height: 8px;
   width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
   background: transparent;
-  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(170, 170, 170, 0.5);
+  background: #23262f;
   border-radius: 4px;
-  border: 2px solid rgb(var(--background-rgb));
-  min-height: 30px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(136, 136, 136, 0.7);
+  background: #23262f;
 }
 
-/* Styles for LaTeX rendering */
-.katex {
-  color: rgb(var(--foreground-rgb)) !important;
-  max-width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding: 0.25rem 0;
-}
-
-.katex-display {
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding: 0.5rem 0;
-  margin: 1em 0;
-}
-
-.katex-html {
-  color: rgb(var(--foreground-rgb)) !important;
-  max-width: 100%;
-}
-
-/* Make sure inline math doesn't break layout */
-.inline-block .katex {
-  display: inline-flex;
-  vertical-align: middle;
-}
-
-/* Add horizontal scrolling for very long equations only when necessary */
-.katex-display > .katex {
-  white-space: nowrap;
-  max-width: 100%;
-}
-
-/* Code block styling */
-pre {
-  position: relative;
-  background-color: rgb(var(--code-bg)) !important;
-  color: rgb(var(--code-text)) !important;
-  border-radius: 0.5rem;
-  margin: 1.5rem 0;
-  padding: 1rem;
-  overflow-x: auto;
-}
-
-code {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  font-size: 1rem !important; /* Increased from 0.9rem */
-  color: rgb(var(--code-text));
-}
-
-pre > code {
-  display: block;
-  padding: 0.75rem 0;
-  font-size: 1.05rem !important; /* Increased for better readability */
-  line-height: 1.6;
-}
-
-/* Code copy button */
-.code-block {
-  position: relative;
-}
-
-.copy-button {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  padding: 0.25rem 0.5rem;
-  background-color: rgba(255, 255, 255, 0.1);
-  border: none;
-  border-radius: 0.25rem;
-  color: #d1d1d1;
-  font-size: 0.8rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  opacity: 0;
-}
-
-.code-block:hover .copy-button {
-  opacity: 1;
-}
-
-.copy-button:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-.copy-button.copied {
-  background-color: #4ade80;
-  color: #1e1e1e;
-}
-
-/* Fix syntax highlighting colors */
-.hljs-keyword, 
-.hljs-selector-tag, 
-.hljs-built_in, 
-.hljs-name, 
-.hljs-tag {
-  color: #cc99cd;
-}
-
-.hljs-string, 
-.hljs-title, 
-.hljs-section, 
-.hljs-attribute, 
-.hljs-literal, 
-.hljs-template-tag, 
-.hljs-template-variable, 
-.hljs-type, 
-.hljs-addition {
-  color: #7ec699;
-}
-
-.hljs-comment, 
-.hljs-quote, 
-.hljs-meta, 
-.hljs-bullet {
-  color: #999;
-}
-
-.hljs-number, 
-.hljs-symbol, 
-.hljs-variable, 
-.hljs-template-variable, 
-.hljs-literal, 
-.hljs-deletion {
-  color: #f08d49;
-}
-
-/* Ensure bullet points and list items have the correct color */
-ul, ol, li {
-  color: rgb(var(--foreground-rgb));
-}
-
-/* Explicitly set the bullet color */
-ul li::marker, 
-ol li::marker {
-  color: rgb(var(--foreground-rgb));
-}
-
-/* Fix for bold, strong, italic, emphasis and underlined text */
-b, strong, i, em, u, ins, mark {
-  color: rgb(var(--foreground-rgb));
-}
-
-/* Ensure consistency in nested elements */
-* {
-  color: inherit;
-}
+/* Remove all other color rules except #7b97aa and white on hover */

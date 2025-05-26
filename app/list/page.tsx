@@ -24,18 +24,17 @@ export default async function ListPage() {
         <div className="breadcrumb mb-8">
           <Link href="/">home</Link>
           <span>/</span>
-          <span>list</span>
+          <span className="text-white/60">reading list</span>
         </div>
 
-        <section className="border-b border-[#111]/10 pb-8 mb-8">
-          <h1 className="text-4xl text-[#e5383b] mb-4">~ weekly list</h1>
-          <p className="text-[#111]/70">interesting blogs/articles/papers/books dump</p>
+        <section className="border-b border-white/10 pb-8 mb-8">          <h1 className="text-4xl text-[#7b97aa] mb-4">~ reading list</h1>
+          <p className="text-white">Things I'm reading and learning from.</p>
         </section>
 
-        <section>
-          {readingLists.map((list, idx) => (
-            <WeeklyList
-              key={idx}
+        <section className="space-y-12">
+          {readingLists.map((list: any) => (
+            <WeeklyList 
+              key={list.weekStart} 
               weekStart={list.weekStart}
               weekEnd={list.weekEnd}
               items={list.items}

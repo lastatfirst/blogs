@@ -79,37 +79,37 @@ export const myPortableTextComponents: PortableTextComponents = {
   },
   block: {
     h1: ({ children }) => (
-      <h1 className="text-4xl font-medium tracking-tight mt-12 mb-6 text-[#111] font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
+      <h1 className="text-4xl font-medium tracking-tight mt-12 mb-6" style={{ color: '#7b97aa' }}>
         {children}
       </h1>
     ),
     h2: ({ children }) => (
-      <h2 className="text-3xl font-medium tracking-tight mt-10 mb-4 text-[#111] font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
+      <h2 className="text-3xl font-medium tracking-tight mt-10 mb-4" style={{ color: '#7b97aa' }}>
         {children}
       </h2>
     ),
     h3: ({ children }) => (
-      <h3 className="text-2xl font-medium tracking-tight mt-8 mb-4 text-[#111] font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
+      <h3 className="text-2xl font-medium tracking-tight mt-8 mb-4" style={{ color: '#7b97aa' }}>
         {children}
       </h3>
     ),
     normal: ({ children }) => (
-      <p className="text-[#111] mb-5 leading-relaxed tracking-tight font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
+      <p className="mb-5 leading-relaxed tracking-tight text-white">
         {children}
       </p>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="border-l-4 border-[#e5383b] pl-4 my-6 italic text-[#111]/80 font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
+      <blockquote className="border-l-4 pl-4 my-6 italic text-white/80" style={{ borderColor: '#7b97aa' }}>
         {children}
       </blockquote>
     ),
     bullet: ({ children }) => (
-      <ul className="list-disc list-inside mb-5 text-[#111] font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
+      <ul className="list-disc list-inside mb-5 text-white">
         {children}
       </ul>
     ),
     number: ({ children }) => (
-      <ol className="list-decimal list-inside mb-5 text-[#111] font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
+      <ol className="list-decimal list-inside mb-5 text-white">
         {children}
       </ol>
     ),
@@ -118,7 +118,7 @@ export const myPortableTextComponents: PortableTextComponents = {
     link: ({ children, value }: any) => (
       <a
         href={value?.href}
-        className="text-[#e5383b] hover:text-[#c72c2f] transition-colors duration-200 border-b border-[#e5383b]/30 hover:border-[#c72c2f]"
+        className="text-[#ffa896] hover:text-[#ffa896]/80 transition-colors duration-200 border-b border-[#ffa896]/30 hover:border-[#ffa896]/80"
         target={value?.blank ? "_blank" : "_self"}
         rel={value?.blank ? "noopener noreferrer" : undefined}
       >

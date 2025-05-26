@@ -48,58 +48,50 @@ export default async function BlogPost({ params }: { params: { slug: string } })
   const estimatedReadTime = `${Math.ceil(wordCount / wordsPerMinute)} min read`;
 
   if (!data) {
-    // Basic 404 rendering
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center">
-        <ReadingProgress />
-        <div className="text-center">
-          <h1 className="text-4xl font-bold mb-4">404 - Not Found</h1>
-          <p className="text-[#111]/70 mb-8">Could not find the requested post.</p>
-          <Link href="/posts" className="text-[#e5383b] hover:text-[#c72c2f]">
-            Back to Posts
-          </Link>
-        </div>
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-white font-mono">Post not found</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen">
-      <div className="max-w-3xl mx-auto px-6 sm:px-8 py-20 sm:py-28">
-        {/* Basic Breadcrumbs */}
-        <div className="breadcrumb mb-12">
+    <article className="min-h-screen relative">
+      <div className="max-w-3xl mx-auto px-6 py-16">
+        <div className="breadcrumb mb-8">
           <Link href="/">home</Link>
           <span>/</span>
           <Link href="/posts">posts</Link>
           <span>/</span>
-          <span className="text-[#111]/50">{slug}</span>
+          <span className="text-white/60">{data.title}</span>
         </div>
 
-        {/* Basic Header */}
-        <header className="mb-12">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif] text-[#111] mb-6 leading-[1.1]">{data.title}</h1>
-          <div className="flex flex-col sm:flex-row items-center border-t border-b border-[#111]/20 py-3 mt-6">
-            <div className="text-base text-[#111]/60 flex items-center gap-4 mb-4 sm:mb-0 font-['et-book',Palatino,'Palatino_Linotype','Palatino_LT_STD','Book_Antiqua',Georgia,serif]">
-               <span className="font-mono">{new Date(data._createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
-               <span>·</span>
-               <span>{estimatedReadTime}</span>
-            </div>
-            <div className="sm:ml-auto">
-              <LikeButton initialLikes={data.likes || 0} slug={slug} />
-            </div>
+        <div className="mb-8 pb-8 border-b border-white/10">
+          <div className="flex items-center justify-between mb-4">
+            <h1 className="text-4xl" style={{ color: '#7b97aa' }}>{data.title}</h1>
+            <LikeButton slug={slug} initialLikes={data.likes} />
           </div>
-        </header>
+          <div className="flex items-center gap-4 text-white/60">
+            <time>
+              {new Date(data._createdAt).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
+            </time>
+            <span>•</span>
+            <span>{estimatedReadTime}</span>
+          </div>
+        </div>
 
-        {/* Main Content */}
-        <main className="prose max-w-none">
-          <PortableText 
-            value={data.content} 
-            components={myPortableTextComponents} 
-          />
-        </main>
+        <div className="prose prose-invert max-w-none text-white">
+          <PortableText value={data.content} components={myPortableTextComponents} />
+        </div>
+
+
       </div>
       <ReadingProgress />
-    </div>
+    </article>
   );
 }
 

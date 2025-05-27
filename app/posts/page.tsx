@@ -2,6 +2,7 @@ import Link from "next/link";
 import { client } from "../lib/sanity";
 import { simpleBlogCard } from "../lib/interface";
 import LikeButton from "../components/LikeButton";
+import Breadcrumb from "@/app/components/Breadcrumb";
 
 async function getData() {
   const query = `
@@ -37,11 +38,12 @@ export default async function Posts() {
   return (
     <div className="min-h-screen">
       <div className="max-w-3xl mx-auto px-6 py-16">
-        <div className="breadcrumb mb-8">
-          <Link href="/">home</Link>
-          <span>/</span>
-          <span className="text-white/60">posts</span>
-        </div>
+        <Breadcrumb
+          items={[
+            { label: "home", href: "/" },
+            { label: "posts" },
+          ]}
+        />
 
         <section className="border-b border-white/10 pb-8 mb-8">
           <h1 className="text-4xl mb-4" style={{ color: '#7b97aa' }}>

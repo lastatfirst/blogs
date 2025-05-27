@@ -5,6 +5,7 @@ import Link from "next/link";
 import { myPortableTextComponents } from "@/app/lib/portableTextComponents";
 import LikeButton from "@/app/components/LikeButton";
 import ReadingProgress from "@/app/components/ReadingProgress";
+import Breadcrumb from "@/app/components/Breadcrumb";
 
 // Reverted getData function to a simpler state
 async function getData(slug: string): Promise<fullBlog | null> {
@@ -58,13 +59,13 @@ export default async function BlogPost({ params }: { params: { slug: string } })
   return (
     <article className="min-h-screen relative">
       <div className="max-w-3xl mx-auto px-6 py-16">
-        <div className="breadcrumb mb-8">
-          <Link href="/">home</Link>
-          <span>/</span>
-          <Link href="/posts">posts</Link>
-          <span>/</span>
-          <span className="text-white/60">{data.title}</span>
-        </div>
+        <Breadcrumb
+          items={[
+            { label: "home", href: "/" },
+            { label: "posts", href: "/posts" },
+            { label: data.title },
+          ]}
+        />
 
         <div className="mb-8 pb-8 border-b border-white/10">
           <div className="flex items-center justify-between mb-4">

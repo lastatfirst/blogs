@@ -63,5 +63,3 @@ hr, .section-border {
 ::-webkit-scrollbar-thumb:hover {
   background: #23262f;
 }
-
-/* Remove all other color rules except #7b97aa and white on hover */

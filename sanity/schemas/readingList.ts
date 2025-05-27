@@ -1,23 +1,17 @@
 export default {
   name: 'readingList',
-  title: 'Reading List',
+  title: 'Monthly Reading List',
   type: 'document',
- 
-  permissions: [
-    {
-      update: true
-    }
-  ],
   fields: [
     {
-      name: 'weekStart',
-      title: 'Week Start Date',
+      name: 'monthDate',
+      title: 'Month',
       type: 'date',
-    },
-    {
-      name: 'weekEnd',
-      title: 'Week End Date',
-      type: 'date',
+      description: 'Select the first day of the month for this reading list.',
+      options: {
+        dateFormat: 'YYYY-MM',
+      },
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: 'items',

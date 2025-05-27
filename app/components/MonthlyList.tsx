@@ -26,7 +26,8 @@ export default function MonthlyList({ weekStart, weekEnd, items }: MonthlyListPr
       </h2>
       <div className="space-y-3 pl-8 border-l border-white/10">
         {items.map((item, index) => (
-          <div key={index} className="group">            <a
+          <div key={index} className="group">
+            <a
               href={item.url}
               target="_blank"
               rel="noopener noreferrer"

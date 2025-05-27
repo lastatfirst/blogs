@@ -19,7 +19,8 @@ export default async function Home() {
       title: "QuSCII",
       description: "A quantum image to ascii generator",
       link: "https://weeye.vercel.app/posts/quscii"
-    },
+    
+/* Remove all other color rules except #7b97aa and white on hover */},
     {
       title:"NervParse",
       description:"A neural based dependency parser ",
@@ -30,17 +31,46 @@ export default async function Home() {
 
   return (    <div className="min-h-screen">
       <div className="max-w-3xl mx-auto px-6 py-10">
-        <section className="border-b border-white/10 pb-4 mb-4">          <h1 className="text-3xl mb-3 font-bold" style={{ color: '#7b97aa' }}>
+        <section className="border-b border-white/10 pb-4 mb-4">          <h1 className="text-3xl mb-3 font-extrabold" style={{ color: '#7b97aa' }}>
             [weeye]
           </h1>
           <p className="text-lg mb-3" style={{ color: '#FFFAFA' }}>
             hello, i'm currently a cs undergradute student, my primary interests lie in quantum computing and neural networks
-            ,in specific, understanding the operations of quantum circuits on graph neural networks.
-          </p>          <div className="flex gap-4 text-lg">
+            , in specific understanding the operations of quantum circuits on graph neural networks.
+          </p>          <div className="flex gap-4 text-xl">
             <Link href="/projects" className="hover:text-white text-[#7b97aa] transition-colors">projects</Link>
             <Link href="/posts" className="hover:text-white text-[#7b97aa] transition-colors">posts</Link>
-            <Link href="/thoughts" className="hover:text-white text-[#7b97aa] transition-colors">thoughts</Link>
+            <Link href="https://wyeyap.vercel.app" className="hover:text-white text-[#7b97aa] transition-colors">thoughts</Link>
             <Link href="/list" className="hover:text-white text-[#7b97aa] transition-colors">reading list</Link>
+          </div>
+        </section>
+        <section className="border-b border-white/10 pb-3 mb-3">          <h2 className="text-2xl mb-3" style={{ color: '#7b97aa' }}>
+            ~ recent  projects
+          </h2>
+          <div className="space-y-3 pl-8 border-l border-white/10">
+            {projects.map((project, idx) => (
+              <div key={idx} className="block group">
+                <div className="flex flex-col gap-1">                  <div className="flex items-baseline justify-between">
+                    <div className="flex items-baseline gap-4">
+                      <span className="text-lg text-[#7b97aa] group-hover:text-[#7b97aa]">
+                        {project.title}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="text-base" style={{ color: '#FFFAFA' }}>
+                    {project.description}
+                  </div>
+                  <div className="ml-16 mt-1">
+                    <Link 
+                      href={project.link}
+                      className="text-sm transition-colors duration-200 text-[#7b97aa] hover:text-[#7b97aa]"
+                    >
+                      view project
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
         <section className="border-b border-white/10 pb-3 mb-3">          <h2 className="text-2xl mb-3" style={{ color: '#7b97aa' }}>
@@ -66,35 +96,6 @@ export default async function Home() {
                   </span>
                 </div>
               </Link>
-            ))}
-          </div>
-        </section>
-        <section>          <h2 className="text-2xl mb-3" style={{ color: '#FFFAFA' }}>
-            ~ featured projects
-          </h2>
-          <div className="space-y-3 pl-8 border-l border-white/10">
-            {projects.map((project, idx) => (
-              <div key={idx} className="block group">
-                <div className="flex flex-col gap-1">                  <div className="flex items-baseline justify-between">
-                    <div className="flex items-baseline gap-4">
-                      <span className="text-lg text-[#7b97aa] group-hover:text-[#7b97aa]">
-                        {project.title}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="text-base" style={{ color: '#FFFAFA' }}>
-                    {project.description}
-                  </div>
-                  <div className="ml-16 mt-1">
-                    <Link 
-                      href={project.link}
-                      className="text-sm transition-colors duration-200 text-[#7b97aa] hover:text-[#7b97aa]"
-                    >
-                      view project
-                    </Link>
-                  </div>
-                </div>
-              </div>
             ))}
           </div>
         </section>

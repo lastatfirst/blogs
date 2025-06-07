@@ -15,53 +15,96 @@ async function getLatestPosts(): Promise<simpleBlogCard[]> {
 
 export default async function Home() {
   const posts = await getLatestPosts();
-  const projects = [    {
+  const projects = [
+    {
       title: "QuSCII",
       description: "A quantum image to ascii generator",
-      link: "https://weeye.vercel.app/posts/quscii"
-    
-/* Remove all other color rules except #7b97aa and white on hover */},
+      link: "https://weeye.vercel.app/posts/quscii",
+
+      /* Remove all other color rules except #7b97aa and white on hover */
+    },
     {
-      title:"NervParse",
-      description:"A neural based dependency parser ",
-      link:"https://github.com/vihanvt/nervparse"
-    }
-   
+      title: "NervParse",
+      description: "A neural based dependency parser ",
+      link: "https://github.com/vihanvt/nervparse",
+    },
   ];
 
-  return (    <div className="min-h-screen">
+  return (
+    <div className="min-h-screen">
       <div className="max-w-3xl mx-auto px-6 py-10">
-        <section className="border-b border-white/10 pb-4 mb-4">          <h1 className="text-3xl mb-3 font-extrabold" style={{ color: '#7b97aa' }}>
+        <section className="border-b border-white/10 pb-4 mb-4">
+          {" "}
+          <h1
+            className="text-3xl mb-3 font-extrabold"
+            style={{ color: "#7b97aa" }}
+          >
             [weeye]
-          </h1>
-          <p className="text-lg mb-3" style={{ color: '#FFFAFA' }}>
-            hello, i'm currently a cs undergradute student, my primary interests lie in quantum computing and neural networks
-            , in specific understanding the operations of quantum circuits on graph neural networks.
-          </p>          <div className="flex gap-4 text-xl">
-            <Link href="/projects" className="hover:text-white text-[#7b97aa] transition-colors">projects</Link>
-            <Link href="/posts" className="hover:text-white text-[#7b97aa] transition-colors">posts</Link>
-            <Link href="https://wyeyap.vercel.app" className="hover:text-white text-[#7b97aa] transition-colors">thoughts</Link>
-            <Link href="/list" className="hover:text-white text-[#7b97aa] transition-colors">reading list</Link>
+          </h1>{" "}
+          <p className="text-lg mb-3" style={{ color: "#FFFAFA" }}>
+            hello, i'm currently a cs undergradute student, my primary interests
+            lie in quantum computing and neural networks , researching on stuff
+            sometimes.
+          </p>
+          <p className="text-lg mb-3" style={{ color: "#FFFAFA" }}>
+            feel free to have a talk anytime on{" "}
+            <a
+              href="https://x.com/wyetwt"
+              className="text-[#7b97aa] hover:text-white transition-colors"
+            >
+              twitter
+            </a>{" "}
+            or theweeye at proton dot me
+          </p>
+          <div className="flex gap-4 text-xl">
+            <Link
+              href="/projects"
+              className="hover:text-white text-[#7b97aa] transition-colors"
+            >
+              projects
+            </Link>
+            <Link
+              href="/posts"
+              className="hover:text-white text-[#7b97aa] transition-colors"
+            >
+              posts
+            </Link>
+            <Link
+              href="https://wyeyap.vercel.app"
+              className="hover:text-white text-[#7b97aa] transition-colors"
+            >
+              thoughts
+            </Link>
+            <Link
+              href="/list"
+              className="hover:text-white text-[#7b97aa] transition-colors"
+            >
+              reading list
+            </Link>
           </div>
         </section>
-        <section className="border-b border-white/10 pb-3 mb-3">          <h2 className="text-2xl mb-3" style={{ color: '#7b97aa' }}>
-            ~ recent  projects
+        <section className="border-b border-white/10 pb-3 mb-3">
+          {" "}
+          <h2 className="text-2xl mb-3" style={{ color: "#7b97aa" }}>
+            ~ recent projects
           </h2>
           <div className="space-y-3 pl-8 border-l border-white/10">
             {projects.map((project, idx) => (
               <div key={idx} className="block group">
-                <div className="flex flex-col gap-1">                  <div className="flex items-baseline justify-between">
+                <div className="flex flex-col gap-1">
+                  {" "}
+                  <div className="flex items-baseline justify-between">
                     <div className="flex items-baseline gap-4">
                       <span className="text-lg text-[#7b97aa] group-hover:text-[#7b97aa]">
                         {project.title}
                       </span>
                     </div>
                   </div>
-                  <div className="text-base" style={{ color: '#FFFAFA' }}>
+                  <div className="text-base" style={{ color: "#FFFAFA" }}>
                     {project.description}
                   </div>
                   <div className="ml-16 mt-1">
-                    <Link 
+                    <Link
                       href={project.link}
                       className="text-sm transition-colors duration-200 text-[#7b97aa] hover:text-[#7b97aa]"
                     >
@@ -73,25 +116,30 @@ export default async function Home() {
             ))}
           </div>
         </section>
-        <section className="border-b border-white/10 pb-3 mb-3">          <h2 className="text-2xl mb-3" style={{ color: '#7b97aa' }}>
+        <section className="border-b border-white/10 pb-3 mb-3">
+          {" "}
+          <h2 className="text-2xl mb-3" style={{ color: "#7b97aa" }}>
             ~ recent posts
           </h2>
           <div className="space-y-4">
             {posts.map((post) => (
-              <Link 
-                href={`/posts/${post.currentSlug}`} 
+              <Link
+                href={`/posts/${post.currentSlug}`}
                 key={post.currentSlug}
                 className="block group"
               >
                 <div className="flex items-baseline justify-between">
-                  <span className="group-hover:text-[#7b97aa]" style={{ color: '#FFFAFA' }}>
+                  <span
+                    className="group-hover:text-[#7b97aa]"
+                    style={{ color: "#FFFAFA" }}
+                  >
                     {post.title}
                   </span>
-                  <span className="text-sm" style={{ color: '#FFFAFA' }}>
-                    {new Date(post._createdAt).toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: '2-digit',
-                      day: '2-digit'
+                  <span className="text-sm" style={{ color: "#FFFAFA" }}>
+                    {new Date(post._createdAt).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "2-digit",
+                      day: "2-digit",
                     })}
                   </span>
                 </div>

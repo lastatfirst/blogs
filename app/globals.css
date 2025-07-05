@@ -28,7 +28,7 @@
 }
 
 a, h2, h3, h4, h5, h6, p, span, div, label, input, textarea, select, th, td, ul, ol, li, strong, b, em, i, u, ins, mark, small, code, pre, blockquote {
-  color: #fffafa; 
+  color: #F67280; 
 }
 text-3xl mb-3{
   color:#7b97aa;
@@ -39,7 +39,7 @@ a {
 }
 
 a:hover {
-  color: #fff !important;
+  color: #F67280 !important;
 }
 
 hr, .section-border {

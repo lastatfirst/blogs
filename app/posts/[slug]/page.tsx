@@ -73,7 +73,7 @@ export default async function BlogPost({
 
   return (
     <article className="min-h-screen relative">
-      <div className="max-w-3xl mx-auto px-6 py-16">
+      <div className="max-w-3xl mx-auto px-6 py-6">
         <Breadcrumb
           items={[
             { label: "home", href: "/" },

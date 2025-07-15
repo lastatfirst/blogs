@@ -32,11 +32,11 @@ export default async function Home() {
 
   return (
     <div className="min-h-screen">
-      <div className="max-w-3xl mx-auto px-6 py-10">
+      <div className="max-w-3xl mx-auto px-6 py-6">
         <section className="border-b border-white/10 pb-4 mb-4">
           {" "}
           <h1
-            className="text-2xl mb-3 font-extrabold"
+            className="text-3xl mb-3 font-extrabold"
             style={{ color: "#7b97aa" }}
           >
             [weeye]
@@ -56,30 +56,30 @@ export default async function Home() {
             </a>{" "}
             or theweeye at proton dot me
           </p>
-          <div className="flex gap-4 text-xl">
+          <div className="flex gap-4 text-xl flex-wrap">
             <Link
               href="/projects"
-              className="hover:text-white text-[#7b97aa] transition-colors"
+              className="hover:text-white text-[#7b97aa] transition-colors whitespace-nowrap"
             >
               projects
             </Link>
             <Link
               href="/posts"
-              className="hover:text-white text-[#7b97aa] transition-colors"
+              className="hover:text-white text-[#7b97aa] transition-colors whitespace-nowrap"
             >
               posts
             </Link>
             <Link
               href="https://wyeyap.vercel.app"
-              className="hover:text-white text-[#7b97aa] transition-colors"
+              className="hover:text-white text-[#7b97aa] transition-colors whitespace-nowrap"
             >
               thoughts
             </Link>
             <Link
               href="/list"
-              className="hover:text-white text-[#7b97aa] transition-colors"
+              className="hover:text-white text-[#7b97aa] transition-colors whitespace-nowrap"
             >
-              reading list
+              list
             </Link>
           </div>
         </section>

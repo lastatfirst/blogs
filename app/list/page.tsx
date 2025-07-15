@@ -20,7 +20,7 @@ export default async function ListPage() {
   
   return (
     <div className="min-h-screen">
-      <div className="max-w-3xl mx-auto px-6 py-16">
+      <div className="max-w-3xl mx-auto px-6 py-6">
         <Breadcrumb
           items={[
             { label: "home", href: "/" },

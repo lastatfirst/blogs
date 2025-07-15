@@ -36,17 +36,17 @@ export default async function Home() {
         <section className="border-b border-white/10 pb-4 mb-4">
           {" "}
           <h1
-            className="text-3xl mb-3 font-extrabold"
+            className="text-2xl mb-3 font-extrabold"
             style={{ color: "#7b97aa" }}
           >
             [weeye]
           </h1>{" "}
-          <p className="text-lg mb-3" style={{ color: "#FFFAFA" }}>
+          <p className="text-base mb-3" style={{ color: "#FFFAFA" }}>
             hello, i'm currently a cs undergradute student, my primary interests
             lie in quantum computing and neural networks , researching on stuff
             sometimes.
           </p>
-          <p className="text-lg mb-3" style={{ color: "#FFFAFA" }}>
+          <p className="text-base mb-3" style={{ color: "#FFFAFA" }}>
             feel free to have a talk anytime on{" "}
             <a
               href="https://x.com/wyetwt"
@@ -85,7 +85,7 @@ export default async function Home() {
         </section>
         <section className="border-b border-white/10 pb-3 mb-3">
           {" "}
-          <h2 className="text-2xl mb-3" style={{ color: "#7b97aa" }}>
+          <h2 className="text-xl mb-3" style={{ color: "#7b97aa" }}>
             ~ recent projects
           </h2>
           <div className="space-y-3 pl-8 border-l border-white/10">
@@ -95,12 +95,12 @@ export default async function Home() {
                   {" "}
                   <div className="flex items-baseline justify-between">
                     <div className="flex items-baseline gap-4">
-                      <span className="text-lg text-[#7b97aa] group-hover:text-[#7b97aa]">
+                      <span className="text-base text-[#7b97aa] group-hover:text-[#7b97aa]">
                         {project.title}
                       </span>
                     </div>
                   </div>
-                  <div className="text-base" style={{ color: "#FFFAFA" }}>
+                  <div className="text-sm" style={{ color: "#FFFAFA" }}>
                     {project.description}
                   </div>
                   <div className="ml-16 mt-1">
@@ -118,7 +118,7 @@ export default async function Home() {
         </section>
         <section className="border-b border-white/10 pb-3 mb-3">
           {" "}
-          <h2 className="text-2xl mb-3" style={{ color: "#7b97aa" }}>
+          <h2 className="text-xl mb-3" style={{ color: "#7b97aa" }}>
             ~ recent posts
           </h2>
           <div className="space-y-4">
@@ -130,12 +130,12 @@ export default async function Home() {
               >
                 <div className="flex items-baseline justify-between">
                   <span
-                    className="group-hover:text-[#7b97aa]"
+                    className="group-hover:text-[#7b97aa] text-sm"
                     style={{ color: "#FFFAFA" }}
                   >
                     {post.title}
                   </span>
-                  <span className="text-sm" style={{ color: "#FFFAFA" }}>
+                  <span className="text-xs" style={{ color: "#FFFAFA" }}>
                     {new Date(post._createdAt).toLocaleDateString("en-US", {
                       year: "numeric",
                       month: "2-digit",

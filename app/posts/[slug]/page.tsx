@@ -78,7 +78,7 @@ export default async function BlogPost({
           items={[
             { label: "home", href: "/" },
             { label: "posts", href: "/posts" },
-            { label: data.title },
+            { label: slug },
           ]}
         />
 

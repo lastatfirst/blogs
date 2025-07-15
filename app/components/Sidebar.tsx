@@ -42,7 +42,7 @@ export default function Sidebar() {
   }, []);
 
   return (
-    <div className="fixed left-0 top-0 h-screen w-8 flex flex-col z-10 overflow-hidden">
+    <div className="fixed left-0 top-0 h-screen w-12 flex flex-col z-10 overflow-hidden">
       <div
         className="flex flex-col"
         style={{
@@ -51,12 +51,12 @@ export default function Sidebar() {
         }}
       >
         {shuffledImages.map((src, index) => (
-          <div key={index} className="w-8 h-8 flex-shrink-0">
+          <div key={index} className="w-12 h-12 flex-shrink-0">
             <Image
               src={src}
               alt=""
-              width={32}
-              height={32}
+              width={48}
+              height={48}
               className="w-full h-full object-cover block"
             />
           </div>

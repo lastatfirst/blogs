@@ -55,8 +55,8 @@ export default function Sidebar() {
             <Image
               src={src}
               alt=""
-              width={48}
-              height={48}
+              width={40}
+              height={40}
               className="w-full h-full object-cover block"
             />
           </div>

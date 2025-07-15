@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Sidebar() {
   const [shuffledImages, setShuffledImages] = useState<string[]>([]);
@@ -42,26 +43,31 @@ export default function Sidebar() {
   }, []);
 
   return (
-    <div className="fixed left-0 top-0 h-screen w-10 flex flex-col z-10 overflow-hidden">
-      <div
-        className="flex flex-col"
-        style={{
-          transform: `translateY(-${scrollY * 0.5}px)`,
-          transition: "transform 0.1s ease-out",
-        }}
-      >
-        {shuffledImages.map((src, index) => (
-          <div key={index} className="w-10 h-10 flex-shrink-0">
-            <Image
-              src={src}
-              alt=""
-              width={40}
-              height={40}
-              className="w-full h-full object-cover block"
-            />
-          </div>
-        ))}
+    <Link href="/secret" className="group">
+      <div className="fixed left-0 top-0 h-screen w-10 flex flex-col z-10 overflow-hidden cursor-pointer hover:w-12 transition-all duration-300 hover:shadow-lg">
+        <div
+          className="flex flex-col group-hover:brightness-110 transition-all duration-300"
+          style={{
+            transform: `translateY(-${scrollY * 0.5}px)`,
+            transition: "transform 0.1s ease-out",
+          }}
+        >
+          {shuffledImages.map((src, index) => (
+            <div
+              key={index}
+              className="w-10 h-10 flex-shrink-0 group-hover:w-12 group-hover:h-12 transition-all duration-300"
+            >
+              <Image
+                src={src}
+                alt=""
+                width={40}
+                height={40}
+                className="w-full h-full object-cover block"
+              />
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }

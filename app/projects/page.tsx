@@ -58,12 +58,16 @@ export default function Projects() {
                     <div className="flex items-center gap-1.5">
                       <div
                         className={`w-2 h-2 rounded-full ${
-                          project.link === "#" ? "bg-orange-500" : "bg-green-500"
+                          project.link === "#"
+                            ? "bg-orange-500"
+                            : "bg-green-500"
                         }`}
                       ></div>
                       <span
                         className={`text-sm font-['Source_Sans_Pro'] ${
-                          project.link === "#" ? "text-orange-500" : "text-green-500"
+                          project.link === "#"
+                            ? "text-orange-500"
+                            : "text-green-500"
                         }`}
                       >
                         {project.link === "#" ? "in progress" : "completed"}

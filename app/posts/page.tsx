@@ -43,7 +43,7 @@ export default async function Posts() {
         />
 
         <section className="border-b border-white/10 pb-8 mb-8">
-          <h1 className="text-4xl mb-4" style={{ color: "#F67280" }}>
+          <h1 className="text-4xl mb-4" style={{ color: "#7b97aa" }}>
             ~ posts
           </h1>
           <p className="text-white">All posts in chronological order.</p>

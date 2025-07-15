@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import Sidebar from "./components/Sidebar";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -58,14 +59,17 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased flex flex-col min-h-screen text-[#7b97aa]">
-        <main className="flex-grow">{children}</main>
-        <footer className="w-full border-t border-white/10">
-          <div className="max-w-3xl mx-auto px-6 py-4">
-            <p className="text-[#7b97aa] text-sm">
-              &copy; {currentYear} [weeye]. all rights reserved.
-            </p>
-          </div>
-        </footer>
+        <Sidebar />
+        <div className="ml-8">
+          <main className="flex-grow">{children}</main>
+          <footer className="w-full border-t border-white/10">
+            <div className="max-w-3xl mx-auto px-6 py-4">
+              <p className="text-[#7b97aa] text-sm">
+                &copy; {currentYear} [weeye]. all rights reserved.
+              </p>
+            </div>
+          </footer>
+        </div>
         <Analytics />
       </body>
     </html>

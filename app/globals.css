@@ -1,5 +1,14 @@
 /* stylelint-disable at-rule-no-unknown */
-@import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;700&family=Source+Sans+Pro:ital,wght@0,400;0,600;1,400;1,600&family=IBM+Plex+Mono:wght@400;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;700&family=Source+Sans+Pro:ital,wght@0,400;0,600;1,400;1,600&family=IBM+Plex+Mono:wght@400;600&display=swap");
+
+@font-face {
+  font-family: "SF Pro";
+  src: url("/SF-Pro.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,7 +20,13 @@
 
 @layer base {
   body {
-    font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family:
+      "SF Pro",
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      sans-serif;
     color: var(--foreground);
     background: var(--background);
     font-size: 16px;
@@ -27,11 +42,39 @@
   }
 }
 
-a, h2, h3, h4, h5, h6, p, span, div, label, input, textarea, select, th, td, ul, ol, li, strong, b, em, i, u, ins, mark, small, code, pre, blockquote {
-  color: #F67280; 
+a,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+div,
+label,
+input,
+textarea,
+select,
+th,
+td,
+ul,
+ol,
+li,
+strong,
+b,
+em,
+i,
+u,
+ins,
+mark,
+small,
+code,
+pre,
+blockquote {
+  color: #7b97aa;
 }
-text-3xl mb-3{
-  color:#7b97aa;
+text-3xl mb-3 {
+  color: #7b97aa;
 }
 a {
   text-decoration: none;
@@ -39,10 +82,11 @@ a {
 }
 
 a:hover {
-  color: #F67280 !important;
+  color: #7b97aa !important;
 }
 
-hr, .section-border {
+hr,
+.section-border {
   border-color: #23262f !important;
 }
 
@@ -62,4 +106,19 @@ hr, .section-border {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #23262f;
+}
+
+/* Vertical text for sidebar */
+.vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  letter-spacing: 0.1em;
+}
+
+.vertical-text span {
+  display: block;
+  line-height: 1.2;
 }

@@ -44,7 +44,7 @@ export default async function Home() {
           </HeadingWithUnderline>{" "}
           <p className="text-base mb-3" style={{ color: "#FFFAFA" }}>
             hello, i'm currently a cs undergradute student, my primary interests
-            lie in quantum computing and neural networks , researching on stuff
+            lie in quantum computing and graph neural networks , researching on stuff
             sometimes.
           </p>
           <p className="text-base mb-3" style={{ color: "#FFFAFA" }}>

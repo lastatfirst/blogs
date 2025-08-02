@@ -15,10 +15,10 @@ const HeadingWithUnderline: React.FC<HeadingWithUnderlineProps> = ({
   style = {},
 }) => {
   const Tag = `h${level}` as keyof JSX.IntrinsicElements;
-  
+
   return (
-    <div className="heading-container">
-      <Tag className={className} style={style}>
+    <div className="heading-container max-w-full overflow-hidden">
+      <Tag className={`${className} break-words`} style={style}>
         {children}
       </Tag>
       <AnimatedUnderline />

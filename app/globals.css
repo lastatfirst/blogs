@@ -122,3 +122,22 @@ hr,
   display: block;
   line-height: 1.2;
 }
+
+/* Ensure headings wrap on mobile */
+.heading-container {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.heading-container h1,
+.heading-container h2,
+.heading-container h3,
+.heading-container h4,
+.heading-container h5,
+.heading-container h6 {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}

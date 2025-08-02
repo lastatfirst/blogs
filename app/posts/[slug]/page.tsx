@@ -7,9 +7,9 @@ import {
 import { client } from "@/app/lib/sanity";
 import Link from "next/link";
 import { myPortableTextComponents } from "@/app/lib/portableTextComponents";
-import LikeButton from "@/app/components/LikeButton";
 import ReadingProgress from "@/app/components/ReadingProgress";
 import Breadcrumb from "@/app/components/Breadcrumb";
+import HeadingWithUnderline from "@/app/components/HeadingWithUnderline";
 
 // Reverted getData function to a simpler state
 async function getData(slug: string): Promise<fullBlog | null> {
@@ -19,7 +19,6 @@ async function getData(slug: string): Promise<fullBlog | null> {
   const query = `*[_type == "blog" && slug.current == $slug][0] {
     title,
     content,
-    likes,
     _createdAt
   }`;
 
@@ -84,10 +83,13 @@ export default async function BlogPost({
 
         <div className="mb-8 pb-8 border-b border-white/10">
           <div className="flex items-center justify-between mb-4">
-            <h1 className="text-4xl" style={{ color: "#7b97aa" }}>
+            <HeadingWithUnderline
+              level={1}
+              className="text-4xl"
+              style={{ color: "#7b97aa" }}
+            >
               {data.title}
-            </h1>
-            <LikeButton slug={slug} initialLikes={data.likes} />
+            </HeadingWithUnderline>
           </div>
           <div className="flex items-center gap-4 text-white/60">
             <time>

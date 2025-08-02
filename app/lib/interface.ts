@@ -2,13 +2,11 @@ export interface simpleBlogCard {
   title: string;
   currentSlug: string;
   _createdAt: string;
-  likes?: number;
 }
 
 export interface fullBlog {
   title: string;
   content: PortableTextBlock[];
-  likes?: number;
   _createdAt: string;
 }
 

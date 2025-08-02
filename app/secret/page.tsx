@@ -1,4 +1,5 @@
 import Link from "next/link";
+import HeadingWithUnderline from "../components/HeadingWithUnderline";
 
 export default function SecretPage() {
   return (
@@ -15,12 +16,13 @@ export default function SecretPage() {
           <span>secret</span>
         </div>
         <section className="border-b border-white/10 pb-4 mb-4">
-          <h1
+          <HeadingWithUnderline
+            level={1}
             className="text-3xl mb-3 font-extrabold"
             style={{ color: "#7b97aa" }}
           >
             [weeye]
-          </h1>
+          </HeadingWithUnderline>
           <p className="text-base mb-3" style={{ color: "#FFFAFA" }}>
             wondering what this strip of pixels on the side is?
           </p>

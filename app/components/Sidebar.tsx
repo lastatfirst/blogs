@@ -44,7 +44,7 @@ export default function Sidebar() {
 
   return (
     <Link href="/secret" className="group">
-      <div className="fixed left-0 top-0 h-screen w-10 flex flex-col z-10 overflow-hidden cursor-pointer hover:w-12 transition-all duration-300 hover:shadow-lg">
+      <div className="fixed left-0 top-0 h-screen w-6 flex flex-col z-10 overflow-hidden cursor-pointer hover:w-8 transition-all duration-300 hover:shadow-lg">
         <div
           className="flex flex-col group-hover:brightness-110 transition-all duration-300"
           style={{
@@ -55,7 +55,7 @@ export default function Sidebar() {
           {shuffledImages.map((src, index) => (
             <div
               key={index}
-              className="w-10 h-10 flex-shrink-0 group-hover:w-12 group-hover:h-12 transition-all duration-300"
+              className="w-6 h-6 flex-shrink-0 group-hover:w-8 group-hover:h-8 transition-all duration-300"
             >
               <Image
                 src={src}

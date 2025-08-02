@@ -2,6 +2,7 @@ import { client } from "@/app/lib/sanity";
 import MonthlyList from "@/app/components/MonthlyList";
 import Link from "next/link";
 import Breadcrumb from "@/app/components/Breadcrumb";
+import HeadingWithUnderline from "@/app/components/HeadingWithUnderline";
 
 async function getReadingLists() {
   const query = `*[_type == "readingList"] | order(monthDate desc) {
@@ -27,7 +28,12 @@ export default async function ListPage() {
 
         <section className="border-b border-white/10 pb-8 mb-8">
           {" "}
-          <h1 className="text-4xl text-[#7b97aa] mb-4">~ reading list</h1>
+          <HeadingWithUnderline
+            level={1}
+            className="text-4xl text-[#7b97aa] mb-4"
+          >
+            ~ reading list
+          </HeadingWithUnderline>
           <p className="text-white">
             random dump of interesting blogs/papers/articles/books
           </p>

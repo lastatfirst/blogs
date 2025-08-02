@@ -1,4 +1,5 @@
 import Link from "next/link";
+import HeadingWithUnderline from "../components/HeadingWithUnderline";
 
 export default function Projects() {
   const projects = [
@@ -38,9 +39,13 @@ export default function Projects() {
           <span>projects</span>
         </div>
         <section className="border-b border-white/10 pb-8 mb-8">
-          <h1 className="text-4xl mb-4" style={{ color: "#7b97aa" }}>
+          <HeadingWithUnderline
+            level={1}
+            className="text-4xl mb-4"
+            style={{ color: "#7b97aa" }}
+          >
             ~ projects
-          </h1>
+          </HeadingWithUnderline>
           <p className="text-white">Things I've built.</p>
         </section>
 

@@ -6,6 +6,7 @@ import "katex/dist/katex.min.css";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import CodeBlock from "../components/CodeBlock";
+import HeadingWithUnderline from "../components/HeadingWithUnderline";
 
 export const myPortableTextComponents: PortableTextComponents = {
   types: {
@@ -81,28 +82,31 @@ export const myPortableTextComponents: PortableTextComponents = {
   },
   block: {
     h1: ({ children }) => (
-      <h1
+      <HeadingWithUnderline
+        level={1}
         className="text-4xl font-medium tracking-tight mt-12 mb-6"
         style={{ color: "#7b97aa" }}
       >
         {children}
-      </h1>
+      </HeadingWithUnderline>
     ),
     h2: ({ children }) => (
-      <h2
+      <HeadingWithUnderline
+        level={2}
         className="text-3xl font-medium tracking-tight mt-10 mb-4"
         style={{ color: "#7b97aa" }}
       >
         {children}
-      </h2>
+      </HeadingWithUnderline>
     ),
     h3: ({ children }) => (
-      <h3
+      <HeadingWithUnderline
+        level={3}
         className="text-2xl font-medium tracking-tight mt-8 mb-4"
         style={{ color: "#7b97aa" }}
       >
         {children}
-      </h3>
+      </HeadingWithUnderline>
     ),
     normal: ({ children }) => (
       <p className="mb-5 leading-relaxed tracking-tight text-white">

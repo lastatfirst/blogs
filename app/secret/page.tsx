@@ -29,12 +29,12 @@ export default function SecretPage() {
 
           <p className="text-base mb-3" style={{ color: "#FFFAFA" }}>
             try finding out the pattern and you shall uncover a special image
-            getting formed, here's a small hint for you to get started
+            getting formed, here's a small hint for you to get started - 
           </p>
         </section>
         <p className="text-base mb-3" style={{ color: "#FFFAFA" }}>
           the final image is thumbnail/cover art for system card of a famous
-          model.
+         image gen model.
         </p>
       </div>
     </div>

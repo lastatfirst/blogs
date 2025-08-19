@@ -65,7 +65,7 @@ export default async function BlogPost({
   if (!data) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <p className="text-white font-mono">Post not found</p>
+        <p className="text-white font-mono">Blog not found</p>
       </div>
     );
   }
@@ -76,7 +76,7 @@ export default async function BlogPost({
         <Breadcrumb
           items={[
             { label: "home", href: "/" },
-            { label: "posts", href: "/posts" },
+            { label: "blogs", href: "/blogs" },
             { label: slug },
           ]}
         />
@@ -92,15 +92,15 @@ export default async function BlogPost({
             </HeadingWithUnderline>
           </div>
           <div className="flex items-center gap-4 text-white/60">
-            <time>
+            <time className="text-white/60">
               {new Date(data._createdAt).toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
               })}
             </time>
-            <span>•</span>
-            <span>{estimatedReadTime}</span>
+            <span className="text-white/60">•</span>
+            <span className="text-white/60">{estimatedReadTime}</span>
           </div>
         </div>
 

@@ -14,8 +14,8 @@
 @tailwind utilities;
 
 :root {
-  --foreground: #7b97aa;
-  --background: #222222;
+  --foreground: #ea7477;
+  --background: #2d2d2d;
 }
 
 @layer base {
@@ -29,7 +29,7 @@
       sans-serif;
     color: var(--foreground);
     background: var(--background);
-    font-size: 16px;
+    font-size: 14px;
     min-height: 100vh;
     line-height: 1.6;
     letter-spacing: -0.015em;
@@ -37,7 +37,7 @@
 
   @media (min-width: 768px) {
     body {
-      font-size: 18px;
+      font-size: 16px;
     }
   }
 }
@@ -71,10 +71,10 @@ small,
 code,
 pre,
 blockquote {
-  color: #7b97aa;
+  color: #ea7477;
 }
 text-3xl mb-3 {
-  color: #7b97aa;
+  color: #ea7477;
 }
 a {
   text-decoration: none;
@@ -82,7 +82,7 @@ a {
 }
 
 a:hover {
-  color: #7b97aa !important;
+  color: #ff4444 !important;
 }
 
 hr,

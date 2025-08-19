@@ -6,7 +6,7 @@ export default function Projects() {
     {
       title: "QuSCII",
       description: "A quantum ascii art generator",
-      link: "https://weeye.vercel.app/posts/quscii",
+      link: "https://weeye.vercel.app/blogs/quscii",
     },
     {
       title: "NervParse",
@@ -21,7 +21,7 @@ export default function Projects() {
     {
       title: "smolNN",
       description: "Neural network from scratch",
-      link: "https://weeye.vercel.app/posts/nnfs",
+      link: "https://weeye.vercel.app/blogs/nnfs",
     },
   ];
 

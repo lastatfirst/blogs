@@ -3,7 +3,7 @@ import Link from "next/link";
 import { simpleBlogCard } from "./lib/interface";
 import HeadingWithUnderline from "./components/HeadingWithUnderline";
 
-async function getLatestPosts(): Promise<simpleBlogCard[]> {
+async function getLatestBlogs(): Promise<simpleBlogCard[]> {
   const query = `
   *[_type == "blog"] | order(_createdAt desc)[0...3] {
     title,
@@ -14,7 +14,7 @@ async function getLatestPosts(): Promise<simpleBlogCard[]> {
 }
 
 export default async function Home() {
-  const posts = await getLatestPosts();
+  const blogs = await getLatestBlogs();
   const projects = [
     {
       title: "QuSCII",
@@ -44,8 +44,8 @@ export default async function Home() {
           </HeadingWithUnderline>{" "}
           <p className="text-base mb-3" style={{ color: "#FFFAFA" }}>
             hello, i'm currently a cs undergradute student, my primary interests
-            lie in quantum computing and graph neural networks , researching on stuff
-            sometimes.
+            lie in quantum computing and graph neural networks , researching on
+            stuff sometimes.
           </p>
           <p className="text-base mb-3" style={{ color: "#FFFAFA" }}>
             feel free to have a talk anytime on{" "}
@@ -65,10 +65,10 @@ export default async function Home() {
               projects
             </Link>
             <Link
-              href="/posts"
+              href="/blogs"
               className="hover:text-white text-[#7b97aa] transition-colors whitespace-nowrap"
             >
-              posts
+              blogs
             </Link>
             <Link
               href="https://wyeyap.vercel.app"
@@ -88,7 +88,7 @@ export default async function Home() {
           {" "}
           <HeadingWithUnderline
             level={2}
-            className="text-xl mb-3"
+            className="text-lg mb-3"
             style={{ color: "#7b97aa" }}
           >
             ~ recent projects
@@ -105,7 +105,7 @@ export default async function Home() {
                       </span>
                     </div>
                   </div>
-                  <div className="text-sm" style={{ color: "#FFFAFA" }}>
+                  <div className="text-base" style={{ color: "#FFFAFA" }}>
                     {project.description}
                   </div>
                   <div className="ml-16 mt-1">
@@ -125,27 +125,27 @@ export default async function Home() {
           {" "}
           <HeadingWithUnderline
             level={2}
-            className="text-xl mb-3"
+            className="text-lg mb-3"
             style={{ color: "#7b97aa" }}
           >
-            ~ recent posts
+            ~ recent blogs
           </HeadingWithUnderline>
           <div className="space-y-4">
-            {posts.map((post) => (
+            {blogs.map((blog) => (
               <Link
-                href={`/posts/${post.currentSlug}`}
-                key={post.currentSlug}
+                href={`/blogs/${blog.currentSlug}`}
+                key={blog.currentSlug}
                 className="block group"
               >
                 <div className="flex items-baseline justify-between">
                   <span
-                    className="group-hover:text-[#7b97aa] text-sm"
+                    className="group-hover:text-[#7b97aa] text-base"
                     style={{ color: "#FFFAFA" }}
                   >
-                    {post.title}
+                    {blog.title}
                   </span>
-                  <span className="text-xs" style={{ color: "#FFFAFA" }}>
-                    {new Date(post._createdAt).toLocaleDateString("en-US", {
+                  <span className="text-sm" style={{ color: "#FFFAFA" }}>
+                    {new Date(blog._createdAt).toLocaleDateString("en-US", {
                       year: "numeric",
                       month: "2-digit",
                       day: "2-digit",

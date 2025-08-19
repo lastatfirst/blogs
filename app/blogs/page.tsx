@@ -15,22 +15,21 @@ async function getData() {
   return data;
 }
 
-export default async function Posts() {
-  const data: simpleBlogCard[] = await getData();
-
-  const postsByYear = data.reduce(
-    (acc, post) => {
-      const year = new Date(post._createdAt).getFullYear();
+export default async function Blogs() {
+  const data = await getData();
+  const blogsByYear = data.reduce(
+    (acc, blog) => {
+      const year = new Date(blog._createdAt).getFullYear();
       if (!acc[year]) {
         acc[year] = [];
       }
-      acc[year].push(post);
+      acc[year].push(blog);
       return acc;
     },
     {} as Record<number, simpleBlogCard[]>
   );
 
-  const years = Object.keys(postsByYear)
+  const years = Object.keys(blogsByYear)
     .map(Number)
     .sort((a, b) => b - a);
 
@@ -38,7 +37,7 @@ export default async function Posts() {
     <div className="min-h-screen">
       <div className="max-w-3xl mx-auto px-6 py-6">
         <Breadcrumb
-          items={[{ label: "home", href: "/" }, { label: "posts" }]}
+          items={[{ label: "home", href: "/" }, { label: "blogs" }]}
         />
 
         <section className="border-b border-white/10 pb-8 mb-8">
@@ -47,15 +46,15 @@ export default async function Posts() {
             className="text-4xl mb-4"
             style={{ color: "#7b97aa" }}
           >
-            ~ posts
+            ~ blogs
           </HeadingWithUnderline>
-          <p className="text-white">All posts in chronological order.</p>
+          <p className="text-white">All blogs in chronological order.</p>
         </section>
 
         <section>
-          {Object.entries(postsByYear)
+          {Object.entries(blogsByYear)
             .reverse()
-            .map(([year, posts]) => (
+            .map(([year, blogs]) => (
               <div key={year} className="mb-12">
                 <HeadingWithUnderline
                   level={2}
@@ -65,18 +64,18 @@ export default async function Posts() {
                   {year}
                 </HeadingWithUnderline>
                 <div className="space-y-4 pl-8 border-l border-white/10">
-                  {posts.map((post) => (
+                  {blogs.map((blog) => (
                     <Link
-                      href={`/posts/${post.currentSlug}`}
-                      key={post.currentSlug}
+                      href={`/blogs/${blog.currentSlug}`}
+                      key={blog.currentSlug}
                       className="block group"
                     >
                       <div className="flex items-baseline justify-between text-white/90">
                         <span className="text-lg group-hover:text-[#7b97aa]">
-                          {post.title}
+                          {blog.title}
                         </span>
                         <span className="text-sm text-white/60">
-                          {new Date(post._createdAt).toLocaleDateString(
+                          {new Date(blog._createdAt).toLocaleDateString(
                             "en-US",
                             {
                               month: "2-digit",

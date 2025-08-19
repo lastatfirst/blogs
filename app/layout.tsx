@@ -2,7 +2,6 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
-import Sidebar from "./components/Sidebar";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -59,8 +58,7 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased flex flex-col min-h-screen text-[#7b97aa]">
-        <Sidebar />
-        <div className="ml-6">
+        <div>
           <main className="flex-grow">{children}</main>
           <footer className="w-full border-t border-white/10">
             <div className="max-w-3xl mx-auto px-6 py-4">

@@ -15,15 +15,15 @@
 
 /* Blog content specific styles */
 .blog-content {
-  font-family: "JetBrains Mono", Menlo, Monaco, Consolas, "Liberation Mono",
-    "Courier New", monospace;
+  font-family: var(--bodyFont);
   /* Match compact mono body text like the reference */
   font-size: 1.0625rem; /* ~17px */
   line-height: 1.8;
   letter-spacing: 0.02em;
-  width: min(100%, 396px);
+  width: min(100%, 768px);
   margin-left: auto;
   margin-right: auto;
+  padding: 0 1rem;
 }
 
 .blog-content p {
@@ -80,7 +80,7 @@ h4.blog-content {
 }
 
 .blog-content code {
-  font-family: inherit;
+  font-family: var(--codeFont);
   background: var(--surface0);
   padding: 0.2em 0.4em;
   border-radius: 4px;
@@ -134,7 +134,7 @@ h4.blog-content {
   --subtext1: #9ecbff;
   --blue: #9ecbff;
   /* Primary heading color */
-  --lavender: #79b8ff;
+  --lavender: #cdd6f4;
   --sapphire: #9ecbff;
   --sky: #9ecbff;
   --teal: #9ecbff;
@@ -154,15 +154,25 @@ h4.blog-content {
   --border-color: var(--surface0);
   --accent-color: var(--mauve);
   --muted-color: var(--subtext0);
+
+  /* Font stacks */
+  --headerFont: "JetBrains Mono", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Helvetica, Arial, sans-serif;
+  --bodyFont: "JetBrains Mono", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Helvetica, Arial, sans-serif;
+  --codeFont: "JetBrains Mono", ui-monospace, SFMono-Regular, SF Mono, Menlo,
+    monospace;
 }
 
 @layer base {
   html {
-    font-size: 14px;
+    font-size: 16px;
+    @media (max-width: 768px) {
+      font-size: 14px;
+    }
   }
   body {
-    font-family: "JetBrains Mono", Menlo, Monaco, Consolas, "Liberation Mono",
-      "Courier New", monospace;
+    font-family: var(--bodyFont);
     color: var(--text);
     background: var(--background);
     min-height: 100vh;
@@ -183,7 +193,8 @@ h4.blog-content {
   h4,
   h5,
   h6 {
-    color: #79b8ff;
+    font-family: var(--headerFont);
+    color: var(--lavender);
   }
 }
 
@@ -193,6 +204,7 @@ h3,
 h4,
 h5,
 h6 {
+  font-family: var(--headerFont);
   color: var(--lavender);
   font-weight: 600;
   margin-top: 2rem;
@@ -228,7 +240,7 @@ i {
 }
 
 code {
-  font-family: inherit;
+  font-family: var(--codeFont);
   background: var(--surface0);
   color: var(--text);
   padding: 0.2em 0.4em;
@@ -249,6 +261,7 @@ pre code {
   padding: 0;
   font-size: 0.9em;
   color: var(--text);
+  font-family: var(--codeFont);
 }
 
 /* Syntax highlighting - Catppuccin Mocha */
@@ -465,7 +478,7 @@ code {
 }
 
 .prose code {
-  font-family: inherit;
+  font-family: var(--codeFont);
   font-size: 0.88em;
 }
 

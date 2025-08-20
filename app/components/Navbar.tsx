@@ -2,9 +2,9 @@ import Link from 'next/link';
 
 export default function Navbar() {
   return (
-    <nav className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
-      <div className="bg-zinc-900/80 backdrop-blur-sm rounded-full px-5 py-2">
-        <div className="flex items-center space-x-7">
+    <nav className="fixed md:top-8 bottom-8 left-1/2 transform -translate-x-1/2 z-50">
+      <div className="bg-zinc-900/80 backdrop-blur-sm rounded-full px-5 py-2 shadow-lg">
+        <div className="flex items-center space-x-7 md:space-x-10">
           <Link href="/" className="text-white hover:text-zinc-300">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
               <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />

@@ -1,5 +1,5 @@
 /* stylelint-disable at-rule-no-unknown */
-@import url("https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;700&family=Source+Sans+Pro:ital,wght@0,400;0,600;1,400;1,600&family=IBM+Plex+Mono:wght@400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap");
 
 @font-face {
   font-family: "SF Pro";
@@ -13,41 +13,193 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Blog content specific styles */
+.blog-content {
+  font-family: "JetBrains Mono", Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  /* Match compact mono body text like the reference */
+  font-size: 1.0625rem; /* ~17px */
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+  width: min(100%, 396px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.blog-content p {
+  margin-bottom: 1.2em;
+  color: var(--text);
+}
+
+.blog-content h1,
+h1.blog-content,
+.blog-content h2,
+h2.blog-content,
+.blog-content h3,
+h3.blog-content,
+.blog-content h4,
+h4.blog-content {
+  font-family: inherit;
+  letter-spacing: 0.01em;
+  color: var(--lavender);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.blog-content h1,
+h1.blog-content {
+  /* Large, spacious title similar to the screenshot */
+  font-size: clamp(2rem, 6.5vw, 3.2rem);
+  margin: 1.25em 0 0.5em;
+}
+.blog-content h2,
+h2.blog-content {
+  font-size: 1.3em;
+  margin: 1.4em 0 0.6em;
+}
+.blog-content h3,
+h3.blog-content {
+  font-size: 1.15em;
+  margin: 1.3em 0 0.5em;
+}
+.blog-content h4,
+h4.blog-content {
+  font-size: 1.08em;
+  margin: 1.2em 0 0.4em;
+}
+
+.blog-content ul,
+.blog-content ol {
+  margin: 1.5em 0;
+  padding-left: 1.5em;
+}
+
+.blog-content li {
+  margin-bottom: 0.5em;
+  color: var(--text);
+}
+
+.blog-content code {
+  font-family: inherit;
+  background: var(--surface0);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-size: 0.92em;
+  color: var(--text);
+}
+
+.blog-content pre {
+  margin: 1.5em 0;
+  padding: 1em;
+  background: var(--code-bg);
+  border-radius: 8px;
+  overflow-x: auto;
+  border: 1px solid var(--surface0);
+}
+
+.blog-content pre code {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+}
+
+.blog-content blockquote {
+  /* Compact, readable quote with accent left bar and subtle separators */
+  position: relative;
+  margin: 1.5em 0;
+  padding: 1rem 1rem 1rem 1.25rem;
+  color: var(--text);
+  background: transparent;
+  border-left: 3px solid var(--blockquote-accent, #ff8080);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 0 4px 4px 0;
+}
+
+.blog-content blockquote p {
+  margin: 0.5em 0;
+}
+
 :root {
-  --foreground: #ea7477;
-  --background: #2d2d2d;
+  /* Catppuccin Mocha Theme Colors */
+  --background: #222222;
+  --foreground: #cdd6f4;
+  --code-bg: #222222;
+  --surface0: #222222;
+  --surface1: #222222;
+  --surface2: #222222;
+  --overlay0: #9ecbff;
+  --text: #cdd6f4;
+  --subtext0: #9ecbff;
+  --subtext1: #9ecbff;
+  --blue: #9ecbff;
+  /* Primary heading color */
+  --lavender: #79b8ff;
+  --sapphire: #9ecbff;
+  --sky: #9ecbff;
+  --teal: #9ecbff;
+  --green: #9ecbff;
+  --yellow: #9ecbff;
+  --peach: #9ecbff;
+  --maroon: #9ecbff;
+  --red: #9ecbff;
+  --mauve: #9ecbff;
+  --pink: #9ecbff;
+  --flamingo: #9ecbff;
+  --rosewater: #9ecbff;
+
+  /* Theme Mapping */
+  --link-color: var(--blue);
+  --heading-color: var(--lavender);
+  --border-color: var(--surface0);
+  --accent-color: var(--mauve);
+  --muted-color: var(--subtext0);
 }
 
 @layer base {
-  body {
-    font-family:
-      "SF Pro",
-      -apple-system,
-      BlinkMacSystemFont,
-      "Segoe UI",
-      Roboto,
-      sans-serif;
-    color: var(--foreground);
-    background: var(--background);
+  html {
     font-size: 14px;
+  }
+  body {
+    font-family: "JetBrains Mono", Menlo, Monaco, Consolas, "Liberation Mono",
+      "Courier New", monospace;
+    color: var(--text);
+    background: var(--background);
     min-height: 100vh;
     line-height: 1.6;
-    letter-spacing: -0.015em;
+    letter-spacing: 0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 1.0625rem;
   }
 
-  @media (min-width: 768px) {
-    body {
-      font-size: 16px;
-    }
+  * {
+    font-family: inherit;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #79b8ff;
   }
 }
 
-a,
+h1,
 h2,
 h3,
 h4,
 h5,
-h6,
+h6 {
+  color: var(--lavender);
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  letter-spacing: 0.01em;
+}
+
 p,
 span,
 div,
@@ -59,35 +211,130 @@ th,
 td,
 ul,
 ol,
-li,
+li {
+  color: var(--text);
+}
+
 strong,
-b,
+b {
+  color: var(--blue);
+  font-weight: 600;
+}
+
 em,
-i,
-u,
-ins,
-mark,
-small,
-code,
-pre,
+i {
+  color: var(--subtext1);
+  font-style: italic;
+}
+
+code {
+  font-family: inherit;
+  background: var(--surface0);
+  color: var(--text);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+pre {
+  background: var(--code-bg);
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  border: 1px solid var(--surface0);
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  font-size: 0.9em;
+  color: var(--text);
+}
+
+/* Syntax highlighting - Catppuccin Mocha */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: var(--overlay0);
+}
+
+.token.punctuation {
+  color: var(--subtext0);
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: var(--red);
+}
+
+.token.boolean,
+.token.number {
+  color: var(--peach);
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: var(--green);
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: var(--sky);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: var(--mauve);
+}
+
+.token.function,
+.token.class-name {
+  color: var(--blue);
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: var(--pink);
+}
+
 blockquote {
-  color: #ea7477;
+  position: relative;
+  border-left: 3px solid var(--blockquote-accent, #ff8080);
+  margin: 1.25rem 0;
+  padding: 1rem 1rem 1rem 1.25rem;
+  color: var(--text);
+  background: transparent;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 0 4px 4px 0;
 }
-text-3xl mb-3 {
-  color: #ea7477;
-}
+
 a {
+  color: var(--link-color);
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 a:hover {
-  color: #ff4444 !important;
+  color: var(--sapphire);
 }
 
 hr,
 .section-border {
-  border-color: #23262f !important;
+  border-color: var(--surface0) !important;
 }
 
 ::-webkit-scrollbar {
@@ -96,16 +343,39 @@ hr,
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--background);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #23262f;
+  background: var(--surface0);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #23262f;
+  background: var(--surface1);
+}
+
+/* Ensure monospace consistency */
+input,
+textarea,
+select,
+button {
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+/* Adjust line height for inline code */
+p code,
+li code {
+  line-height: 1.4;
+  font-size: 0.9em;
+}
+
+/* Better font rendering for code */
+pre,
+code {
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
 }
 
 /* Vertical text for sidebar */
@@ -116,18 +386,98 @@ hr,
   flex-direction: column;
   align-items: center;
   letter-spacing: 0.1em;
+  font-family: inherit;
 }
 
 .vertical-text span {
   display: block;
   line-height: 1.2;
+  font-family: inherit;
 }
 
-/* Ensure headings wrap on mobile */
-.heading-container {
+/* Content spacing and readability */
+.content-container {
   max-width: 100%;
   overflow-wrap: break-word;
   word-wrap: break-word;
+}
+
+/* Obsidian-like content spacing */
+.prose {
+  /* Match the compact mono rhythm and readable line length */
+  width: min(100%, 396px);
+  line-height: 1.8;
+  font-size: 1.0625rem;
+}
+
+.prose p {
+  margin-bottom: 1.5em;
+  font-family: inherit;
+}
+
+.prose h1 {
+  font-size: clamp(2rem, 6.5vw, 3.2rem);
+  margin-top: 2em;
+  margin-bottom: 0.6em;
+  letter-spacing: 0.01em;
+}
+
+.prose h2 {
+  font-size: 1.3em;
+  margin-top: 1.75em;
+  margin-bottom: 0.75em;
+  letter-spacing: 0.01em;
+}
+
+.prose h3 {
+  font-size: 1.15em;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  letter-spacing: 0.01em;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.5em;
+  margin-bottom: 1.5em;
+  font-family: inherit;
+}
+
+.prose li {
+  margin-bottom: 0.5em;
+  font-family: inherit;
+}
+
+.prose blockquote {
+  margin: 1.5em 0;
+  padding: 0.5em 0 0.5em 1em;
+  border-left: 3px solid var(--border-color);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Code block enhancements */
+.prose pre {
+  margin: 1.5em 0;
+  padding: 1em;
+  background: var(--code-bg);
+  border-radius: 6px;
+  font-size: 0.88em;
+}
+
+.prose code {
+  font-family: inherit;
+  font-size: 0.88em;
+}
+
+/* Links with subtle underline on hover */
+.prose a {
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.prose a:hover {
+  border-bottom-color: var(--link-color);
 }
 
 .heading-container h1,
@@ -141,3 +491,12 @@ hr,
   word-wrap: break-word;
   hyphens: auto;
 }
+
+/* Make heading container (and underline) match paragraph column width */
+.heading-container {
+  width: min(100%, 396px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Removed temporary lead paragraph highlight styles */

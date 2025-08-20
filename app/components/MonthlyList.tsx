@@ -1,27 +1,31 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
+import { useState } from "react";
 
 interface ReadingItem {
-  title: string
-  url: string
-  completed: boolean
+  title: string;
+  url: string;
+  completed: boolean;
 }
 
 interface MonthlyListProps {
-  weekStart: string
-  weekEnd: string
-  items: ReadingItem[]
+  weekStart: string;
+  weekEnd: string;
+  items: ReadingItem[];
 }
 
-export default function MonthlyList({ weekStart, weekEnd, items }: MonthlyListProps) {
-  const date = new Date(weekStart)
-  const month = date.toLocaleDateString('en-US', { month: 'long' })
-  const year = date.getFullYear().toString()
-  
+export default function MonthlyList({
+  weekStart,
+  weekEnd,
+  items,
+}: MonthlyListProps) {
+  const date = new Date(weekStart);
+  const month = date.toLocaleDateString("en-US", { month: "long" });
+  const year = date.getFullYear().toString();
+
   return (
     <div className="space-y-4">
-      <h2 className="text-xl mb-4" style={{ color: '#7b97aa' }}>
+      <h2 className="text-xl mb-4">
         {month} {year}
       </h2>
       <div className="space-y-3 pl-8 border-l border-white/10">
@@ -33,7 +37,9 @@ export default function MonthlyList({ weekStart, weekEnd, items }: MonthlyListPr
               rel="noopener noreferrer"
               className="flex items-baseline justify-between"
             >
-              <span className={`text-white group-hover:text-white/70 ${item.completed ? 'line-through' : ''}`}>
+              <span
+                className={`text-white group-hover:text-white/70 ${item.completed ? "line-through" : ""}`}
+              >
                 {item.title}
               </span>
             </a>
@@ -41,5 +47,5 @@ export default function MonthlyList({ weekStart, weekEnd, items }: MonthlyListPr
         ))}
       </div>
     </div>
-  )
+  );
 }

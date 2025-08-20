@@ -9,6 +9,15 @@ import CodeBlock from "../components/CodeBlock";
 import HeadingWithUnderline from "../components/HeadingWithUnderline";
 
 export const myPortableTextComponents: PortableTextComponents = {
+  list: {
+    bullet: ({ children }) => <ul className="blog-content">{children}</ul>,
+    number: ({ children }) => <ol className="blog-content">{children}</ol>,
+  },
+  listItem: {
+    bullet: ({ children }) => <li className="blog-content">{children}</li>,
+    number: ({ children }) => <li className="blog-content">{children}</li>,
+  },
+
   types: {
     math: ({ value }: any) => {
       if (!value?.equation) {
@@ -82,57 +91,31 @@ export const myPortableTextComponents: PortableTextComponents = {
   },
   block: {
     h1: ({ children }) => (
-      <HeadingWithUnderline
-        level={1}
-        className="text-4xl font-medium tracking-tight mt-12 mb-6"
-        style={{ color: "#7b97aa" }}
-      >
+      <HeadingWithUnderline level={1} className="blog-content">
         {children}
       </HeadingWithUnderline>
     ),
     h2: ({ children }) => (
-      <HeadingWithUnderline
-        level={2}
-        className="text-3xl font-medium tracking-tight mt-10 mb-4"
-        style={{ color: "#7b97aa" }}
-      >
+      <HeadingWithUnderline level={2} className="blog-content">
         {children}
       </HeadingWithUnderline>
     ),
     h3: ({ children }) => (
-      <HeadingWithUnderline
-        level={3}
-        className="text-2xl font-medium tracking-tight mt-8 mb-4"
-        style={{ color: "#7b97aa" }}
-      >
+      <HeadingWithUnderline level={3} className="blog-content">
         {children}
       </HeadingWithUnderline>
     ),
-    normal: ({ children }) => (
-      <p className="mb-5 leading-relaxed tracking-tight text-white">
-        {children}
-      </p>
-    ),
+    h4: ({ children }) => <h4 className="blog-content">{children}</h4>,
+    normal: ({ children }) => <p className="blog-content">{children}</p>,
     blockquote: ({ children }) => (
-      <blockquote
-        className="border-l-4 pl-4 my-6 italic text-white/80"
-        style={{ borderColor: "#7b97aa" }}
-      >
-        {children}
-      </blockquote>
-    ),
-    bullet: ({ children }) => (
-      <ul className="list-disc list-inside mb-5 text-white">{children}</ul>
-    ),
-    number: ({ children }) => (
-      <ol className="list-decimal list-inside mb-5 text-white">{children}</ol>
+      <blockquote className="blog-content">{children}</blockquote>
     ),
   },
   marks: {
     link: ({ children, value }: any) => (
       <a
         href={value?.href}
-        className="text-[#7b97aa] hover:text-[#7b97aa]/80 transition-colors duration-200 border-b border-[#7b97aa]/30 hover:border-[#7b97aa]/80"
+        className="text-[#79b8ff] hover:text-[#79b8ff]/80 transition-colors duration-200 border-b border-[#79b8ff]/30 hover:border-[#79b8ff]/80"
         target={value?.blank ? "_blank" : "_self"}
         rel={value?.blank ? "noopener noreferrer" : undefined}
       >

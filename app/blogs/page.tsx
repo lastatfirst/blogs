@@ -16,7 +16,7 @@ async function getData() {
 }
 
 export default async function Blogs() {
-  const data = await getData();
+  const data: simpleBlogCard[] = await getData();
   const blogsByYear = data.reduce(
     (acc, blog) => {
       const year = new Date(blog._createdAt).getFullYear();
@@ -41,11 +41,7 @@ export default async function Blogs() {
         />
 
         <section className="border-b border-white/10 pb-8 mb-8">
-          <HeadingWithUnderline
-            level={1}
-            className="text-4xl mb-4"
-            style={{ color: "#7b97aa" }}
-          >
+          <HeadingWithUnderline level={1} className="text-4xl mb-4">
             ~ blogs
           </HeadingWithUnderline>
           <p className="text-white">All blogs in chronological order.</p>
@@ -56,11 +52,7 @@ export default async function Blogs() {
             .reverse()
             .map(([year, blogs]) => (
               <div key={year} className="mb-12">
-                <HeadingWithUnderline
-                  level={2}
-                  className="text-xl mb-6"
-                  style={{ color: "#7b97aa" }}
-                >
+                <HeadingWithUnderline level={2} className="text-xl mb-6">
                   {year}
                 </HeadingWithUnderline>
                 <div className="space-y-4 pl-8 border-l border-white/10">
@@ -71,7 +63,7 @@ export default async function Blogs() {
                       className="block group"
                     >
                       <div className="flex items-baseline justify-between text-white/90">
-                        <span className="text-lg group-hover:text-[#7b97aa]">
+                        <span className="text-lg text-[#79b8ff] group-hover:text-[#79b8ff]">
                           {blog.title}
                         </span>
                         <span className="text-sm text-white/60">

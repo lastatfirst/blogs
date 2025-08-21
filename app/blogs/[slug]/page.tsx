@@ -83,7 +83,11 @@ export default async function BlogPost({
 
         <div className="mb-8 pb-8 border-b border-white/10">
           <div className="flex items-center justify-between mb-4">
-            <HeadingWithUnderline level={1} className="text-4xl">
+            <HeadingWithUnderline
+              level={1}
+              className="text-4xl"
+              style={{ color: "#7b97aa" }}
+            >
               {data.title}
             </HeadingWithUnderline>
           </div>
@@ -100,7 +104,7 @@ export default async function BlogPost({
           </div>
         </div>
 
-        <div className="blog-content">
+        <div className="prose prose-invert max-w-none text-white">
           <PortableText
             value={data.content}
             components={myPortableTextComponents}

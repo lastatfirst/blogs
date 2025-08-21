@@ -8,7 +8,7 @@ export default function SecretPage() {
         <div className="breadcrumb mb-8 text-lg">
           <Link
             href="/"
-            className="text-[#79b8ff] hover:text-white transition-colors"
+            className="text-[#7b97aa] hover:text-white transition-colors"
           >
             home
           </Link>
@@ -19,6 +19,7 @@ export default function SecretPage() {
           <HeadingWithUnderline
             level={1}
             className="text-3xl mb-3 font-extrabold"
+            style={{ color: "#7b97aa" }}
           >
             [weeye]
           </HeadingWithUnderline>

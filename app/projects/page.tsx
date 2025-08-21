@@ -31,7 +31,7 @@ export default function Projects() {
         <div className="breadcrumb mb-8 text-lg">
           <Link
             href="/"
-            className="text-[#79b8ff] hover:text-white transition-colors"
+            className="text-[#7b97aa] hover:text-white transition-colors"
           >
             home
           </Link>
@@ -39,7 +39,11 @@ export default function Projects() {
           <span>projects</span>
         </div>
         <section className="border-b border-white/10 pb-8 mb-8">
-          <HeadingWithUnderline level={1} className="text-4xl mb-4">
+          <HeadingWithUnderline
+            level={1}
+            className="text-4xl mb-4"
+            style={{ color: "#7b97aa" }}
+          >
             ~ projects
           </HeadingWithUnderline>
           <p className="text-white">Things I've built.</p>
@@ -52,7 +56,7 @@ export default function Projects() {
                 <div className="flex flex-col gap-1">
                   <div className="flex items-baseline justify-between">
                     <div className="flex items-baseline gap-4">
-                      <span className="text-lg text-[#9ecbff] group-hover:text-[#9ecbff]">
+                      <span className="text-lg text-[#7b97aa] group-hover:text-[#7b97aa]">
                         {project.title}
                       </span>
                     </div>
